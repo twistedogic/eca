@@ -4,7 +4,7 @@
 
 - [x] 1.1 Create Vite + TypeScript project (no UI framework), set `base: '/eca/'` for GitHub Pages, and verify `npm run build` produces a working `dist/`
 - [x] 1.2 Add hash-based routing (`#/`, `#/topic/:t`, `#/topic/:t/chapter/:c`, `#/quiz/:t/:c`, `#/review`) with placeholder screens, and verify all routes navigate without errors
-- [ ] 1.3 Add the GitHub Actions workflow (build → deploy to Pages) and verify the placeholder app is reachable at the Pages URL
+- [x] 1.3 Add the GitHub Actions workflow (build → deploy to Pages) and verify the placeholder app is reachable at the Pages URL
 
 ## 2. Progress Storage
 
@@ -46,5 +46,5 @@
 
 ## 8. Hardening & Sign-off
 
-- [ ] 8.1 Walk the full flow (home → topic → chapter → quiz → results → review next day simulated) against all five specs and the mockup, fixing any behavioral gaps found
-- [ ] 8.2 Run `openspec validate "study-pwa"`, run the full test suite, and confirm the live Pages deployment reflects the final build; then decide whether `mockup.html` stays or goes
+- [x] 8.1 Walk the full flow (home → topic → chapter → quiz → results → review next day simulated) against all five specs and the mockup, fixing any behavioral gaps found
+- [x] 8.2 Run `openspec validate "study-pwa"`, run the full test suite, and confirm the live Pages deployment reflects the final build; then decide whether `mockup.html` stays or goes

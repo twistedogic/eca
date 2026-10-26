@@ -38,7 +38,6 @@ export function topicProgress(
 
 export interface DueInfo {
   byTopic: Map<string, number>
-  byChapter: Map<string, number>
   /** per chapter: cards that are due now or not yet beaten (box 1). */
   weakByChapter: Map<string, number>
   total: number
@@ -50,10 +49,9 @@ export interface DueInfo {
  */
 export async function dueInfo(quiz: QuizData | null, now: number = Date.now()): Promise<DueInfo> {
   const byTopic = new Map<string, number>()
-  const byChapter = new Map<string, number>()
   const weakByChapter = new Map<string, number>()
   let total = 0
-  if (!quiz) return { byTopic, byChapter, weakByChapter, total }
+  if (!quiz) return { byTopic, weakByChapter, total }
 
   const questionById = new Map(quiz.questions.map((q) => [q.id, q]))
   for (const [id, card] of await allCards()) {
@@ -67,9 +65,8 @@ export async function dueInfo(quiz: QuizData | null, now: number = Date.now()): 
     if (!isDue(card, now)) continue
     total++
     byTopic.set(q.topicId, (byTopic.get(q.topicId) ?? 0) + 1)
-    byChapter.set(ck, (byChapter.get(ck) ?? 0) + 1)
   }
-  return { byTopic, byChapter, weakByChapter, total }
+  return { byTopic, weakByChapter, total }
 }
 
 export async function progressMap(): Promise<Map<string, ChapterProgress>> {
