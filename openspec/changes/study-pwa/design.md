@@ -23,7 +23,9 @@ Six screens, list/detail navigation, no complex state. Vanilla TS modules with p
 *Alternative:* React/Preact — rejected: framework churn and build weight for an app this size; nothing here needs a virtual DOM.
 
 ### D2 — Routing: hash-based
-`#/`, `#/topic/:t`, `#/topic/:t/chapter/:c`, `#/quiz/:c`, `#/review`. Works on GitHub Pages with zero server configuration.
+`#/`, `#/topic/:t`, `#/topic/:t/chapter/:c`, `#/quiz/:t/:c`, `#/review`. Works on GitHub Pages with zero server configuration.
+
+The quiz route carries the topic as well as the chapter: the quiz screen needs it for provenance links (source chapter/topic, passage links) and cannot resolve a chapter id that is unique only within its topic.
 *Alternative:* History API + 404.html redirect hack — rejected: extra moving part for no user-visible gain.
 
 ### D3 — Data model: two generated static files

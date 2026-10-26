@@ -3,7 +3,7 @@
 ## 1. Scaffold & Deployment
 
 - [x] 1.1 Create Vite + TypeScript project (no UI framework), set `base: '/eca/'` for GitHub Pages, and verify `npm run build` produces a working `dist/`
-- [x] 1.2 Add hash-based routing (`#/`, `#/topic/:t`, `#/topic/:t/chapter/:c`, `#/quiz/:c`, `#/review`) with placeholder screens, and verify all routes navigate without errors
+- [x] 1.2 Add hash-based routing (`#/`, `#/topic/:t`, `#/topic/:t/chapter/:c`, `#/quiz/:t/:c`, `#/review`) with placeholder screens, and verify all routes navigate without errors
 - [ ] 1.3 Add the GitHub Actions workflow (build → deploy to Pages) and verify the placeholder app is reachable at the Pages URL
 
 ## 2. Progress Storage
