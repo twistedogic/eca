@@ -1,0 +1,29 @@
+questions:
+  # Hand-written question taking precedence over the generated one for LRU
+  # (the generated MC for LRU is dropped because `term` matches).
+  - term: LRU
+    type: mc
+    prompt: Which eviction policy evicts the entry that has not been accessed for the longest time?
+    choices:
+      - LRU (least recently used)
+      - FIFO (first in, first out)
+      - Random eviction
+      - TTL expiry
+    answer: 0
+    explanation: LRU tracks access time and evicts the least recently used entry; FIFO only cares about insertion order.
+
+  # Hand-written question without a term — no precedence, just added.
+  - type: mc
+    prompt: What is the main cost of the write-through caching strategy?
+    choices:
+      - Slower writes, since both cache and database are updated at once
+      - Stale cache entries
+      - Higher read latency
+      - It only works with a single server
+    answer: 0
+    explanation: Write-through keeps the cache fresh but every write pays for two updates.
+
+  - type: cloze
+    prompt: "____ lets the application check the cache first and load from the database on a miss."
+    answer: cache-aside
+    explanation: Cache-aside is the application-managed caching strategy; write-through is database-managed.
