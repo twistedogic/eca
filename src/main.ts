@@ -8,6 +8,7 @@ import { renderTopic } from './views/topic'
 import { renderChapter } from './views/chapter'
 import { renderQuiz } from './views/quiz'
 import { renderReview } from './views/review'
+import { applyTheme, loadTheme } from './state/theme'
 
 const app = document.getElementById('app')!
 
@@ -36,11 +37,14 @@ function render(): void {
 }
 
 async function boot(): Promise<void> {
+  // the appearance lands in parallel with the content fetch, before the first paint
+  const themed = loadTheme().then(applyTheme).catch((err) => console.error('theme failed', err))
   try {
     ;[content, quiz] = await Promise.all([loadContent(), loadQuiz()])
   } catch {
     // views render an empty state; content may appear after `npm run gen`
   }
+  await themed
   render()
   window.addEventListener('hashchange', render)
 }

@@ -2,6 +2,7 @@ import { h, clear } from '../dom'
 import { go } from '../router'
 import type { ContentData, QuizData } from '../types'
 import { dueInfo, progressMap, topicProgress, chapterKey, estimatedMinutes } from '../state/progress'
+import { currentTheme, toggleTheme, type Theme } from '../state/theme'
 
 export async function renderHome(
   app: HTMLElement,
@@ -11,6 +12,7 @@ export async function renderHome(
   clear(app)
   const due = await dueInfo(quiz)
   const progress = await progressMap()
+  const theme = currentTheme()
 
   const view = h('div', { class: 'view' })
 
@@ -56,6 +58,22 @@ export async function renderHome(
     )
   }
 
+  const themePill = h('span', { class: 'pill' }, theme === 'dark' ? 'Dark' : 'Light')
+  const row = h('button', {
+    class: 'appear-row',
+    'aria-label': appearanceLabel(theme),
+    onclick: () => flipAppearance(),
+  },
+    h('span', { class: 'ct' }, 'Appearance'),
+    themePill)
+  view.append(row)
+
+  function flipAppearance(): void {
+    const next = toggleTheme()
+    themePill.textContent = next === 'dark' ? 'Dark' : 'Light'
+    row.setAttribute('aria-label', appearanceLabel(next))
+  }
+
   app.append(
     h('div', { class: 'appbar' },
       h('span', { class: 'title' }, 'My Topics'),
@@ -63,4 +81,8 @@ export async function renderHome(
         navigator.serviceWorker?.controller ? 'offline ready ✓' : '')),
     view,
   )
+}
+
+function appearanceLabel(theme: Theme): string {
+  return `Appearance: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}.`
 }

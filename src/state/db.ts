@@ -43,6 +43,10 @@ export function setSetting<T>(key: string, value: T): Promise<void> {
   return set(key, value, settingsStore)
 }
 
+export function deleteSetting(key: string): Promise<void> {
+  return del(key, settingsStore)
+}
+
 /**
  * Drops stored cards whose question no longer exists (content was edited).
  * Returns the number of purged cards.

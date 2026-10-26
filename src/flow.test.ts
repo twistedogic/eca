@@ -9,14 +9,14 @@
  */
 import 'fake-indexeddb/auto'
 import { readFileSync } from 'node:fs'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { parseHash } from './router'
 import { renderHome } from './views/home'
 import { renderTopic } from './views/topic'
 import { renderChapter } from './views/chapter'
 import { renderQuiz } from './views/quiz'
 import { renderReview } from './views/review'
-import { allCards, putCard } from './state/db'
+import { allCards, deleteSetting, getSetting, putCard } from './state/db'
 import type { ContentData, QuizData, Question } from './types'
 
 const content = JSON.parse(readFileSync('public/content.json', 'utf8')) as ContentData
@@ -27,11 +27,14 @@ const CHAPTER = content.topics[0].chapters[0].id
 
 let app: HTMLElement
 
-beforeEach(() => {
+beforeEach(async () => {
   document.body.innerHTML = '<div id="app"></div>'
   app = document.getElementById('app')!
   window.scrollTo = () => {}
   Element.prototype.scrollIntoView = () => {}
+  // the appearance is global state; reset it so each case starts in light
+  await deleteSetting('theme')
+  document.documentElement.removeAttribute('data-theme')
 })
 
 function text(el: Element | null): string {  return (el?.textContent ?? '').replace(/\s+/g, ' ').trim()
@@ -215,6 +218,32 @@ describe('full flow', () => {
     // the beaten chapter is done again
     await renderTopic(app, content, quiz, TOPIC)
     expect(chapterRow(content.topics[0].chapters[0].title).querySelector('.chip.done')).not.toBeNull()
+  })
+
+  it('the appearance control flips the theme and the choice survives a re-render', async () => {
+    await renderHome(app, content, quiz)
+    const row = require('.appear-row', 'Appearance')
+    expect(text(row.querySelector('.pill'))).toBe('Light')
+
+    row.click()
+    expect(text(app.querySelector('.appear-row .pill'))).toBe('Dark')
+    expect(document.documentElement.dataset.theme).toBe('dark')
+    await vi.waitFor(async () => expect(await getSetting('theme')).toBe('dark'))
+
+    await renderHome(app, content, quiz)
+    expect(text(app.querySelector('.appear-row .pill'))).toBe('Dark')
+    expect(document.documentElement.dataset.theme).toBe('dark')
+  })
+
+  it('the appearance control shows and changes what is on screen, not what was saved', async () => {
+    // the app is showing dark while the saved preference says otherwise
+    document.documentElement.dataset.theme = 'dark'
+    await renderHome(app, content, quiz)
+    expect(text(app.querySelector('.appear-row .pill'))).toBe('Dark')
+
+    app.querySelector<HTMLButtonElement>('.appear-row')!.click()
+    expect(document.documentElement.dataset.theme).toBe('light')
+    expect(text(app.querySelector('.appear-row .pill'))).toBe('Light')
   })
 
   it('a card whose question no longer exists is dropped without errors', async () => {
