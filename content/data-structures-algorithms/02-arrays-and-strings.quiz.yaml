@@ -1,0 +1,84 @@
+questions:
+  - term: dynamic array
+    type: mc
+    sectionId: the-dynamic-array
+    prompt: Why is appending to a dynamic array O(1) amortized?
+    choices:
+      - The occasional O(n) copy is spread across many O(1) appends
+      - The copy never happens
+      - The array grows one element at a time
+      - Appends are written straight to disk
+    answer: 0
+    explanation: When the backing store fills up it doubles and copies, so the total cost of n appends is O(n).
+
+  - type: mc
+    sectionId: the-dynamic-array
+    prompt: What makes array indexing O(1)?
+    choices:
+      - Elements sit in contiguous memory, so an address is base plus index times size
+      - The array keeps a sorted copy of its elements
+      - The index is hashed into a bucket
+      - The array is scanned ahead of time
+    answer: 0
+    explanation: Contiguous storage turns lookup into address arithmetic rather than a search.
+
+  - type: mc
+    sectionId: the-dynamic-array
+    prompt: You insert a new element at the front of an array of n elements. What is the cost?
+    choices:
+      - O(n), because every other element shifts by one
+      - O(1), because the array grows on demand
+      - O(log n)
+      - O(n log n)
+    answer: 0
+    explanation: Contiguous storage means an insertion in the middle moves all the trailing elements.
+
+  - type: mc
+    sectionId: prefix-sums-and-difference-arrays
+    prompt: What does a prefix sum array give you in O(1)?
+    choices:
+      - The sum of the elements up to a given index
+      - The sorted order of the elements
+      - The number of distinct values
+      - The index of the maximum element
+    answer: 0
+    explanation: A running total turns a range-sum query into a subtraction of two prefix sums.
+
+  - type: mc
+    sectionId: prefix-sums-and-difference-arrays
+    prompt: What does the difference array technique make efficient?
+    choices:
+      - Applying many range increments, which become O(1) writes plus one prefix-sum pass
+      - Sorting a list of integers
+      - Searching for a value in a sorted array
+      - Reversing an array in place
+    answer: 0
+    explanation: The increments are recorded at the range boundaries and materialised later with one linear pass.
+
+  - type: mc
+    sectionId: working-in-place
+    prompt: How much extra space does an in-place algorithm use for its result?
+    choices:
+      - O(1) auxiliary space, reusing the input
+      - O(n) auxiliary space
+      - O(log n) auxiliary space
+      - Whatever the output array needs
+    answer: 0
+    explanation: In-place means constant extra space, at the cost of destroying the input order.
+
+  - type: mc
+    sectionId: strings-and-the-copy-trap
+    prompt: Why is building a string with repeated concatenation in a loop risky?
+    choices:
+      - Each concatenation may copy the whole string, making the loop O(n²)
+      - Strings cannot be concatenated at all
+      - The result is always reversed
+      - The string is stored as a linked list
+    answer: 0
+    explanation: Use a string builder, or collect characters and join once, to keep the work linear.
+
+  - type: cloze
+    sectionId: working-in-place
+    prompt: "Two pointers walking towards each other from both ends of the same array is a classic ____ algorithm."
+    answer: in-place
+    explanation: The classic in-place shape swaps the ends and moves both pointers towards the middle.

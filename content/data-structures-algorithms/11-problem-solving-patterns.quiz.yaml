@@ -1,0 +1,63 @@
+questions:
+  - term: two pointers
+    type: mc
+    sectionId: two-pointers
+    prompt: You need a pair in a sorted array that sums to a target. Which pattern applies?
+    choices:
+      - Two pointers starting at opposite ends, moving inwards
+      - A hash map of the values seen so far
+      - Binary search for each element
+      - Sorting and scanning adjacent pairs
+    answer: 0
+    explanation: Sortedness lets you discard one end at a time — if the sum is too small, move the left pointer right.
+
+  - term: sliding window
+    type: mc
+    sectionId: the-sliding-window
+    prompt: What is the core idea of the sliding window pattern?
+    choices:
+      - Keep a range under observation and move its bounds instead of rescanning
+      - Sort the input and compare adjacent elements
+      - Use a hash map to remember the last position of each value
+      - Recurse on smaller subranges and cache the results
+    answer: 0
+    explanation: Each step updates the running state in O(1), so the whole scan stays linear.
+
+  - type: mc
+    sectionId: backtracking
+    prompt: What makes backtracking different from plain recursion?
+    choices:
+      - Each branch restores the state it changed before returning
+      - It always uses memoization
+      - It only works on grids
+      - It explores breadth-first
+    answer: 0
+    explanation: Without the undo step, the next branch inherits the previous branch's modifications.
+
+  - type: mc
+    sectionId: greedy-versus-dynamic-programming
+    prompt: When is a greedy approach justified?
+    choices:
+      - When the locally best choice can be shown to belong to some globally optimal solution
+      - Whenever it is faster to write
+      - Whenever the input is unsorted
+      - Only when the problem has no constraints
+    answer: 0
+    explanation: Greedy is correct only with an exchange argument; otherwise a memoised state is the safer route.
+
+  - type: mc
+    sectionId: interval-problems
+    prompt: How do you merge overlapping intervals efficiently?
+    choices:
+      - Sort by start time, then sweep once with a running end time
+      - Compare every pair of intervals
+      - Insert each interval into a hash map
+      - Recurse on each interval independently
+    answer: 0
+    explanation: Sorting by start puts the candidates in order, so one linear pass can merge them.
+
+  - type: cloze
+    sectionId: greedy-versus-dynamic-programming
+    prompt: "A greedy algorithm is correct only when the local choice can be shown to be ____."
+    answer: globally optimal
+    explanation: The exchange argument is what turns a heuristic into a proof.

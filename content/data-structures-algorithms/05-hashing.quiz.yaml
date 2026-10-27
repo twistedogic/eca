@@ -1,0 +1,63 @@
+questions:
+  - term: load factor
+    type: mc
+    sectionId: collisions-and-load-factor
+    prompt: What does the load factor of a hash map measure?
+    choices:
+      - The ratio of stored entries to the number of buckets
+      - The fraction of lookups that miss
+      - The number of keys per second it can handle
+      - The ratio of time spent hashing to time spent comparing
+    answer: 0
+    explanation: A high load factor means more collisions and slower lookups, which is why maps resize above a threshold.
+
+  - term: hash function
+    type: mc
+    sectionId: how-a-hash-map-works
+    prompt: What does the hash function do in a hash map?
+    choices:
+      - Maps a key to the bucket index where its entry is stored
+      - Encrypts the key so it cannot be read
+      - Sorts the keys
+      - Decides when the map should resize
+    answer: 0
+    explanation: Computing the bucket directly is what makes lookup O(1) instead of a search.
+
+  - type: mc
+    sectionId: collisions-and-load-factor
+    prompt: Which two strategies handle hash collisions?
+    choices:
+      - Chaining, with a list per bucket, and open addressing, probing for a free slot
+      - Sorting and rehashing
+      - Copying and swapping
+      - Locking and unlocking
+    answer: 0
+    explanation: Chaining adds a list to the bucket; open addressing keeps everything in one array and probes forward.
+
+  - type: mc
+    sectionId: sets
+    prompt: When would you use a hash set instead of a hash map?
+    choices:
+      - When you only need membership, not the associated value
+      - When you need ordered iteration
+      - When you need to store duplicates
+      - When the keys are not hashable
+    answer: 0
+    explanation: A set is a map without meaningful values, which is all a "seen before?" check needs.
+
+  - type: mc
+    sectionId: designing-an-lru-cache
+    prompt: Which two structures give an LRU cache O(1) lookup, promotion, and eviction?
+    choices:
+      - A hash map and a doubly linked list
+      - A hash map and a binary tree
+      - A stack and a queue
+      - Two hash maps
+    answer: 0
+    explanation: The map finds the node; the list orders it by recency so the tail is always the eviction candidate.
+
+  - type: cloze
+    sectionId: what-hashing-is-good-for
+    prompt: "A hash ____ answers have I seen this before? in O(1) per element."
+    answer: set
+    explanation: A hash set is the membership structure that makes duplicate detection a single pass.

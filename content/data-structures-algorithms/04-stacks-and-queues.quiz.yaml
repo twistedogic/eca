@@ -1,0 +1,62 @@
+questions:
+  - term: monotonic stack
+    type: mc
+    sectionId: specialised-stacks
+    prompt: What problem does a monotonic stack solve in O(n)?
+    choices:
+      - Finding the next greater element to the right of every element
+      - Sorting the array in place
+      - Finding the median of the array
+      - Detecting a cycle in a linked list
+    answer: 0
+    explanation: Each element is pushed once and popped at most once, so the whole scan is linear.
+
+  - type: mc
+    sectionId: stacks
+    prompt: In what order does a stack hand elements back?
+    choices:
+      - Last in, first out
+      - First in, first out
+      - Sorted order
+      - Random order
+    answer: 0
+    explanation: Push, pop, and peek all act on the top element, which is the most recently pushed one.
+
+  - type: mc
+    sectionId: specialised-stacks
+    prompt: What must a min-stack support in O(1)?
+    choices:
+      - Push, pop, and read the current minimum
+      - Push, pop, and sort the contents
+      - Only push and pop
+      - Random access by index
+    answer: 0
+    explanation: Storing the running minimum alongside each value makes the minimum available at the top at all times.
+
+  - type: mc
+    sectionId: queues-and-deques
+    prompt: What is a deque?
+    choices:
+      - A queue that allows adding and removing at both ends
+      - A queue that sorts its elements
+      - A stack with two tops
+      - A fixed-size buffer that rejects writes when full
+    answer: 0
+    explanation: A double-ended queue supports push and pop at the front and the back, which is what sliding windows need.
+
+  - type: mc
+    sectionId: the-stack-and-the-call-stack
+    prompt: Which structure does recursion use under the hood?
+    choices:
+      - The call stack, one frame per active call
+      - A hash map
+      - A heap
+      - The file system
+    answer: 0
+    explanation: Each call pushes a frame with its parameters and return address, which is why recursion costs stack space.
+
+  - type: cloze
+    sectionId: queues-and-deques
+    prompt: "A ____ is a queue that allows adding and removing at both ends."
+    answer: deque
+    explanation: The double-ended queue is the structure behind sliding windows and monotonic stacks.

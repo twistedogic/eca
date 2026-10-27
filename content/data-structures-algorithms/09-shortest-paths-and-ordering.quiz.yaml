@@ -1,0 +1,63 @@
+questions:
+  - term: Dijkstra's algorithm
+    type: mc
+    sectionId: dijkstras-algorithm
+    prompt: Why does Dijkstra's algorithm fail on graphs with negative edge weights?
+    choices:
+      - It assumes a path through a more expensive vertex can never become cheaper later
+      - It requires the graph to be undirected
+      - It needs negative weights to relax an edge
+      - It only works on trees
+    answer: 0
+    explanation: The greedy expansion of the cheapest frontier vertex is only valid when all weights are non-negative.
+
+  - term: union-find
+    type: mc
+    sectionId: union-find
+    prompt: What does a union-find structure support?
+    choices:
+      - Merging sets and testing whether two elements belong to the same set
+      - Sorting elements in ascending order
+      - Looking up a key in constant time
+      - Finding the shortest path between two vertices
+    answer: 0
+    explanation: With path compression and union by rank, both operations take effectively constant time.
+
+  - type: mc
+    sectionId: topological-sort
+    prompt: What must be true for a topological sort to exist?
+    choices:
+      - The graph is a directed acyclic graph
+      - The graph is connected
+      - Every edge has a positive weight
+      - The graph has at most 100 vertices
+    answer: 0
+    explanation: A cycle would require some vertex to come before itself, which no ordering can satisfy.
+
+  - type: mc
+    sectionId: minimum-spanning-trees
+    prompt: Which minimum spanning tree algorithm uses a union-find structure?
+    choices:
+      - Kruskal's algorithm
+      - Prim's algorithm
+      - Dijkstra's algorithm
+      - Bellman-Ford
+    answer: 0
+    explanation: Kruskal adds edges in weight order and uses union-find to skip edges that would create a cycle.
+
+  - type: mc
+    sectionId: bellman-ford
+    prompt: What does Bellman-Ford give you that Dijkstra does not?
+    choices:
+      - Support for negative edge weights, and detection of negative cycles
+      - A better asymptotic complexity
+      - Support for disconnected graphs
+      - Direct support for negative edge weights only
+    answer: 0
+    explanation: Relaxing every edge V - 1 times handles negative weights, and one more pass reveals a negative cycle.
+
+  - type: cloze
+    sectionId: topological-sort
+    prompt: "Kahn's algorithm removes vertices with a ____ indegree from a queue."
+    answer: zero
+    explanation: A vertex with no incoming edges is safe to emit, since nothing depends on it yet.

@@ -1,0 +1,62 @@
+questions:
+  - term: fast and slow pointers
+    type: mc
+    sectionId: cycle-detection
+    prompt: How do fast and slow pointers detect a cycle in a linked list?
+    choices:
+      - The fast pointer moves two nodes per step and catches the slow one if the list loops
+      - The slow pointer counts the nodes and compares the count with the list length
+      - Both pointers hash each node and compare the hashes
+      - The fast pointer stops at the tail and compares pointers
+    answer: 0
+    explanation: In a finite list the fast pointer reaches the end first; if they meet, the list must loop.
+
+  - type: mc
+    sectionId: nodes-and-links
+    prompt: What is the cost of reaching the k-th node of a singly linked list?
+    choices:
+      - O(n), because there is no index arithmetic
+      - O(1), because nodes are contiguous
+      - O(log k)
+      - O(k log k)
+    answer: 0
+    explanation: Each step follows one link, so reaching position k takes k steps.
+
+  - type: mc
+    sectionId: nodes-and-links
+    prompt: Which list can go backwards in O(1) per step?
+    choices:
+      - A doubly linked list
+      - A singly linked list
+      - An array
+      - Neither; both are forward-only
+    answer: 0
+    explanation: A doubly linked list stores a backward pointer in every node, at the cost of one extra pointer per node.
+
+  - type: mc
+    sectionId: the-dummy-head-trick
+    prompt: What does a dummy head node simplify?
+    choices:
+      - Removing the first element, because every real node then has a predecessor
+      - Merging two lists of different lengths
+      - Detecting a cycle
+      - Finding the middle node
+    answer: 0
+    explanation: With a dummy head, the empty list and the one-element list need no special case.
+
+  - type: mc
+    sectionId: reversing-and-merging
+    prompt: How much extra space does an iterative in-place reversal of a singly linked list use?
+    choices:
+      - O(1)
+      - O(n)
+      - O(log n)
+      - O(n log n)
+    answer: 0
+    explanation: Only three pointers are needed at a time — previous, current, and next.
+
+  - type: cloze
+    sectionId: nodes-and-links
+    prompt: "A singly linked list is traversed from the ____ pointer."
+    answer: head
+    explanation: The head pointer is the list's only entry point; there is no random access to a middle node.

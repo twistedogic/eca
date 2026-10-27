@@ -1,0 +1,52 @@
+questions:
+  - term: brute force
+    type: mc
+    sectionId: start-with-the-brute-force
+    prompt: Why write the brute force solution first in an interview?
+    choices:
+      - It gives a correct baseline to test and optimise against
+      - It is usually fast enough
+      - It avoids needing to know the complexity
+      - It impresses the interviewer
+    answer: 0
+    explanation: The baseline makes the optimisation visible and gives you something to verify the final solution against.
+
+  - term: invariant
+    type: mc
+    sectionId: narrate-while-you-code
+    prompt: What is an invariant in a solution you explain to the interviewer?
+    choices:
+      - A property that holds at every step of the algorithm
+      - The input constraint that never changes
+      - A value the function returns unchanged
+      - The complexity of the final solution
+    answer: 0
+    explanation: Naming the invariant makes the code checkable and shows the interviewer how to verify each step.
+
+  - type: mc
+    sectionId: read-the-problem-out-loud
+    prompt: Which question most often changes which algorithm you should use?
+    choices:
+      - What are the size constraints on the input?
+      - What language should the answer be in?
+      - Does the interviewer want comments?
+      - How long should the answer be?
+    answer: 0
+    explanation: The constraints decide whether an O(n²) solution is acceptable at all.
+
+  - type: mc
+    sectionId: test-the-edges
+    prompt: Which of these belongs in the edge case checklist?
+    choices:
+      - Empty input, a single element, and all elements equal
+      - Only the example from the problem statement
+      - Only the largest possible input
+      - Only inputs that are already sorted
+    answer: 0
+    explanation: The classic edge cases are empty, single, duplicates, sorted, reverse sorted, and the maximum size.
+
+  - type: cloze
+    sectionId: read-the-problem-out-loud
+    prompt: "An explicit statement of something you take to be true about the input is an ____."
+    answer: assumption
+    explanation: Making assumptions explicit is what stops you solving the wrong problem.

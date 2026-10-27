@@ -1,0 +1,63 @@
+questions:
+  - term: dynamic programming
+    type: mc
+    sectionId: when-to-use-it
+    prompt: Which two properties tell you that dynamic programming applies?
+    choices:
+      - Overlapping subproblems and optimal substructure
+      - A sorted input and a small value range
+      - A recursive structure and a hash map
+      - Integer keys and non-negative weights
+    answer: 0
+    explanation: Overlapping subproblems justify caching, and optimal substructure justifies assembling the answer from smaller answers.
+
+  - term: memoization
+    type: mc
+    sectionId: memoization-and-tabulation
+    prompt: How does memoization differ from tabulation?
+    choices:
+      - Memoization is top-down with a cache; tabulation fills a table bottom-up
+      - Memoization is iterative; tabulation is recursive
+      - Memoization uses more memory in every case
+      - They are two names for the same technique
+    answer: 0
+    explanation: Both store the same subproblem answers; they differ in whether the recursion or the loop drives the computation.
+
+  - type: mc
+    sectionId: the-four-step-recipe
+    prompt: What should you define first in a dynamic programming solution?
+    choices:
+      - The state, meaning what one table entry represents
+      - The loop order
+      - The base case
+      - The final answer's type
+    answer: 0
+    explanation: Everything else follows from the state; the transition and base case are expressed in terms of it.
+
+  - type: mc
+    sectionId: common-shapes
+    prompt: What is the time complexity of 0/1 knapsack with n items and capacity W?
+    choices:
+      - O(n · W)
+      - O(n log n)
+      - O(W)
+      - O(2ⁿ)
+    answer: 0
+    explanation: The table has one entry per item and per capacity, and each entry takes constant time.
+
+  - type: mc
+    sectionId: the-pitfalls
+    prompt: Two different histories reach the same table state but need different answers. What is wrong?
+    choices:
+      - The state is too narrow to capture what the transition needs
+      - The base case is wrong
+      - The table is too large
+      - The input was not sorted
+    answer: 0
+    explanation: If the state cannot distinguish the histories, the answer computed from it cannot be correct for both.
+
+  - type: cloze
+    sectionId: the-four-step-recipe
+    prompt: "In dynamic programming, the ____ case is the small input the recursion bottoms out on."
+    answer: base
+    explanation: The base case states the values that are known without any further recursion.

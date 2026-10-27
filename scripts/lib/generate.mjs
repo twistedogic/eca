@@ -19,25 +19,18 @@ function escapeRe(s) {
 /**
  * Generates auto questions per chapter, in document order:
  * definition MCs for every key term, then clozes for quoted key sentences.
- * MC distractors are sibling key terms from the same topic; a term with
- * no siblings produces no MC (a question needs at least one distractor).
+ * MC distractors are sibling key terms, preferring the ones from the same
+ * chapter; a term with no siblings produces no MC (a question needs at
+ * least one distractor).
  */
 export function generateAutoQuestions(chapters) {
-  const topicTerms = []
-  const seen = new Set()
-  for (const ch of chapters) {
-    for (const t of ch.terms) {
-      const key = t.term.toLowerCase()
-      if (seen.has(key)) continue
-      seen.add(key)
-      topicTerms.push(t.term)
-    }
-  }
+  const topicTerms = collectTerms(chapters)
 
   return chapters.map((ch) => {
+    const chapterTerms = collectTerms([ch])
     const mcs = []
     for (const t of ch.terms) {
-      const distractors = pickDistractors(t.term, topicTerms)
+      const distractors = pickDistractors(t.term, chapterTerms, topicTerms)
       if (distractors.length === 0) continue
       const choices = rotate([t.term, ...distractors], mcs.length)
       mcs.push({
@@ -66,9 +59,37 @@ export function generateAutoQuestions(chapters) {
   })
 }
 
-/** Up to 3 sibling terms from the same topic, in topic document order. */
-function pickDistractors(term, topicTerms) {
-  return topicTerms.filter((t) => t.toLowerCase() !== term.toLowerCase()).slice(0, 3)
+/** Key terms of the given chapters, deduped case-insensitively, in document order. */
+function collectTerms(chapters) {
+  const terms = []
+  const seen = new Set()
+  for (const ch of chapters) {
+    for (const t of ch.terms) {
+      const key = t.term.toLowerCase()
+      if (seen.has(key)) continue
+      seen.add(key)
+      terms.push(t.term)
+    }
+  }
+  return terms
+}
+
+/**
+ * Up to 3 sibling terms as distractors. Chapter siblings come first: a
+ * reader choosing between "hash map" and "adjacency list" is answering a
+ * question about that chapter, not about complexity classes. The rest of
+ * the topic tops the list up so every MC keeps four choices.
+ */
+function pickDistractors(term, chapterTerms, topicTerms) {
+  const isOther = (t) => t.toLowerCase() !== term.toLowerCase()
+  const picked = chapterTerms.filter(isOther).slice(0, 3)
+  if (picked.length === 3) return picked
+  for (const t of topicTerms) {
+    if (picked.length === 3) break
+    if (!isOther(t) || picked.includes(t)) continue
+    picked.push(t)
+  }
+  return picked
 }
 
 /** Deterministic rotation so the answer is not always the first choice. */

@@ -1,0 +1,63 @@
+questions:
+  - term: breadth-first search
+    type: mc
+    sectionId: breadth-first-search
+    prompt: What data structure does a breadth-first search use to explore the frontier?
+    choices:
+      - A queue
+      - A stack
+      - A min-heap
+      - A hash set
+    answer: 0
+    explanation: The queue keeps the frontier in order of distance, so the search expands level by level.
+
+  - term: adjacency list
+    type: mc
+    sectionId: representations
+    prompt: Which representation should you use for a sparse graph?
+    choices:
+      - An adjacency list, costing O(V + E) space
+      - An adjacency matrix, costing O(V²) space
+      - A sorted array of edges
+      - A binary search tree of the vertices
+    answer: 0
+    explanation: Adjacency lists store only the edges that exist, while a matrix always pays for every possible pair.
+
+  - type: mc
+    sectionId: breadth-first-search
+    prompt: What does breadth-first search find in an unweighted graph?
+    choices:
+      - The path with the fewest edges from the start
+      - The path with the smallest total weight
+      - Every cycle in the graph
+      - A spanning tree with the minimum total weight
+    answer: 0
+    explanation: Levels are explored in order, so the first time a vertex is reached is by the shortest edge count.
+
+  - type: mc
+    sectionId: depth-first-search
+    prompt: Which problems favour depth-first search over breadth-first search?
+    choices:
+      - Full exploration: components, cycle detection, bipartite checks
+      - Finding the shortest path in an unweighted graph
+      - Printing a graph level by level
+      - Finding the shortest path with non-negative weights
+    answer: 0
+    explanation: Depth-first search dives into one branch, which suits exhaustive exploration and post-order summaries.
+
+  - type: mc
+    sectionId: visited-sets-and-components
+    prompt: Why does a graph traversal need a visited set?
+    choices:
+      - Without it, a cycle makes the traversal loop forever
+      - It makes the traversal O(1) instead of O(V + E)
+      - It stores the shortest distances
+      - It replaces the adjacency list
+    answer: 0
+    explanation: Marking each vertex once is what bounds the work at O(V + E) and stops infinite recursion.
+
+  - type: cloze
+    sectionId: representations
+    prompt: "In an ____ list, each vertex stores the list of its neighbours."
+    answer: adjacency
+    explanation: The adjacency list is the standard representation for a graph with many vertices and few edges.

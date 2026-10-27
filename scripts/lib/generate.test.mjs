@@ -70,6 +70,35 @@ Only **one lonely term** exists here.
     expect(qs).toHaveLength(0)
   })
 
+  it('prefers sibling terms from the same chapter as distractors', () => {
+    const c1 = chapter(`# T
+A **hash map** stores pairs. B **bucket** holds entries. C **collision** is a clash.
+`, 'c1')
+    const c2 = chapter(`# T
+A **graph** has nodes. B **vertex** is a node. C **edge** connects them.
+`, 'c2')
+    const [qs1, qs2] = generateAutoQuestions([c1, c2])
+
+    const hashMap = qs1.find((q) => q.term === 'hash map')
+    expect(hashMap.choices).toContain('bucket')
+    expect(hashMap.choices).not.toContain('vertex') // a sibling of another chapter
+
+    const graph = qs2.find((q) => q.term === 'graph')
+    expect(graph.choices).toContain('vertex')
+  })
+
+  it('tops the distractors up with topic terms so every MC keeps four choices', () => {
+    const c1 = chapter(`# T
+A **hash map** stores pairs.
+`, 'c1')
+    const c2 = chapter(`# T
+A **graph** has nodes. B **vertex** is a node. C **edge** connects them.
+`, 'c2')
+    const [qs1] = generateAutoQuestions([c1, c2])
+    const hashMap = qs1.find((q) => q.term === 'hash map')
+    expect(hashMap.choices).toHaveLength(4)
+  })
+
   it('spreads the answer position deterministically', () => {
     const md = `# T
 A **a** is 1. B **b** is 2. C **c** is 3. D **d** is 4.

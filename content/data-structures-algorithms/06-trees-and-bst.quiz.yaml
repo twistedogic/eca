@@ -1,0 +1,62 @@
+questions:
+  - term: in-order traversal
+    type: mc
+    sectionId: the-three-traversals
+    prompt: Which traversal of a binary search tree yields the keys in sorted order?
+    choices:
+      - In-order traversal
+      - Pre-order traversal
+      - Post-order traversal
+      - Level-order traversal
+    answer: 0
+    explanation: The BST property means the left subtree holds smaller keys, so left, node, right is sorted output.
+
+  - type: mc
+    sectionId: vocabulary
+    prompt: What is the height of a tree?
+    choices:
+      - The number of edges on the longest path from the root down to a leaf
+      - The number of nodes in the tree
+      - The number of leaves in the tree
+      - The number of edges from the root to any node
+    answer: 0
+    explanation: Height is the longest downward path, counted in edges; a single node has height 0.
+
+  - type: mc
+    sectionId: the-binary-search-tree-property
+    prompt: What is the worst-case lookup cost in an unbalanced binary search tree?
+    choices:
+      - O(n), when the tree degenerates into a list
+      - O(log n), always
+      - O(1)
+      - O(n log n)
+    answer: 0
+    explanation: Inserting sorted keys makes every node have one child, so the height grows to n.
+
+  - type: mc
+    sectionId: the-three-traversals
+    prompt: Which traversal visits a node before its children, and is the usual choice for copying or serialising a tree?
+    choices:
+      - Pre-order traversal
+      - In-order traversal
+      - Post-order traversal
+      - Level-order traversal
+    answer: 0
+    explanation: Pre-order writes the node first, so the root's subtree can be reconstructed from the sequence.
+
+  - type: mc
+    sectionId: balanced-trees
+    prompt: What keeps tree operations at O(log n) regardless of insertion order?
+    choices:
+      - Self-balancing, such as an AVL or red-black tree
+      - Storing the tree as a sorted array
+      - Hashing each key
+      - Using a breadth-first traversal
+    answer: 0
+    explanation: Self-balancing trees rebalance on insert and delete, keeping the height logarithmic.
+
+  - type: cloze
+    sectionId: vocabulary
+    prompt: "A node with no children is called a ____."
+    answer: leaf
+    explanation: Leaves sit at the bottom of the tree and define its height.

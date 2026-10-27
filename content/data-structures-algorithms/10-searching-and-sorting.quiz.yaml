@@ -1,0 +1,63 @@
+questions:
+  - term: binary search
+    type: mc
+    sectionId: binary-search
+    prompt: What is the cost of binary search on a sorted array of n elements?
+    choices:
+      - O(log n)
+      - O(n)
+      - O(1)
+      - O(n log n)
+    answer: 0
+    explanation: Each comparison halves the search space, so a million elements take about twenty comparisons.
+
+  - term: stable sort
+    type: mc
+    sectionId: stability-and-in-place
+    prompt: What does a stable sort guarantee?
+    choices:
+      - Equal elements keep their original relative order
+      - The sort uses O(1) extra space
+      - The sort runs in O(n) time
+      - The input is left unchanged
+    answer: 0
+    explanation: Stability lets you sort by a second key without destroying the ordering from the first.
+
+  - type: mc
+    sectionId: the-sorting-landscape
+    prompt: What is quicksort's worst-case time complexity?
+    choices:
+      - O(n²), for example on already sorted input with a bad pivot
+      - O(n log n)
+      - O(n)
+      - O(log n)
+    answer: 0
+    explanation: Unbalanced partitions recur to depth n; randomising the pivot or using introsort avoids it.
+
+  - type: mc
+    sectionId: the-sorting-landscape
+    prompt: Which sort is O(n log n) in the worst case, stable, and uses O(n) extra space?
+    choices:
+      - Merge sort
+      - Quicksort
+      - Heapsort
+      - Counting sort
+    answer: 0
+    explanation: Merge sort always splits evenly and merges into a buffer, which costs linear extra space.
+
+  - type: mc
+    sectionId: binary-search
+    prompt: Why is mid = low + (high - low) / 2 preferred over (low + high) / 2?
+    choices:
+      - The sum of two large indices can overflow a fixed-width integer
+      - It rounds the midpoint differently
+      - It works when the array is empty
+      - It avoids the boundary check
+    answer: 0
+    explanation: Adding first overflows near the top of the index range; subtracting first keeps the value in range.
+
+  - type: cloze
+    sectionId: sorting-your-own-objects
+    prompt: "The function that decides whether one object comes before another is the ____."
+    answer: comparator
+    explanation: A consistent comparator defines the order; an inconsistent one makes the result algorithm-dependent.

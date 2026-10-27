@@ -1,0 +1,73 @@
+questions:
+  - term: Big-O notation
+    type: mc
+    sectionId: big-o-notation
+    prompt: What does Big-O notation describe?
+    choices:
+      - How the running time or space of an algorithm grows with the input size
+      - The exact number of milliseconds an algorithm takes
+      - The number of lines of code an algorithm has
+      - The average runtime measured over many random inputs
+    answer: 0
+    explanation: Big-O describes growth rates and deliberately drops constants and lower-order terms.
+
+  - type: mc
+    sectionId: the-common-complexity-classes
+    prompt: Which complexity class describes an operation whose cost does not depend on the input size?
+    choices:
+      - O(1), constant time
+      - O(log n), logarithmic time
+      - O(n), linear time
+      - O(n log n)
+    answer: 0
+    explanation: Constant-time operations, such as array indexing or pushing to a stack, do the same work for any n.
+
+  - type: mc
+    sectionId: best-average-and-worst-case
+    prompt: What is the worst-case cost of looking up a key in a hash map?
+    choices:
+      - O(n), when every key collides into one bucket
+      - O(1), always
+      - O(log n)
+      - O(n log n)
+    answer: 0
+    explanation: Hash maps are O(1) on average; the worst case degenerates to a linear scan of one bucket.
+
+  - type: mc
+    sectionId: amortized-analysis
+    prompt: What does amortized analysis tell you?
+    choices:
+      - The average cost per operation across a sequence of operations
+      - The cost of the single most expensive operation
+      - The probability that an operation is slow
+      - The cost of the operation on a random input
+    answer: 0
+    explanation: Amortized analysis bounds the total cost of a sequence, so a rare expensive step is averaged out.
+
+  - type: mc
+    sectionId: space-and-the-cost-you-did-not-count
+    prompt: A recursive solution recurses once per element of the input. How much stack space does it need in the worst case?
+    choices:
+      - O(n)
+      - O(1)
+      - O(log n)
+      - O(n log n)
+    answer: 0
+    explanation: One stack frame per element means linear stack depth, which can overflow on large inputs.
+
+  - type: mc
+    sectionId: the-common-complexity-classes
+    prompt: What is the target complexity for sorting a large array with a comparison sort?
+    choices:
+      - O(n log n)
+      - O(n)
+      - O(n²)
+      - O(log n)
+    answer: 0
+    explanation: Comparison sorts need at least n log n comparisons in the worst case, and merge sort and heapsort hit it.
+
+  - type: cloze
+    sectionId: amortized-analysis
+    prompt: "Amortized analysis bounds the ____ cost of a sequence of operations."
+    answer: total
+    explanation: The guarantee is on the total cost of the sequence, not on any single call.

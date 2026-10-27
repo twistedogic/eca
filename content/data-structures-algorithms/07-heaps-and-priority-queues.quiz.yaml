@@ -1,0 +1,62 @@
+questions:
+  - term: heapify
+    type: mc
+    sectionId: sift-up-and-sift-down
+    prompt: What does heapify do?
+    choices:
+      - Restores the heap property by sifting a node up or down
+      - Sorts the whole array in ascending order
+      - Removes the smallest element from the heap
+      - Merges two heaps into one
+    answer: 0
+    explanation: Sift up repairs a node that is too small for its position, sift down repairs one that is too large.
+
+  - type: mc
+    sectionId: the-array-representation
+    prompt: In a zero-indexed array holding a binary heap, where are the children of the node at index i?
+    choices:
+      - 2i + 1 and 2i + 2
+      - i - 1 and i + 1
+      - 2i and 2i + 1
+      - i * 2 and i * 2 + 1
+    answer: 0
+    explanation: A complete binary tree packs into an array with no holes, using the standard 2i + 1 and 2i + 2 layout.
+
+  - type: mc
+    sectionId: what-heaps-are-good-for
+    prompt: How do you find the k largest elements of an array of n elements?
+    choices:
+      - Keep a min-heap of size k, giving O(n log k) time and O(k) space
+      - Sort the whole array, giving O(n log n) time
+      - Use a hash set of size k
+      - Compare every pair, giving O(n²) time
+    answer: 0
+    explanation: The heap keeps only the current top k, so the memory stays proportional to k and not to n.
+
+  - type: mc
+    sectionId: sift-up-and-sift-down
+    prompt: What is the cost of building a heap bottom-up from an unsorted array?
+    choices:
+      - O(n)
+      - O(n log n)
+      - O(log n)
+      - O(n²)
+    answer: 0
+    explanation: Most nodes are near the leaves and barely sift, so the total work across all nodes is linear.
+
+  - type: mc
+    sectionId: the-binary-heap
+    prompt: What does the heap property require in a min-heap?
+    choices:
+      - Every parent is smaller than or equal to its children
+      - Every parent is larger than its children
+      - The tree is completely sorted level by level
+      - The left subtree holds smaller elements than the right subtree
+    answer: 0
+    explanation: Only the parent-child relation is constrained; elements in different subtrees have no defined order.
+
+  - type: cloze
+    sectionId: what-heaps-are-good-for
+    prompt: "Dijkstra's algorithm keeps its frontier in a ____."
+    answer: priority queue
+    explanation: The priority queue always expands the closest unsettled vertex.
