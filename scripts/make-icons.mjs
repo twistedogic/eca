@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 /**
- * Generates the PWA icons (public/icons/icon-{192,512}.png) with zero
- * dependencies: raw RGBA pixels -> zlib -> PNG chunks.
- * Design: indigo rounded square, white study card with two text lines.
+ * Generates the PWA icons (public/icons/icon-{192,512}.png plus the
+ * -maskable variants) with zero dependencies: raw RGBA pixels -> zlib -> PNG
+ * chunks. Design: blue rounded square, flat white closed book (upright cover,
+ * spine crease, two title lines).
+ * Maskable variants are full bleed with the art inside the 80% safe zone so
+ * Android can crop them to any shape without clipping.
  */
 import { deflateSync } from 'node:zlib'
 import { writeFileSync, mkdirSync } from 'node:fs'
@@ -60,29 +63,39 @@ function inRoundedRect(x, y, cx, cy, w, h, r) {
   return dx * dx + dy * dy <= r * r
 }
 
-function drawIcon(size) {
+function inRect(x, y, x0, y0, x1, y1) {
+  return x >= x0 && x <= x1 && y >= y0 && y <= y1
+}
+
+function drawIcon(size, maskable = false) {
   const px = Buffer.alloc(size * size * 4)
-  const INDIGO = [0x25, 0x63, 0xeb]
+  const BLUE = [0x25, 0x63, 0xeb]
   const WHITE = [0xff, 0xff, 0xff]
   const c = (size - 1) / 2
+  // artwork unit: maskable keeps the art inside the 80% safe circle
+  const u = maskable ? size * 0.8 : size
+  const bgRadius = maskable ? 0 : size * 0.22 // maskable = full bleed background
+
+  // closed book: upright cover, spine crease on the left, title lines
+  const hw = u * 0.21 // cover half width
+  const hh = u * 0.3 // cover half height
+  const br = u * 0.03 // cover corner radius
 
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const i = (y * size + x) * 4
-      if (!inRoundedRect(x, y, c, c, size, size, size * 0.22)) {
+      if (!inRoundedRect(x, y, c, c, size, size, bgRadius)) {
         px[i + 3] = 0 // transparent outside
         continue
       }
-      let color = INDIGO
-      // white card in the middle
-      if (inRoundedRect(x, y, c, c, size * 0.5, size * 0.62, size * 0.08)) {
+      const lx = x - c
+      const ly = y - c
+      let color = BLUE
+      if (inRoundedRect(lx, ly, 0, 0, hw * 2, hh * 2, br)) {
         color = WHITE
-        // two indigo "text lines" inside the card
-        const ly = y - (c - size * 0.31) // 0 at card top
-        const inLine =
-          (ly > size * 0.13 && ly < size * 0.185 || ly > size * 0.23 && ly < size * 0.285) &&
-          x > c - size * 0.16 && x < c + (ly > size * 0.2 ? size * 0.02 : size * 0.16)
-        if (inLine) color = INDIGO
+        if (inRect(lx, ly, -hw + u * 0.075, -hh, -hw + u * 0.1, hh)) color = BLUE // spine crease
+        else if (inRect(lx, ly, -hw + u * 0.14, -u * 0.11, hw - u * 0.05, -u * 0.075)) color = BLUE // title
+        else if (inRect(lx, ly, -hw + u * 0.14, -u * 0.02, hw - u * 0.14, u * 0.015)) color = BLUE // subtitle
       }
       px[i] = color[0]
       px[i + 1] = color[1]
@@ -97,4 +110,6 @@ mkdirSync(OUT_DIR, { recursive: true })
 for (const size of [192, 512]) {
   writeFileSync(join(OUT_DIR, `icon-${size}.png`), drawIcon(size))
   console.log(`wrote public/icons/icon-${size}.png`)
+  writeFileSync(join(OUT_DIR, `icon-${size}-maskable.png`), drawIcon(size, true))
+  console.log(`wrote public/icons/icon-${size}-maskable.png`)
 }
