@@ -29,7 +29,8 @@ straight, because the naming follows it:
 
 On MetaTrader 5 these appear as six distinct types: Buy Limit, Sell
 Limit, Buy Stop, Sell Stop, Buy Stop Limit, and Sell Stop Limit. Most
-retail platforms offer the same set under different names.
+retail platforms offer the same set under different names. Chapter 13
+covers where they live in the ticket and how they execute.
 
 ### The naming trap
 

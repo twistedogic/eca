@@ -42,7 +42,8 @@ one tenth of the money each time down.
 
 Because pip value is fixed by convention and not by your account size,
 position sizing is arithmetic rather than guesswork. Chapter 8 turns these
-numbers into a position size.
+numbers into a position size, and chapter 13 shows where to read the
+contract size and tick size off your own broker's platform.
 
 > A 50-pip move is $500 on a **standard lot**, $50 on a mini lot, and $5 on
 > a micro lot.

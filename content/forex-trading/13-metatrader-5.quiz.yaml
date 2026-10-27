@@ -1,0 +1,100 @@
+questions:
+  - type: mc
+    sectionId: the-symbol-specification
+    prompt: Where do you find the contract size, tick size, and swap rates for a symbol in MT5?
+    choices:
+      - In the symbol specification dialog, via Ctrl+U or right-click and Specification in Market Watch
+      - In the account settings under Tools and Options
+      - On the chart's data window when the symbol is selected
+      - In the strategy tester settings
+    answer: 0
+    explanation: The specification dialog is the source for every contract number the platform uses, and those fields are broker-specific.
+
+  - type: mc
+    sectionId: the-symbol-specification
+    prompt: Why should you read the specification on each broker rather than assuming the standard lot size?
+    choices:
+      - Because contract size, tick size and swap are broker-specific and can differ between brokers for the same pair
+      - Because the platform changes them daily
+      - Because only demo accounts show them
+      - Because they are the same everywhere and reading them is optional
+    answer: 0
+    explanation: A pip value calculated for one broker's EUR/USD may not hold at another's if the contract size or tick size differs.
+
+  - type: mc
+    sectionId: the-order-ticket
+    prompt: What does the Immediate or Cancel fill policy do?
+    choices:
+      - Fills as much of the volume as is available immediately and cancels the remainder
+      - Fills the entire volume or does not fill at all
+      - Fills what it can and leaves the unfilled part working as a pending order
+      - Waits until the whole order can be filled at the limit price
+    answer: 0
+    explanation: Fill or Kill is all-or-nothing; Return leaves the remainder working. The option is disabled when the server does not support it.
+
+  - type: mc
+    sectionId: the-order-ticket
+    prompt: What does the deviation field in the order ticket do?
+    choices:
+      - It sets the maximum slippage you accept, in points, on instant and request execution
+      - It sets the maximum distance your stop can sit from the entry
+      - It sets how many points the trailing stop moves per bar
+      - It sets the maximum size of the position
+    answer: 0
+    explanation: On market and exchange execution there is no reference price to deviate from, so the fill is whatever the market gives.
+
+  - type: mc
+    sectionId: algo-trading-and-the-strategy-tester
+    prompt: An Expert Advisor is running on a chart but never places a trade. What is the most likely cause?
+    choices:
+      - The terminal's Algo Trading button is off, which blocks every robot regardless of its own settings
+      - The account type is a demo account
+      - The Strategy Tester is open instead of the live terminal
+      - The journal is filtered to hide errors
+    answer: 0
+    explanation: The toolbar button gates the whole terminal; a per-EA permission cannot override it.
+
+  - type: mc
+    sectionId: algo-trading-and-the-strategy-tester
+    prompt: What does the Allow DLL imports option do, and when should it be enabled?
+    choices:
+      - It lets a program call external libraries, and should be enabled only for software you trust
+      - It lets the terminal download price data from the broker
+      - It speeds up backtests by using the graphics card
+      - It allows the platform to update itself automatically
+    answer: 0
+    explanation: A DLL can do anything, including read your password, so the option is flagged as dangerous by the platform itself.
+
+  - type: mc
+    sectionId: algo-trading-and-the-strategy-tester
+    prompt: Which of these is a genuine advantage of the MT5 Strategy Tester over MT4's?
+    choices:
+      - Multi-threaded, multi-currency testing on real tick data, with a forward out-of-sample pass
+      - It generates more realistic backtest results automatically
+      - It can test strategies that MT4 cannot express at all
+      - It requires no historical data download
+    answer: 0
+    explanation: The forward pass re-runs the best parameter set on a later period, which is the platform's closest thing to out-of-sample discipline.
+
+  - type: mc
+    sectionId: the-journal-history-and-deals
+    prompt: Why does the deals view separate commission and swap from the price move?
+    choices:
+      - Because it is the breakdown needed to reconcile the true cost of a trade and to report gains and charges separately
+      - Because MT5 charges commission and swap at different times
+      - Because the broker's statement omits them otherwise
+      - Because the platform cannot display combined totals
+    answer: 0
+    explanation: That separation is what makes a broker statement reconcilable against a cost model and against a tax return.
+
+  - type: cloze
+    sectionId: the-terminal
+    prompt: "MT5 split what MT4 showed as one tab into Orders and Positions, because an order waiting to trigger is not a ____."
+    answer: position
+    explanation: Conflating the two is how beginners end up believing they are protected when no position exists yet.
+
+  - type: cloze
+    sectionId: the-terminal
+    prompt: "The ____ tab is where the platform reports rejected orders and trading disabled by the broker."
+    answer: Journal
+    explanation: It is the first place to look when an order did not do what you expected.
