@@ -1,0 +1,52 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: route table
+    type: mc
+    sectionId: what-a-route-looks-like
+    prompt: What does a route table do?
+    choices:
+      - Decides where traffic leaving the attached subnets is sent
+      - Filters inbound and outbound traffic by port
+      - Assigns IP addresses to newly created resources
+      - Holds the security groups attached to a VPC
+    answer: 0
+    explanation: A route table is a set of destination-to-target rules; filtering is the job of security groups and network ACLs.
+
+  - type: mc
+    sectionId: which-route-wins
+    prompt: A packet matches both 10.0.0.0/16 and 10.0.1.0/24. Which route is used?
+    choices:
+      - 10.0.1.0/24
+      - 10.0.0.0/16
+      - Whichever rule was added first
+      - The default route
+    answer: 0
+    explanation: AWS matches by longest prefix, so the more specific route wins regardless of the order the rules were added.
+
+  - type: mc
+    sectionId: what-a-route-looks-like
+    prompt: Which route can never be removed from a route table?
+    choices:
+      - The local route to the VPC's own address space
+      - The default route to the internet gateway
+      - A route to a NAT gateway
+      - A route to a VPC endpoint
+    answer: 0
+    explanation: The local route is created with the route table and cannot be deleted; its target can be replaced, and a more specific route inside the VPC range does take precedence over it.
+
+  - type: mc
+    sectionId: main-route-table-and-associations
+    prompt: A subnet has no explicit route table association. Which table does it use?
+    choices:
+      - The main route table of the VPC
+      - The route table of the last peering connection
+      - No route table, so its traffic is dropped
+      - A new route table created automatically for the subnet
+    answer: 0
+    explanation: Every VPC has a main route table, and it is the default for unassociated subnets.
+
+  - type: cloze
+    sectionId: which-route-wins
+    prompt: "A route whose target no longer exists sends traffic to the ____ route, which drops it silently."
+    answer: blackhole
+    explanation: A stale route to a deleted NAT gateway or disconnected peering blackholes the traffic.

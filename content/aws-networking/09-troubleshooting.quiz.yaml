@@ -1,0 +1,52 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: VPC flow logs
+    type: mc
+    sectionId: flow-logs
+    prompt: What do VPC flow logs record?
+    choices:
+      - Metadata about traffic crossing a network interface, including whether it was accepted or rejected
+      - The full payload of every packet
+      - A snapshot of every route table in the VPC
+      - Only the connections that were rejected
+    answer: 0
+    explanation: Flow logs capture headers and verdicts, not payloads, and they can be sampled or aggregated.
+
+  - type: mc
+    sectionId: reachability-analyzer
+    prompt: Which tool finds the rule blocking a path without sending any traffic?
+    choices:
+      - VPC Reachability Analyzer
+      - VPC flow logs
+      - AWS CloudTrail
+      - Route 53 health checks
+    answer: 0
+    explanation: Reachability Analyzer models security groups, network ACLs, and route tables to point at the blocking rule.
+
+  - type: mc
+    sectionId: flow-logs
+    prompt: Where can VPC flow logs be published?
+    choices:
+      - Amazon CloudWatch Logs, Amazon S3, or Amazon Data Firehose
+      - Only CloudWatch Logs
+      - Only Amazon S3
+      - Only a Kinesis stream
+    answer: 0
+    explanation: The three supported destinations are CloudWatch Logs, S3, and Amazon Data Firehose.
+
+  - type: mc
+    sectionId: a-checklist-that-resolves-most-cases
+    prompt: Which of these looks exactly like a network problem from outside?
+    choices:
+      - An application that binds only to 127.0.0.1
+      - An instance in a subnet with a NAT gateway
+      - A security group with an outbound allow-all rule
+      - A route table with a local route
+    answer: 0
+    explanation: A loopback-only listener accepts nothing from the network, which is indistinguishable from a blocked path.
+
+  - type: cloze
+    sectionId: flow-logs
+    prompt: "A ____ capture on the instance is still needed when you need the payload, not just the metadata."
+    answer: packet
+    explanation: Flow logs give verdicts and headers; a packet capture gives you the bytes.

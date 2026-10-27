@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: transit-gateway-internals
+    prompt: Which statement about transit gateway routing is correct?
+    choices:
+      - It routes at layer 3 on the destination IP and supports equal cost multipath for most attachment types
+      - It keeps per-flow state, so it can inspect traffic on its own
+      - It balances a single flow across two attachments at once
+      - It requires every attached VPC to use the same CIDR block
+    answer: 0
+    explanation: The hub is a layer 3 router with no flow state; equal cost multipath works for most attachment types, but two VPCs cannot share overlapping CIDR blocks.
+
+  - type: mc
+    sectionId: vpc-peering
+    prompt: Is VPC peering transitive?
+    choices:
+      - No — A reaches B and B reaches C, but A needs its own peering with C
+      - Yes, as soon as both peerings exist
+      - Yes, when both sides use the same route table
+      - Yes, if the CIDR blocks do not overlap
+    answer: 0
+    explanation: Peering is one-to-one; transitivity only comes from a transit gateway.
+
+  - type: mc
+    sectionId: vpc-peering
+    prompt: What must be true before two VPCs can be peered?
+    choices:
+      - Their IPv4 CIDR blocks must not overlap
+      - They must be in the same region
+      - They must share a route table
+      - They must both have a NAT gateway
+    answer: 0
+    explanation: Overlapping address space makes the routes ambiguous, so AWS rejects the peering.
+
+  - type: mc
+    sectionId: the-transit-gateway
+    prompt: How do you keep a database VPC unreachable from the other VPCs sharing a transit gateway?
+    choices:
+      - Put its attachment in a separate transit gateway route table
+      - Add a deny rule to the database security group
+      - Disable route propagation on the attachment
+      - Attach the database VPC to a second transit gateway
+    answer: 0
+    explanation: Transit gateway route tables decide which attachments may talk to which, which is how segmentation works on a shared hub.
+
+  - type: cloze
+    sectionId: transit-gateway-internals
+    prompt: "The transit gateway is a ____ router: it forwards each packet on its own and keeps no flow state."
+    answer: stateless
+    explanation: With no flow state it cannot do stateful inspection, which is why firewalls must live inside the VPC.

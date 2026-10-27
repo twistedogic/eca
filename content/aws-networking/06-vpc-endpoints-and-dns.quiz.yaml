@@ -1,0 +1,52 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: VPC endpoints
+    type: mc
+    sectionId: interface-endpoints
+    prompt: What does a VPC endpoint do?
+    choices:
+      - Lets AWS services be reached over private addresses without going to the internet
+      - Gives a private subnet a public IP address
+      - Forwards traffic between two VPCs at layer 3
+      - Terminates TLS for the load balancers in a VPC
+    answer: 0
+    explanation: An endpoint fronts a supported AWS service with private addresses inside the VPC, so the traffic never leaves AWS.
+
+  - type: mc
+    sectionId: gateway-endpoints-and-endpoint-policies
+    prompt: Which service is reached through a gateway endpoint?
+    choices:
+      - Amazon S3
+      - AWS Systems Manager
+      - AWS Secrets Manager
+      - Amazon Bedrock
+    answer: 0
+    explanation: Gateway endpoints are currently available for S3 and DynamoDB; the other services use interface endpoints.
+
+  - type: mc
+    sectionId: route-53-and-private-dns
+    prompt: What does enabling private DNS on an interface endpoint change?
+    choices:
+      - The service hostname resolves to the endpoint's private addresses inside the VPC
+      - The endpoint is given a public IP address
+      - All DNS queries leave the VPC and are answered by Route 53
+      - The security group on the endpoint is removed
+    answer: 0
+    explanation: With private DNS on, the familiar service hostname resolves privately inside the VPC.
+
+  - type: mc
+    sectionId: route-53-and-private-dns
+    prompt: A Route 53 private hosted zone for example.com inside a VPC has what effect?
+    choices:
+      - Resolvers in the VPC see the private records, resolvers outside still see the public zone
+      - It replaces the public zone for every resolver on the internet
+      - It only works for A and AAAA records
+      - It must be attached to a load balancer to take effect
+    answer: 0
+    explanation: A private hosted zone shadows the public zone of the same name only for resolvers inside the VPC.
+
+  - type: cloze
+    sectionId: gateway-endpoints-and-endpoint-policies
+    prompt: "An endpoint ____ limits what can be reached through the endpoint, much like a bucket policy."
+    answer: policy
+    explanation: Endpoint policies are the second filter in front of a service, and they can deny everything except an allowlist.

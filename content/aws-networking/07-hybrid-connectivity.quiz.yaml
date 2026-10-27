@@ -1,0 +1,52 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: virtual interface
+    type: mc
+    sectionId: direct-connect
+    prompt: What does a Direct Connect virtual interface connect to?
+    choices:
+      - A virtual private gateway or a Direct Connect gateway
+      - An internet gateway
+      - A NAT gateway
+      - The customer gateway in your data centre
+    answer: 0
+    explanation: The virtual interface is the AWS-side end of the connection; it attaches to a VGW for one VPC or to a DXGW for a transit gateway.
+
+  - type: mc
+    sectionId: site-to-site-vpn
+    prompt: What does the customer gateway represent?
+    choices:
+      - Your own on-premises router device, which AWS represents in your account
+      - The virtual router on the AWS side of the VPN
+      - The transit gateway attachment of a VPC
+      - A load balancer that terminates VPN tunnels
+    answer: 0
+    explanation: The customer gateway is your router as AWS sees it; the AWS side of the tunnel is the virtual private gateway or the transit gateway.
+
+  - type: mc
+    sectionId: site-to-site-vpn
+    prompt: Which traffic can a site-to-site VPN carry?
+    choices:
+      - Traffic to private addresses inside the VPC
+      - Traffic to the public IPv4 address of an instance
+      - Only DNS queries
+      - Only traffic coming from a transit gateway
+    answer: 0
+    explanation: The tunnel advertises your internal prefixes, so private addresses stay private end to end.
+
+  - type: mc
+    sectionId: filtering-and-inspection
+    prompt: Which service adds stateful inspection to a transit gateway path?
+    choices:
+      - AWS Network Firewall in appliance mode
+      - AWS Client VPN
+      - Route 53 Resolver
+      - Elastic IP addresses
+    answer: 0
+    explanation: Network Firewall endpoints are inserted as appliances, so every flow through the hub is inspected.
+
+  - type: cloze
+    sectionId: client-access
+    prompt: "AWS ____ VPN gives individual users a managed client for laptops and phones."
+    answer: Client
+    explanation: Client VPN authenticates users against your directory and applies a split or full tunnel policy.

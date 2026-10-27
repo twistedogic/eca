@@ -1,0 +1,52 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: NAT gateway
+    type: mc
+    sectionId: the-nat-gateway
+    prompt: Which statement about a NAT gateway is correct?
+    choices:
+      - It translates outbound traffic from private subnets and cannot accept inbound connections
+      - It assigns public IP addresses directly to instances in private subnets
+      - It is a route table that sends 0.0.0.0/0 to the internet
+      - It replaces the need for an internet gateway
+    answer: 0
+    explanation: A NAT gateway translates outbound source addresses to its elastic IP; there is no route back into the private subnet.
+
+  - type: mc
+    sectionId: the-nat-gateway
+    prompt: Where must a NAT gateway be placed?
+    choices:
+      - In a public subnet whose route table points 0.0.0.0/0 at an internet gateway
+      - In the private subnet whose traffic it translates
+      - In the same subnet as the instances that use it
+      - Anywhere, since it is a regional service
+    answer: 0
+    explanation: The NAT gateway needs a route to an internet gateway, which means it belongs in a public subnet.
+
+  - type: mc
+    sectionId: elastic-ips-and-egress-only-gateways
+    prompt: How do private IPv6 subnets reach the internet?
+    choices:
+      - Through an egress-only internet gateway with a ::/0 route
+      - Through a NAT gateway with an IPv6 elastic IP
+      - Through a NAT instance in the same subnet
+      - Through the transit gateway's NAT appliance
+    answer: 0
+    explanation: IPv6 addresses are not scarce, so there is no NAT; an egress-only internet gateway allows outbound traffic and blocks inbound.
+
+  - type: mc
+    sectionId: the-nat-gateway
+    prompt: What happens to a connection that arrives from the internet at a NAT gateway?
+    choices:
+      - It is rejected, because there is no route back into the private subnet
+      - It is accepted when the instance security group allows the port
+      - It is accepted on port 443 only
+      - It is accepted once the NAT gateway has an elastic IP
+    answer: 0
+    explanation: A NAT gateway only translates outbound connections; inbound traffic has nowhere to go.
+
+  - type: cloze
+    sectionId: elastic-ips-and-egress-only-gateways
+    prompt: "A NAT gateway keeps a stable public identity because it owns an ____ IP address."
+    answer: elastic
+    explanation: An elastic IP keeps a public address stable across stop and start, unlike an auto-assigned one.

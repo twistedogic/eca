@@ -1,0 +1,63 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: VPC
+    type: mc
+    sectionId: the-vpc-and-its-cidr-block
+    prompt: What does a VPC give you in AWS?
+    choices:
+      - A logically isolated virtual network inside one region and account
+      - A physical network of dedicated servers you manage
+      - A free allowance of network bandwidth
+      - A global router that connects every region
+    answer: 0
+    explanation: A VPC is a logically isolated virtual network scoped to one region and one account.
+
+  - type: mc
+    sectionId: the-vpc-and-its-cidr-block
+    prompt: How many IPv4 addresses does AWS reserve in each subnet?
+    choices:
+      - Five, including the network address and the DNS resolver
+      - One, the network address
+      - Three, one for each of the router, DNS, and NAT
+      - Ten, to allow for future growth
+    answer: 0
+    explanation: "AWS reserves five addresses per subnet: the network address, the router, the DNS resolver, and two for future use."
+
+  - type: mc
+    sectionId: the-vpc-and-its-cidr-block
+    prompt: What is the smallest IPv4 CIDR block AWS allows for a VPC or a subnet?
+    choices:
+      - /28
+      - /24
+      - /16
+      - /30
+    answer: 0
+    explanation: VPC and subnet IPv4 CIDR blocks must be between /16 and /28.
+
+  - type: mc
+    sectionId: planning-the-address-space
+    prompt: You need ten /24 subnets in one VPC. Which CIDR block should you request?
+    choices:
+      - 10.0.0.0/16
+      - 10.0.0.0/24
+      - 10.0.0.0/8
+      - 192.168.0.0/16
+    answer: 0
+    explanation: A /16 holds 256 /24 subnets; a /24 holds one, and /8 is outside the allowed /16 to /28 range.
+
+  - type: mc
+    sectionId: public-and-private-subnets
+    prompt: What makes a subnet public?
+    choices:
+      - Its route table sends 0.0.0.0/0 to an internet gateway
+      - It contains an instance with a public IP address
+      - Its network ACL allows port 443
+      - It holds a NAT gateway
+    answer: 0
+    explanation: Public versus private is a property of the route table, not of the subnet or its resources.
+
+  - type: cloze
+    sectionId: subnets-and-availability-zones
+    prompt: "A subnet lives in exactly one ____."
+    answer: availability zone
+    explanation: Subnets never span zones, so a resilient layout repeats the same subnet range in each zone.

@@ -1,0 +1,52 @@
+questions:
+  # Hand-written override for the generated MC on this term.
+  - term: security group
+    type: mc
+    sectionId: security-groups
+    prompt: What is a security group?
+    choices:
+      - A stateful firewall attached to a resource's network interface
+      - A stateless firewall attached to a subnet
+      - A list of CIDR blocks allowed to reach an instance
+      - A route table that only forwards traffic to a load balancer
+    answer: 0
+    explanation: Security groups attach to network interfaces and only allow traffic; anything not allowed is denied.
+
+  - type: mc
+    sectionId: network-acls
+    prompt: In what order are network ACL rules evaluated?
+    choices:
+      - By rule number, lowest first, and the first match wins
+      - In the order the rules were created
+      - By port number
+      - All matching rules are combined
+    answer: 0
+    explanation: Network ACLs are ordered lists with an implicit deny at the end, so the lowest matching rule decides.
+
+  - type: mc
+    sectionId: network-acls
+    prompt: Your instance answers a request on port 443. Which NACL setup allows the response to leave?
+    choices:
+      - Inbound 443 allowed, plus outbound 1024-65535 allowed
+      - Inbound 443 allowed is enough
+      - Outbound 443 allowed, plus inbound 1024-65535 allowed
+      - Inbound and outbound 443 allowed
+    answer: 0
+    explanation: Network ACLs are stateless, so the reply from an ephemeral port must be allowed explicitly; AWS recommends opening 1024-65535.
+
+  - type: mc
+    sectionId: network-acls
+    prompt: Which traffic can a network ACL deny outright?
+    choices:
+      - Anything matched by a deny rule with a lower rule number
+      - Only traffic addressed to a security group
+      - Only traffic that a security group already allowed
+      - Only IPv6 traffic
+    answer: 0
+    explanation: Network ACLs support both allow and deny rules, which is what security groups cannot do.
+
+  - type: cloze
+    sectionId: network-acls
+    prompt: "A reply connection leaves from an ephemeral port; AWS recommends opening the range ____ to cover every kind of client."
+    answer: 1024-65535
+    explanation: The range depends on the client, so the practical recommendation is 1024-65535 rather than a single operating system's default.
