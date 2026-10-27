@@ -1,0 +1,101 @@
+questions:
+  - type: mc
+    sectionId: size-the-position-from-the-stop
+    prompt: A $10,000 account risks 1% per trade on EUR/USD with a 50-pip stop. Which position size is correct?
+    choices:
+      - 0.20 lots
+      - 2.00 lots
+      - 0.02 lots
+      - 1.00 lot
+    answer: 0
+    explanation: Risk $100, and a standard lot carries $500 over 50 pips, so $100 / $500 = 0.20 lots.
+
+  - type: mc
+    sectionId: drawdown-is-asymmetric
+    prompt: After a 20% drawdown, what gain is needed to get back to the starting balance?
+    choices:
+      - 25%
+      - 20%
+      - 22%
+      - 30%
+    answer: 0
+    explanation: "The gain is d / (1 - d): 0.20 / 0.80 = 25%, because the recovery is earned on the smaller balance."
+
+  - type: mc
+    sectionId: correlation-is-hidden-size
+    prompt: You are long EUR/USD and long USD/CHF at the same time. What is the net exposure?
+    choices:
+      - Net short the dollar
+      - Net long the dollar
+      - Roughly balanced, one risk offsetting the other
+      - Long EUR and short CHF with no dollar exposure
+    answer: 0
+    explanation: EUR/USD long is dollar-short and USD/CHF long is also dollar-short, so the two trades stack into one large dollar position.
+
+  - term: R multiples
+    type: mc
+    sectionId: define-risk-in-r
+    prompt: A trade risked $100 at its stop and closed for a $250 profit. How many R is that?
+    choices:
+      - +2.5R
+      - +1.5R
+      - +2.0R
+      - -1.5R
+    answer: 0
+    explanation: 1R is the planned risk, so $250 of profit against $100 of risk is +2.5R.
+
+  - type: cloze
+    sectionId: drawdown-is-asymmetric
+    prompt: "A 50% drawdown needs a ____ gain to recover."
+    answer: 100%
+    explanation: "The gain is d / (1 - d): 0.50 / 0.50 = 100%, so you must double what remains."
+
+  - type: mc
+    sectionId: portfolio-heat
+    prompt: You hold three open positions, each risking 1% of equity, and all three are dollar-short. What is the total risk if the dollar rallies?
+    choices:
+      - 3% of equity, because they are effectively one dollar position
+      - 1% of equity, because each trade is only 1%
+      - 6% of equity, because three trades triple the risk
+      - 0%, because the losses cancel each other out
+    answer: 0
+    explanation: Portfolio heat is the total at stake if everything goes against you at once. Three dollar-short positions at 1% each is one 3% dollar position.
+
+  - type: mc
+    sectionId: balance-equity-and-the-peak
+    prompt: An account peaked at $20,000 and now stands at $15,000. What is the drawdown?
+    choices:
+      - 25%, measured from the peak
+      - 0%, because it is still above the original $10,000
+      - 50%, measured from the original deposit
+      - 5%
+    answer: 0
+    explanation: "Drawdown is peak-to-trough, not starting-balance-to-now: (20,000 - 15,000) / 20,000 = 25%."
+
+  - type: mc
+    sectionId: balance-equity-and-the-peak
+    prompt: What is the difference between balance and equity?
+    choices:
+      - Balance is cash in the account; equity is balance plus open profit or minus open loss
+      - They are the same thing
+      - Equity is the balance including deposits but excluding withdrawals
+      - Balance is the real-time value; equity is the end-of-day value
+    answer: 0
+    explanation: Equity is the number that matters for drawdown and for sizing, because it reflects what the open positions are currently worth.
+
+  - type: mc
+    sectionId: risk-of-ruin
+    prompt: What does the Kelly criterion give you?
+    choices:
+      - The growth-optimal fraction of equity to risk on a bet with a known win rate and payoff ratio
+      - A guaranteed way to avoid losses
+      - The maximum drawdown a strategy will produce
+      - The number of trades needed to validate a strategy
+    answer: 0
+    explanation: "Kelly gives f = (bp - q) / b. Risking more than that lowers long-run growth and raises the probability of ruin; nobody trades at full Kelly because the win-rate estimate is always wrong."
+
+  - type: cloze
+    sectionId: risk-of-ruin
+    prompt: "Risking more than the Kelly fraction lowers long-run growth and raises the probability of ____."
+    answer: ruin
+    explanation: A drawdown is recoverable; ruin is not. That is why the 1% guideline sits far below the growth-optimal fraction.

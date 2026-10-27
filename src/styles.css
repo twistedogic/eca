@@ -140,6 +140,12 @@ a { color: var(--accent-text); }
 .chapter .section p { font-size: 14px; line-height: 1.7; margin-bottom: 14px; color: var(--body); }
 .chapter .section p b { color: var(--ink); }
 .chapter .section ul, .chapter .section ol { padding-left: 20px; margin-bottom: 14px; font-size: 14px; line-height: 1.7; color: var(--body); }
+.chapter .section pre {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 12px; margin-bottom: 14px; overflow-x: auto;
+  font-size: 13px; line-height: 1.6; color: var(--ink);
+}
+.chapter .section pre code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 .quizcta {
   display: block; text-align: center; text-decoration: none;
   background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 15px;

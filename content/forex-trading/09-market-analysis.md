@@ -68,5 +68,5 @@ and the chart confirms the downtrend" is a thesis. "The chart looks
 overbought" is not a thesis, because overbought can persist for months in
 a trending market.
 
-Whichever you use, write the reason down before the trade. Chapter 9
+Whichever you use, write the reason down before the trade. Chapter 11
 covers why that matters.

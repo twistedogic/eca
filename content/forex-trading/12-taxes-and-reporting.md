@@ -47,7 +47,7 @@ currency.
 > has to exist before you need it.
 
 Reconstructing a year of trades from chat messages and statements at tax
-time is miserable. The journal from chapter 9 already contains most of
+time is miserable. The journal from chapter 11 already contains most of
 what you need; add the swap column and you are done.
 
 ## Cash or mark-to-market

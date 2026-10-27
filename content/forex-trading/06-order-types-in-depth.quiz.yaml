@@ -1,0 +1,75 @@
+questions:
+  - term: pending order
+    type: mc
+    sectionId: pending-orders
+    prompt: A buy limit is placed below the current price and a buy stop above it. Why?
+    choices:
+      - A limit wants a better price and may never fill; a stop wants a worse price and fills as a market order
+      - A limit is cheaper in commission; a stop is only for closing positions
+      - A limit fills immediately; a stop waits for the session to close
+      - There is no difference between them on retail platforms
+    answer: 0
+    explanation: Limit orders cap the price you get and risk no fill; stop orders guarantee execution and risk a worse price.
+
+  - term: trailing stop
+    type: mc
+    sectionId: trailing-stops
+    prompt: What makes a trailing stop different from a fixed stop?
+    choices:
+      - It follows price in your favour and never retreats, so it protects an open profit
+      - It re-centres on every new candle
+      - It fills at a guaranteed price
+      - It only works on pending orders
+    answer: 0
+    explanation: A trailing stop ratchets with the position and never moves against it, but it is still a stop and can fill worse in a gap.
+
+  - term: one-cancels-other
+    type: mc
+    sectionId: paired-orders
+    prompt: In a one-cancels-other order, what happens when one of the two orders fills?
+    choices:
+      - The other one is cancelled automatically
+      - Both stay open
+      - The other one is doubled in size
+      - Both are converted to market orders
+    answer: 0
+    explanation: An OCO attaches a stop and a target to one position so that only one of them can ever fire.
+
+  - type: mc
+    sectionId: partial-closes-hedging-and-netting
+    prompt: On a netting account, what happens if you open a second EUR/USD buy while a 1-lot buy is already open?
+    choices:
+      - It adds to the position, and the new order's stop and target replace the old ones
+      - It opens a second, separate position with its own stop
+      - It closes the existing position
+      - It is rejected
+    answer: 0
+    explanation: Netting keeps one position per symbol; only in hedging mode does every order become its own position.
+
+  - type: mc
+    sectionId: expiry-rejection-and-the-gap
+    prompt: A stop order is rejected by the broker. What does that mean for your protection?
+    choices:
+      - You have no stop in place, and the rejection must be noticed and fixed
+      - The order is queued until the broker accepts it later
+      - The broker covers the loss for you
+      - The position is closed automatically
+    answer: 0
+    explanation: A rejected order is not an order. Check your order history after placing stops, especially around news and weekends.
+
+  - type: mc
+    sectionId: trailing-stops
+    prompt: On MetaTrader, how is the trailing distance entered?
+    choices:
+      - In points, where one pip is ten points on a five-digit quote
+      - In pips, directly
+      - As a percentage of the position size
+      - As a multiple of the ATR
+    answer: 0
+    explanation: The trailing stop dialog asks for points; a 200-point trail on EUR/USD is a 20-pip trail.
+
+  - type: cloze
+    sectionId: expiry-rejection-and-the-gap
+    prompt: "A good-till-cancelled stop stays armed through the weekend, and can be triggered by the first print after a ____."
+    answer: gap
+    explanation: "That is how a protective stop becomes a large loss: it fills at the first available price, not the level you set."

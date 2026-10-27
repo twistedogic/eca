@@ -35,6 +35,18 @@ account.
 > **Risk per trade** of 1% means twenty consecutive losses cost about 18% of
 > equity; at 5% per trade the same streak costs more than half.
 
+## Portfolio heat
+
+Risk per trade is not the whole budget. What matters is the total amount
+of money that stops being yours if every open position goes against you
+at once — the **portfolio heat**.
+
+Five positions at 1% each is 5% of the account at risk, not 1%. If they
+are correlated, it is worse: three dollar-short positions at 1% each are
+one 3% dollar position wearing three different hats. Set a cap on total
+open risk — commonly 3% to 6% of equity — and count correlated trades
+once, at the size of the combined exposure.
+
 ## Define risk in R
 
 Measure every trade in **R multiples**, where 1R is the amount you
@@ -76,8 +88,50 @@ double a smaller account to get back to zero, while a trader who lost 10%
 needs a modest gain. A daily loss limit and a hard stop on trading after
 it are cheap insurance against the asymmetry.
 
+## Balance, equity, and the peak
+
+**Balance** is the cash in the account. **Equity** is balance plus the
+open profit or minus the open loss. Drawdown is measured from the highest
+equity the account has ever reached, not from the starting balance — which
+means an account that grew to $20,000 and fell to $15,000 is 25% down
+even though it is still up on its original $10,000.
+
+The practical point: your risk budget should be a percentage of current
+equity, and your daily loss limit should be measured against the day's
+starting equity. A trader whose peak was $20,000 and is now trading a
+$15,000 account is running a bigger position than the numbers suggest if
+they size off the original deposit.
+
+## Risk of ruin
+
+A drawdown is recoverable. Ruin is not, and the difference is worth
+understanding.
+
+A fixed fraction of equity risks a fixed fraction of equity, so the
+account can never lose everything in one trade — but a large enough
+fraction risks it over a sequence. The mathematics of this is the
+geometric growth of the account. Compounding rewards the path, not the
+average: the same set of trades in a different order ends at a different
+balance, and a large enough risk fraction turns the growth rate negative
+however good the average result looks. If you risk 50% per trade, one loss leaves you half the account
+and you need to double it to recover; risk 100% and one loss ends it.
+
+The practical rule falls out of the growth arithmetic rather than a rule
+of thumb: the growth-optimal risk fraction is given by the Kelly
+criterion, *f* = (*bp* − *q*) / *b*, where *p* is the win probability,
+*q* = 1 − *p*, and *b* is the average win divided by the average loss.
+Risking more than that fraction lowers long-run growth and raises the
+chance of ruin; risking less is safe but grows the account more slowly.
+
+Nobody sizes at full Kelly, because the estimate of *p* is always wrong
+and full Kelly is violently exposed to being wrong. The 1% guideline from
+earlier in this chapter sits far below it for that reason.
+
+> Risking more than the Kelly fraction lowers long-run growth and raises
+> the probability of ruin. Nobody sizes at full Kelly.
+
 ## Respect the math
 
 The rules above are not opinions about markets. They are arithmetic about
-compounding. Chapter 9 covers the behavioural side — the part where the
+compounding. Chapter 11 covers the behavioural side — the part where the
 arithmetic gets sabotaged.

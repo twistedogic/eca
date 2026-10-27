@@ -47,4 +47,4 @@ therefore about $10, before any commission.
 Buying EUR/USD is simultaneously buying euros and selling dollars. That
 double exposure is why correlation matters: a short EUR/USD and a long
 USD/CHF are both dollar-short positions wearing different clothes. Chapter
-7 covers how to stop two "different" trades from being one large trade.
+8 covers how to stop two "different" trades from being one large trade.

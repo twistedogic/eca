@@ -1,0 +1,99 @@
+questions:
+  - term: expectancy
+    type: mc
+    sectionId: expectancy-does-the-edge-exist
+    prompt: A strategy wins 45% of trades, averaging 1.5R per win and losing 1R per loss, with 0.1R of cost per trade. What is its expectancy?
+    choices:
+      - About +0.025R — positive, but thin, and it turns negative below a 44% win rate
+      - About -0.02R, so it loses money despite the 45% win rate
+      - About +0.35R, so it is strongly profitable
+      - About 0.45R, so it is strongly profitable
+    answer: 0
+    explanation: "Expectancy = (0.45 x 1.5) - (0.55 x 1) - 0.1 = +0.025R. The break-even win rate with that cost is (1 + 0.1) / (1.5 + 1) = 44%, so the edge exists but leaves almost nothing."
+
+  - type: mc
+    sectionId: expectancy-does-the-edge-exist
+    prompt: A strategy's average win is 1.5 times its average loss. Ignoring costs, what win rate does it need to break even?
+    choices:
+      - 40%
+      - 60%
+      - 25%
+      - 50%
+    answer: 0
+    explanation: "Break-even is p* = L / (W + L) = 1 / 2.5 = 40%, so it needs to win more than two trades in five."
+
+  - term: trend following
+    type: mc
+    sectionId: two-families
+    prompt: What payoff shape is characteristic of trend following?
+    choices:
+      - A low win rate with rare large winners
+      - A high win rate with small winners and rare large losses
+      - An even spread of wins and losses
+      - A win rate that depends on the news calendar
+    answer: 0
+    explanation: Trend following earns its money from a few large winners covering many small losses, so a low win rate is normal and expected.
+
+  - term: mean reversion
+    type: mc
+    sectionId: two-families
+    prompt: Why is mean reversion dangerous in a trending market?
+    choices:
+      - Every band touch becomes an entry into the move, so losses accumulate without a hard stop
+      - It only works on majors
+      - It requires a wider spread than trend following
+      - It cannot be tested historically
+    answer: 0
+    explanation: In a trend, extremes are not reversals. The stop is the only thing that makes mean reversion a system rather than an accumulation of position.
+
+  - term: Donchian channel
+    type: mc
+    sectionId: case-study-the-donchian-breakout
+    prompt: What is a Donchian channel?
+    choices:
+      - The highest high or lowest low over a rolling window of periods
+      - A 20-period average true range
+      - The difference between a fast and a slow moving average
+      - A band two standard deviations from the mean
+    answer: 0
+    explanation: A Donchian channel is the range's extreme over N periods, and a break of it is the entry signal in the original Turtle rules.
+
+  - term: grid trading
+    type: mc
+    sectionId: grid-and-martingale
+    prompt: Why does a grid of fixed-size orders lose money when price trends hard against it?
+    choices:
+      - The small wins do not cover the sum of every open losing position, once the spread is paid on each level
+      - The spread is charged twice on every trade
+      - Grid orders cannot be stopped out
+      - The broker charges a fee per pending order
+    answer: 0
+    explanation: The wins are proportional to one small step per level; the loss is the whole accumulated book. It is a transfer of risk, not an edge.
+
+  - type: mc
+    sectionId: the-cost-constraint
+    prompt: A $10,000 account risks 1% per trade on EUR/USD with a 1.0 pip spread and $7 round-turn commission. With a 5-pip stop, roughly what share of the planned risk goes to costs?
+    choices:
+      - About 34%
+      - About 3.4%
+      - About 50%
+      - About 0%
+    answer: 0
+    explanation: A $100 risk over a 5-pip stop needs 2 standard lots, costing $14 in commission plus $20 in spread — $34 on a $100 trade.
+
+  - type: mc
+    sectionId: the-cost-constraint
+    prompt: The same account, risk and pair with a 50-pip stop instead takes 0.2 standard lots. What happens to the cost?
+    choices:
+      - It falls to about 3.4% of the risk, because the position is smaller
+      - It stays at 34%, because the spread is the same
+      - It falls to zero
+      - It rises, because the stop is wider
+    answer: 0
+    explanation: "Costs scale with size, and size scales inversely with stop distance: $1.40 commission plus $2.00 spread on a $100 risk."
+
+  - type: cloze
+    sectionId: case-study-the-donchian-breakout
+    prompt: "In the original Turtle rules, one unit of volatility was the 20-period ____, and the stop was placed two units from entry."
+    answer: average true range
+    explanation: Sizing by a volatility unit makes risk constant in percentage terms as volatility changes — the same idea as ATR-based position sizing.

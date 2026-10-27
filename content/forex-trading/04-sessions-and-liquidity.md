@@ -54,4 +54,4 @@ pairs: three days of interest at once.
 Rollover can be a meaningful cost — or a meaningful credit — on any trade
 held for more than a day, and it is usually larger than the difference
 between two brokers' headline spreads. Chapter 5 covers the full cost of a
-trade, and chapter 8 covers the interest-rate differential that drives it.
+trade, and chapter 9 covers the interest-rate differential that drives it.
