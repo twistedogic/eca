@@ -24,6 +24,7 @@ const quiz = JSON.parse(readFileSync('public/quiz.json', 'utf8')) as QuizData
 
 const TOPIC = content.topics[0].id
 const CHAPTER = content.topics[0].chapters[0].id
+const CHAPTERS = content.topics[0].chapters.length
 
 let app: HTMLElement
 
@@ -91,7 +92,7 @@ describe('full flow', () => {
   it('home lists the topic with zero progress and no due count', async () => {
     await renderHome(app, content, quiz)
     expect(text(app.querySelector('.topic-card h3'))).toBe(content.topics[0].title)
-    expect(text(app.querySelector('.topic-card .meta'))).toContain('0/3 chapters')
+    expect(text(app.querySelector('.topic-card .meta'))).toContain(`0/${CHAPTERS} chapters`)
     expect(text(app.querySelector('.topic-card .meta'))).toContain('0%')
     expect(app.querySelector('.due-banner')).toBeNull()
   })
@@ -166,8 +167,8 @@ describe('full flow', () => {
 
   it('a taken quiz counts toward the topic progress and stays retakeable', async () => {
     await renderHome(app, content, quiz)
-    expect(text(app.querySelector('.topic-card .meta'))).toContain('1/3 chapters')
-    expect(text(app.querySelector('.topic-card .meta'))).toContain('33%')
+    expect(text(app.querySelector('.topic-card .meta'))).toContain(`1/${CHAPTERS} chapters`)
+    expect(text(app.querySelector('.topic-card .meta'))).toContain(`${Math.round(100 / CHAPTERS)}%`)
 
     await renderChapter(app, content, quiz, TOPIC, CHAPTER)
     expect(text(require('.quizcta', 'Take chapter quiz'))).toContain('question')

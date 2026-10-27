@@ -1,0 +1,39 @@
+questions:
+  - type: mc
+    sectionId: choose-the-broker-carefully
+    prompt: Where should you check that a broker is properly regulated?
+    choices:
+      - On the regulator's own public register, searched by legal entity name
+      - On the broker's website, in its regulation section
+      - On broker review sites and forums
+      - In the broker's marketing material
+    answer: 0
+    explanation: A licence shown by the broker is marketing; NFA BASIC, the FCA register, and ASIC Connect are the evidence.
+
+  - type: mc
+    sectionId: test-it-before-you-trust-it
+    prompt: A backtest uses each candle's closing price to place a trade at that same closing price. What is the error called?
+    choices:
+      - Look-ahead bias
+      - Survivorship bias
+      - Curve fitting
+      - Slippage
+    answer: 0
+    explanation: The trade used information from the bar it was trading on; a real decision could only use data available before it.
+
+  - type: mc
+    sectionId: test-it-before-you-trust-it
+    prompt: You tune a strategy's lookback period until the backtest result is as good as possible. What is the main risk?
+    choices:
+      - Curve fitting, so the result fits the past rather than the market
+      - Slippage in the live account
+      - A wider spread at execution time
+      - Rollover charges on overnight positions
+    answer: 0
+    explanation: If a small change to the setting destroys the edge, the edge was the fit to history, not a real effect.
+
+  - type: cloze
+    sectionId: choose-the-broker-carefully
+    prompt: "Client money must be held in separate accounts from the broker's own money. This is called ____."
+    answer: segregated client funds
+    explanation: Segregated client funds protect your deposit if the broker becomes insolvent.

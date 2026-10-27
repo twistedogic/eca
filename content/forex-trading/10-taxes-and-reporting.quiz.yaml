@@ -1,0 +1,81 @@
+questions:
+  # Framework questions first: these answers change far less often than the
+  # rates and thresholds, which vary by country and year.
+  - type: mc
+    sectionId: the-first-question-business-or-hobby
+    prompt: Why does tax authorities' "business or hobby" classification matter so much?
+    choices:
+      - It decides whether losses can offset your other income and whether trading costs are deductible
+      - It decides which broker you are allowed to use
+      - It sets the maximum leverage you may take
+      - It determines whether a foreign exchange transaction is legal
+    answer: 0
+    explanation: Business treatment taxes profit as income with deductible costs; private-investor treatment usually comes with an exemption and restricted losses.
+
+  - type: mc
+    sectionId: what-the-broker-reports-and-what-you-report
+    prompt: For retail spot forex, who usually reports your trading to the tax authority?
+    choices:
+      - Usually nobody — the broker reports little or nothing, so you keep and report the records yourself
+      - Always the broker, on a standard form
+      - The exchange operator, for every retail account
+      - Nobody, unless your account is profitable
+    answer: 0
+    explanation: Retail spot forex is mostly unreported; where a broker does report (exchange-traded products, some futures), the trader still keeps their own record.
+
+  - term: mark-to-market
+    type: mc
+    sectionId: cash-or-mark-to-market
+    prompt: What does mark-to-market accounting mean for an open position at the end of the tax year?
+    choices:
+      - It is treated as sold and immediately rebought, so unrealised gains are taxed and unrealised losses are deductible
+      - It is ignored until you actually close the position
+      - It is taxed at half the rate of a closed position
+      - It converts the position into a different currency
+    answer: 0
+    explanation: Mark-to-market closes the tax year on itself and resets your cost basis to the year-end price.
+
+  - type: mc
+    sectionId: cash-or-mark-to-market
+    prompt: In the US, how is retail spot forex taxed by default?
+    choices:
+      - As ordinary income or ordinary loss
+      - As a 60/40 split between long-term and short-term capital gains
+      - Not at all, if it is held for less than a year
+      - At a flat rate, like the UK annual exempt amount
+    answer: 0
+    explanation: Retail spot forex defaults to ordinary income treatment; the 60/40 split and mark-to-market apply to currency futures on a qualified exchange.
+
+  - type: mc
+    sectionId: a-short-guide-by-jurisdiction
+    prompt: What is the wash sale rule's effect on forex trading in the US?
+    choices:
+      - It does not apply, so a loss can be taken and the same pair re-entered immediately without the loss being disallowed
+      - It applies fully, so a 30-day gap is required before re-entering a pair
+      - It applies only to pairs involving the yen
+      - It applies only to positions held over a year
+    answer: 0
+    explanation: The IRS states that wash sale rules do not apply to losses on foreign currencies or commodity futures contracts.
+
+  - type: mc
+    sectionId: a-short-guide-by-jurisdiction
+    prompt: In the UK, what distinguishes spread betting from spot forex for tax purposes?
+    choices:
+      - Spread betting is treated as gambling, so profits are outside the tax net but losses are not deductible either
+      - Spread betting is taxed at double the rate of spot forex
+      - Both are taxed identically under capital gains rules
+      - Spread betting profits are taxed but spot forex profits are not
+    answer: 0
+    explanation: Spot forex and CFDs sit in the capital gains regime with an annual exempt amount; spread betting falls under gambling rules, and the losses you cannot deduct are the cost of that.
+
+  - type: cloze
+    sectionId: a-short-guide-by-jurisdiction
+    prompt: "In the UK, spot forex and CFD profits sit in the capital gains regime, with an ____ of £3,000 for 2026/27."
+    answer: annual exempt amount
+    explanation: The annual exempt amount applies per person per tax year to net gains across all asset classes, and it cannot be carried forward.
+
+  - type: cloze
+    sectionId: what-the-broker-reports-and-what-you-report
+    prompt: "If the broker does not report your trading, ____ — and the record has to exist before you need it."
+    answer: you do
+    explanation: Reconstructing a year of trades at tax time is miserable; the trading journal already holds most of the data.

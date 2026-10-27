@@ -1,0 +1,51 @@
+questions:
+  - term: leverage cap
+    type: mc
+    sectionId: caps-and-where-to-find-yours
+    prompt: What is a leverage cap?
+    choices:
+      - A ceiling on the leverage a broker may offer retail clients, set by the regulator the broker is registered with
+      - The profit a regulator lets you keep before it takes a share
+      - A broker's own limit on how much risk it will allow per client
+      - The level at which a broker closes your position automatically
+    answer: 0
+    explanation: Caps are set by regulators rather than by the broker, and they differ by jurisdiction and by pair.
+
+  - type: mc
+    sectionId: caps-and-where-to-find-yours
+    prompt: Where do you find the leverage cap that applies to you?
+    choices:
+      - In the rules published by the regulator your broker is registered with
+      - In the broker's marketing, on the account comparison page
+      - On trading forums, in other traders' threads
+      - In the spread the broker quotes on the pair
+    answer: 0
+    explanation: The broker's own advertising is not the source of truth; the regulator's rules are.
+
+  - type: mc
+    sectionId: the-arithmetic
+    prompt: At a 50:1 leverage ratio, how much margin is required to hold one standard lot of EUR/USD ($100,000 notional)?
+    choices:
+      - $2,000
+      - $20,000
+      - $500
+      - $5,000
+    answer: 0
+    explanation: Leverage is notional divided by margin, so $100,000 / 50 = $2,000.
+
+  - type: mc
+    sectionId: effective-leverage
+    prompt: A $1,000 account holds one standard lot of EUR/USD. What is its effective leverage?
+    choices:
+      - 100:1
+      - 50:1
+      - 10:1
+      - 1:1
+    answer: 0
+    explanation: "Effective leverage is notional over equity: $100,000 / $1,000 = 100:1, regardless of what the broker allows."
+
+  - type: cloze
+    sectionId: caps-and-where-to-find-yours
+    prompt: "A **leverage cap** is a ceiling on what a broker may offer, not a level you are expected to use."
+    answer: leverage cap
+    explanation: Using the maximum available leverage is what ends accounts; the cap exists to protect you from yourself.
