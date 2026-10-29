@@ -9,6 +9,7 @@ import { renderChapter } from './views/chapter'
 import { renderQuiz } from './views/quiz'
 import { renderReview } from './views/review'
 import { applyTheme, loadTheme } from './state/theme'
+import { applyTextSize, loadTextSize } from './state/textsize'
 
 const app = document.getElementById('app')!
 
@@ -37,14 +38,15 @@ function render(): void {
 }
 
 async function boot(): Promise<void> {
-  // the appearance lands in parallel with the content fetch, before the first paint
+  // the appearance and text size land in parallel with the content fetch, before the first paint
   const themed = loadTheme().then(applyTheme).catch((err) => console.error('theme failed', err))
+  const sized = loadTextSize().then(applyTextSize).catch((err) => console.error('text size failed', err))
   try {
     ;[content, quiz] = await Promise.all([loadContent(), loadQuiz()])
   } catch {
     // views render an empty state; content may appear after `npm run gen`
   }
-  await themed
+  await Promise.all([themed, sized])
   render()
   window.addEventListener('hashchange', render)
 }

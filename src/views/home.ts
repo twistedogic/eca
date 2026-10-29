@@ -3,6 +3,7 @@ import { go } from '../router'
 import type { ContentData, QuizData } from '../types'
 import { dueInfo, progressMap, topicProgress, chapterKey, estimatedMinutes } from '../state/progress'
 import { currentTheme, toggleTheme, type Theme } from '../state/theme'
+import { currentTextSize, setTextSize, TEXT_SIZES, type TextSize } from '../state/textsize'
 
 export async function renderHome(
   app: HTMLElement,
@@ -74,6 +75,29 @@ export async function renderHome(
     row.setAttribute('aria-label', appearanceLabel(next))
   }
 
+  const size = currentTextSize()
+  const sizes = h('span', { class: 'sizes' },
+    ...TEXT_SIZES.map((step) => h('button', {
+      class: `size ${step}`,
+      type: 'button',
+      'data-size': step,
+      'aria-label': `Text size: ${SIZE_NAMES[step]}`,
+      'aria-pressed': String(step === size),
+      onclick: () => pickSize(step),
+    }, 'A')))
+  view.append(h('div', { class: 'size-row', role: 'group', 'aria-label': 'Text size' },
+    h('span', { class: 'ct' }, 'Text size'),
+    sizes))
+
+  function pickSize(step: TextSize): void {
+    setTextSize(step)
+    for (const btn of sizes.querySelectorAll<HTMLElement>('button.size')) {
+      const on = btn.dataset.size === step
+      btn.classList.toggle('on', on)
+      btn.setAttribute('aria-pressed', String(on))
+    }
+  }
+
   app.append(
     h('div', { class: 'appbar' },
       h('span', { class: 'title' }, 'My Topics'),
@@ -85,4 +109,11 @@ export async function renderHome(
 
 function appearanceLabel(theme: Theme): string {
   return `Appearance: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}.`
+}
+
+const SIZE_NAMES: Record<TextSize, string> = {
+  sm: 'Small',
+  md: 'Default',
+  lg: 'Large',
+  xl: 'Extra large',
 }

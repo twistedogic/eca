@@ -36,6 +36,8 @@ beforeEach(async () => {
   // the appearance is global state; reset it so each case starts in light
   await deleteSetting('theme')
   document.documentElement.removeAttribute('data-theme')
+  await deleteSetting('textSize')
+  document.documentElement.removeAttribute('data-text-size')
 })
 
 function text(el: Element | null): string {  return (el?.textContent ?? '').replace(/\s+/g, ' ').trim()
@@ -245,6 +247,23 @@ describe('full flow', () => {
     app.querySelector<HTMLButtonElement>('.appear-row')!.click()
     expect(document.documentElement.dataset.theme).toBe('light')
     expect(text(app.querySelector('.appear-row .pill'))).toBe('Light')
+  })
+
+  it('the text size control resizes the app and the choice survives a re-render', async () => {
+    await renderHome(app, content, quiz)
+    const row = require('.size-row', 'Text size')
+    expect(row.querySelector('[aria-pressed="true"]')?.getAttribute('aria-label')).toBe('Text size: Default')
+
+    const large = [...row.querySelectorAll<HTMLElement>('button.size')]
+      .find((b) => b.getAttribute('aria-label') === 'Text size: Large')!
+    large.click()
+    expect(document.documentElement.dataset.textSize).toBe('lg')
+    expect(row.querySelector('[aria-pressed="true"]')?.getAttribute('aria-label')).toBe('Text size: Large')
+    await vi.waitFor(async () => expect(await getSetting('textSize')).toBe('lg'))
+
+    await renderHome(app, content, quiz)
+    expect(document.documentElement.dataset.textSize).toBe('lg')
+    expect(app.querySelector('.size-row [aria-pressed="true"]')?.getAttribute('aria-label')).toBe('Text size: Large')
   })
 
   it('a card whose question no longer exists is dropped without errors', async () => {

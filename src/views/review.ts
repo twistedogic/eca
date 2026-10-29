@@ -129,7 +129,7 @@ export async function renderReview(
             q.prompt,
             h('br'),
             h('span', { class: 'nextin' }, `answer: ${q.answer}`),
-            h('p', { style: 'font-size:13px;color:var(--muted);margin-top:8px' }, q.explanation),
+            h('p', { class: 'explain' }, q.explanation),
           ),
         )
       } else {
@@ -147,7 +147,7 @@ export async function renderReview(
         body.append(
           h('div', { class: 'qcard' },
             ...choices,
-            h('p', { style: 'font-size:13px;color:var(--muted);margin-top:8px' }, q.explanation),
+            h('p', { class: 'explain' }, q.explanation),
           ),
         )
       }
@@ -167,7 +167,7 @@ export async function renderReview(
         h('div', { style: 'text-align:center;margin-top:12px' },
           h('span', {
             class: 'nextin',
-            style: correct ? '' : 'background:var(--bad-soft);color:var(--bad)',
+            style: correct ? '' : 'background:var(--bad-soft);color:var(--bad-ink)',
           }, correct ? `✓ next in ${nextIntervalDays(next.box)}d` : '✗ back tomorrow')),
       )
       const cont = h('button', { class: 'btn', style: 'margin-top:12px' },
