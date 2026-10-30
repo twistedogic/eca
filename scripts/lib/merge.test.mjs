@@ -91,6 +91,11 @@ describe('validateQuestion', () => {
       .toThrow(QuestionValidationError)
   })
 
+  it('rejects mc choices that are not strings', () => {
+    expect(() => validateQuestion({ type: 'mc', prompt: 'p', choices: [{ a: 'b' }, 'c'], answer: 0 }))
+      .toThrow(QuestionValidationError)
+  })
+
   it('rejects unknown types and missing prompts', () => {
     expect(() => validateQuestion({ type: 'essay', prompt: 'p' })).toThrow(QuestionValidationError)
     expect(() => validateQuestion({ type: 'cloze', prompt: '', answer: 'x' })).toThrow(QuestionValidationError)

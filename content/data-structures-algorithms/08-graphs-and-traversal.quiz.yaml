@@ -38,7 +38,7 @@ questions:
     sectionId: depth-first-search
     prompt: Which problems favour depth-first search over breadth-first search?
     choices:
-      - Full exploration: components, cycle detection, bipartite checks
+      - "Full exploration: components, cycle detection, bipartite checks"
       - Finding the shortest path in an unweighted graph
       - Printing a graph level by level
       - Finding the shortest path with non-negative weights

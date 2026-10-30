@@ -18,6 +18,10 @@ export function validateQuestion(q) {
     if (!Array.isArray(q.choices) || q.choices.length < 2) {
       throw new QuestionValidationError(`${where}: "choices" must be an array of at least 2`)
     }
+    // a YAML value like `- Card blows up: every request` parses as a mapping
+    if (q.choices.some((c) => typeof c !== 'string')) {
+      throw new QuestionValidationError(`${where}: every "choices" entry must be a string`)
+    }
     if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.choices.length) {
       throw new QuestionValidationError(`${where}: "answer" must be an index into "choices"`)
     }
