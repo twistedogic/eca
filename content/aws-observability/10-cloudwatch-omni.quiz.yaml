@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: domain-space-and-dataset
+    prompt: What separates one Omni space from another?
+    choices:
+      - A space maps to one AWS account and one Region, and that boundary is what separates spaces
+      - A filter applied to the results of every query
+      - The identity provider the space signs in with
+      - The number of contributors the alert tracks
+    answer: 0
+    explanation: The space is the account-and-Region boundary, not a query filter, and the domain is what holds identity and access.
+
+  - type: mc
+    sectionId: two-setup-paths
+    prompt: What does an organization-level Omni domain give you?
+    choices:
+      - One sign-in URL and one identity provider configuration, with member accounts creating their own spaces
+      - A single space that holds the telemetry of every account
+      - Automatic cross-account aggregation of all telemetry
+      - A separate domain for every Region
+    answer: 0
+    explanation: The management account creates the domain, member accounts create their own spaces inside it, and trusted access with AWS Organizations is required.
+
+  - type: cloze
+    sectionId: sending-telemetry
+    prompt: "Enable ____ in the Region before you send traces, or no spans arrive."
+    answer: transaction search
+    explanation: Transaction Search is an account-level setting that has to be on before the OTLP traces endpoint will accept spans.
+
+  - type: mc
+    sectionId: sending-telemetry
+    prompt: Which authentication does the CloudWatch Omni traces endpoint accept?
+    choices:
+      - SigV4 only
+      - SigV4 or a bearer token
+      - A bearer token only
+      - An IAM Identity Center session
+    answer: 0
+    explanation: The metrics and logs endpoints also accept a bearer token, but the traces endpoint takes SigV4-signed requests only.
+
+  - type: mc
+    sectionId: omni-alerts
+    prompt: How do Omni alerts relate to CloudWatch alarms?
+    choices:
+      - They are separate systems: Omni alerts query across signals and are managed in Omni, while CloudWatch alarms keep working unchanged
+      - Omni alerts replace CloudWatch alarms when a space is created
+      - CloudWatch alarms are converted into Omni alerts automatically
+      - They are the same feature with two names
+    answer: 0
+    explanation: Both keep running; Omni alerts add SQL and PromQL queries, warning and critical tiers, and per-series contributors.
+
+  - type: mc
+    sectionId: investigations-with-the-devops-agent
+    prompt: What is true about the AWS DevOps Agent's access when it investigates inside Omni?
+    choices:
+      - It investigates with its own agent space role and reads log groups directly, so Omni data scopes do not filter its results
+      - It inherits the permissions of the person who started the investigation
+      - It can only read telemetry that the Omni dataset holds
+      - It reads only metrics and never touches log groups
+    answer: 0
+    explanation: Omni and the DevOps Agent sit under different trust boundaries, which is why only a Space Admin can connect the integration.
