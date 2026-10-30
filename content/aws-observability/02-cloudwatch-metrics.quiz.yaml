@@ -1,0 +1,51 @@
+questions:
+  - term: dimension
+    type: mc
+    sectionId: dimensions-and-time-series
+    prompt: What does a dimension do in CloudWatch?
+    choices:
+      - Identifies one time series by a name-value pair, so each combination is a separate series
+      - Sets how often the datapoints are recorded
+      - Chooses the namespace the metric is published into
+      - Decides how long the metric is kept
+    answer: 0
+    explanation: Metric name plus dimension set is the unique identity of a time series, and every extra dimension value multiplies the number of series.
+
+  - type: cloze
+    sectionId: resolution-and-statistics
+    prompt: "The ____ of a metric is how often its datapoints are recorded."
+    answer: resolution
+    explanation: AWS service metrics arrive every minute by default; detailed monitoring raises EC2 to one-second resolution for an extra charge.
+
+  - type: mc
+    sectionId: standard-metrics-and-custom-metrics
+    prompt: Which metrics are free?
+    choices:
+      - The standard metrics AWS publishes for its own services
+      - Every metric published with PutMetricData
+      - Only metrics with no dimensions
+      - Metrics in the Custom namespace
+    answer: 0
+    explanation: Custom metrics are charged per metric published, so standardisation and aggregation keep that cost down.
+
+  - type: mc
+    sectionId: getting-metrics-out-of-your-code
+    prompt: What does the Embedded Metric Format do?
+    choices:
+      - Turns a structured log line into a CloudWatch metric
+      - Compresses the metric payload before it leaves the instance
+      - Encrypts metrics before they are stored
+      - Converts a metric into a log line
+    answer: 0
+    explanation: A JSON log line carrying an _aws object becomes a metric through the CloudWatch agent, so one call carries both detail and measurement.
+
+  - type: mc
+    sectionId: querying-and-the-cost-of-cardinality
+    prompt: What drives the cost of custom metrics?
+    choices:
+      - The number of distinct series, one per dimension combination
+      - The number of dashboards that show them
+      - The number of queries you run against them
+      - The number of alarms that reference them
+    answer: 0
+    explanation: Cardinality is the cost driver, so aggregate into fewer series and leave the rest as log lines.

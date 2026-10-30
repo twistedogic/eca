@@ -1,0 +1,55 @@
+questions:
+  - type: mc
+    sectionId: three-kinds-of-events
+    prompt: Which events are recorded by default?
+    choices:
+      - Management events
+      - Data events
+      - Both, for every resource type
+      - Neither, until a trail is created
+    answer: 0
+    explanation: Control-plane calls are recorded by default and delivered to every trail.
+
+  - type: mc
+    sectionId: three-kinds-of-events
+    prompt: Why do so many audits discover that S3 object-level logging was never switched on?
+    choices:
+      - Data events are off by default and must be enabled per resource type
+      - Object logging is only available for certain regions
+      - The trail only keeps events for seven days
+      - Object logging is a data event and data events are never recorded
+    answer: 0
+    explanation: Data events such as PutObject have to be enabled explicitly, which is why they are often missing from an existing trail.
+
+  - type: mc
+    sectionId: trails-and-destinations
+    prompt: What does an organization trail give you?
+    choices:
+      - A trail that records events for every account in the organization
+      - A trail that records only the management events of one account
+      - A trail that is shared between two accounts
+      - A trail that exports events to a SIEM
+    answer: 0
+    explanation: Complete coverage needs the organization trail; a per-account trail is what exists before that.
+
+  - type: mc
+    sectionId: integrity-and-immutability
+    prompt: How do you make CloudTrail logs tamper-evident?
+    choices:
+      - Signed digest files for the log files, plus an object-locked S3 bucket
+      - Encryption with a customer managed key
+      - A subscription filter to a read-only log group
+      - A retention policy of one year
+    answer: 0
+    explanation: Digest files detect tampering and object lock prevents deletion, even by the account owner.
+
+  - type: mc
+    sectionId: querying-the-trail
+    prompt: What does CloudTrail Insights give you?
+    choices:
+      - Event-based analytics such as API call rate, error rate, and IAM policy usage, without exporting the logs
+      - A SQL database of every event in the account
+      - A live stream of every API call
+      - An automatic summary of every CloudWatch alarm
+    answer: 0
+    explanation: Insights answers questions over the event stream directly; CloudTrail Lake is the queryable store for deeper historical questions.

@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: container-insights
+    prompt: What does Container Insights collect?
+    choices:
+      - Container-level metrics and logs from ECS and EKS
+      - The full text of every container image
+      - The IAM policies attached to the task roles
+      - The API calls made by the containers
+    answer: 0
+    explanation: It aggregates metrics and logs per container and cluster, and it runs the CloudWatch agent on the nodes for you.
+
+  - type: mc
+    sectionId: the-collector-as-the-instrument
+    prompt: What are the three parts of an OpenTelemetry collector configuration?
+    choices:
+      - Receivers, processors, and exporters
+      - Listeners, filters, and forwarders
+      - Scrapers, aggregators, and dashboards
+      - Sources, transforms, and sinks
+    answer: 0
+    explanation: Receivers take telemetry in, processors reshape it, and exporters send it out — one collector per node replaces per-language instrumentation.
+
+  - type: cloze
+    sectionId: prometheus-in-aws
+    prompt: "In ____ mode the CloudWatch agent scrapes /metrics endpoints and writes the results as CloudWatch metrics."
+    answer: prometheus
+    explanation: That lets an existing Prometheus setup keep its configuration and move its storage into CloudWatch.
+
+  - type: mc
+    sectionId: prometheus-in-aws
+    prompt: What does Amazon Managed Service for Prometheus add over a self-hosted Prometheus?
+    choices:
+      - Managed scale and availability, with the same PromQL
+      - A different query language for the same data
+      - Automatic instrumentation of the application code
+      - Log storage next to the metric storage
+    answer: 0
+    explanation: It is a managed Prometheus with the same PromQL, which suits clusters whose metrics are queried over long ranges.
+
+  - type: mc
+    sectionId: kubernetes-specifics
+    prompt: Why is the workload a better alerting unit than the pod?
+    choices:
+      - Pods are replaced constantly, so pod-level alarms fire on ordinary rollouts
+      - Pods cannot report metrics
+      - Workload metrics are free and pod metrics are not
+      - The pod name changes the metric dimension on every request
+    answer: 0
+    explanation: Alert on the deployment or service, and use pod-level data to explain what happened.

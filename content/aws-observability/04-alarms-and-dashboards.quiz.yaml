@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-anatomy-of-an-alarm
+    prompt: What does "datapoints to alarm" control?
+    choices:
+      - How many of the evaluation periods must breach before the alarm fires
+      - How many data points each period may contain
+      - How long the alarm stays in the ALARM state
+      - How many alarms may fire on the same metric
+    answer: 0
+    explanation: Requiring several breaching datapoints out of the evaluation periods is what stops one spike from waking somebody.
+
+  - type: mc
+    sectionId: the-anatomy-of-an-alarm
+    prompt: Which state does an alarm sit in when there is not enough data to decide?
+    choices:
+      - INSUFFICIENT_DATA
+      - OK
+      - ALARM
+      - PENDING
+    answer: 0
+    explanation: The treat-missing-data setting decides what happens next, and treating missing data as breaching turns a broken telemetry pipeline into a false page.
+
+  - type: mc
+    sectionId: symptom-alarms-not-cause-alarms
+    prompt: Which alarm should page the on-call?
+    choices:
+      - A symptom alarm on the customer-facing error rate or latency
+      - A cause alarm on CPU utilisation
+      - A cause alarm on disk usage
+      - An alarm on every metric in the namespace
+    answer: 0
+    explanation: Page on what the customer feels; cause alarms belong on a dashboard or inside a composite alarm.
+
+  - type: mc
+    sectionId: composite-alarms
+    prompt: What is a composite alarm for?
+    choices:
+      - Combining other alarms with a boolean expression so one notification represents a whole service
+      - Storing several alarm definitions in one CloudFormation resource
+      - Raising an alarm when two metrics have the same value
+      - Replacing the need for an evaluation period
+    answer: 0
+    explanation: One unhealthy target is noise; the composite alarm turns a pattern of underlying alarms into a single incident signal.
+
+  - type: cloze
+    sectionId: wiring-alarms-to-actions
+    prompt: "An alarm action that invokes a ____ function can start a Systems Manager Automation runbook."
+    answer: lambda
+    explanation: The alarm stays dumb and detects; the function posts to chat, opens a ticket, or runs the runbook.

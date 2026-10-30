@@ -1,0 +1,39 @@
+questions:
+  - type: mc
+    sectionId: the-service-map
+    prompt: What does the X-Ray service map show?
+    choices:
+      - Services as nodes and calls as edges, sized and coloured by latency, faults, and throttling
+      - A timeline of every log line in the account
+      - The metrics of every EC2 instance in the region
+      - The IAM permissions of each service role
+    answer: 0
+    explanation: The service map is drawn from the traces themselves, so it only shows what is instrumented.
+
+  - type: mc
+    sectionId: getting-traces-into-aws
+    prompt: What is the role of the X-Ray daemon?
+    choices:
+      - It receives segments from the SDK and forwards them to the X-Ray service
+      - It instruments the application code and creates the spans
+      - It stores the traces in the log group of the workload account
+      - It decides which requests are sampled
+    answer: 0
+    explanation: "The daemon is the local collector: the SDK sends segments to it over UDP and it talks to the X-Ray service."
+
+  - type: cloze
+    sectionId: sampling
+    prompt: "____ sampling decides at the start of the request, before it knows whether that request will be interesting."
+    answer: fixed rate
+    explanation: The rules can target specific services and URLs, so errors and slow paths can be sampled more aggressively than ordinary traffic.
+
+  - type: mc
+    sectionId: what-to-put-in-a-trace
+    prompt: What is the difference between annotations and metadata in a trace?
+    choices:
+      - Annotations are indexed and searchable; metadata is free-form context that is not indexed
+      - Annotations belong to metrics; metadata belongs to logs
+      - Annotations can only hold numbers; metadata can only hold strings
+      - They are two names for the same thing
+    answer: 0
+    explanation: Annotate with the few fields you will query by, such as customer, version, and endpoint, and leave the rest in the logs.

@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: log-groups-and-log-streams
+    prompt: What is the difference between a log group and a log stream?
+    choices:
+      - A log group is a container that holds streams and carries the retention policy; a stream is a sequence of events from one source
+      - A log group holds one file per instance; a log stream holds the retention policy
+      - A log group is per account; a log stream is per region
+      - They are the same thing under two names
+    answer: 0
+    explanation: Log groups are the unit you set retention and permissions on; log streams are the individual sequences of events inside one.
+
+  - type: mc
+    sectionId: retention
+    prompt: What is the default retention of a new log group?
+    choices:
+      - Events are kept until a retention policy is set
+      - Seven days
+      - Thirty days
+      - One year
+    answer: 0
+    explanation: The default is to keep events forever, which is the most expensive default in observability, so set retention deliberately.
+
+  - type: cloze
+    sectionId: metric-filters-and-logs-insights
+    prompt: "A ____ filter turns log content into a metric that an alarm can watch."
+    answer: metric
+    explanation: A metric filter extracts a value from the log text and publishes it as a CloudWatch metric.
+
+  - type: mc
+    sectionId: subscription-filters
+    prompt: How do logs usually reach a central observability account?
+    choices:
+      - A subscription filter into a log group owned by that account
+      - A cross-account IAM role that copies the log group
+      - A CloudTrail trail that includes log events
+      - An SNS notification per log line
+    answer: 0
+    explanation: Subscription filters copy matching events to Firehose, Lambda, OpenSearch, or a log group in another account.
+
+  - type: mc
+    sectionId: keeping-the-bill-sane
+    prompt: CloudWatch Logs charges you for what?
+    choices:
+      - Every byte ingested into a log group, whether or not it is ever queried
+      - Only the log groups that are queried
+      - Only the events kept past their retention date
+      - Only the log streams that have a subscription filter
+    answer: 0
+    explanation: Ingestion is billed up front, so the savings come from writing less and from a deliberate retention policy.

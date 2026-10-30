@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: route-by-severity
+    prompt: Which alarms should page a human?
+    choices:
+      - Only customer-facing symptom alarms that need action now
+      - Every alarm on a production metric
+      - All alarms, so nothing is missed
+      - Only the alarms on cause metrics
+    answer: 0
+    explanation: Page on symptoms that need a human now; ticket what can wait, and keep the rest on a dashboard.
+
+  - type: cloze
+    sectionId: burn-rate-alerts
+    prompt: "A ____ rate is how fast the error budget is being consumed."
+    answer: burn
+    explanation: A budget of 1% over 30 days lasts 30 days at a burn rate of 1 and seven hours at a burn rate of 100.
+
+  - type: mc
+    sectionId: burn-rate-alerts
+    prompt: Why alert on several burn rates at once?
+    choices:
+      - A fast window catches outages and a slow window catches slow leaks, so paging noise buys a smaller chance of missing a real outage
+      - Each burn rate covers a different AWS service
+      - CloudWatch only supports one alarm per metric
+      - It reduces the number of metrics you have to publish
+    answer: 0
+    explanation: The fast rate pages, the slow rate tickets, and the gap between them is where real outages used to hide.
+
+  - type: mc
+    sectionId: delivery
+    prompt: What is EventBridge for in an alerting setup?
+    choices:
+      - Matching event patterns and fanning them out to targets such as Lambda, SQS, and Step Functions
+      - Storing the events until they are read
+      - Holding the notification phone numbers
+      - Running the Systems Manager runbooks
+    answer: 0
+    explanation: SNS is the transport for an alarm; EventBridge is the router for richer routing, and it belongs in version control.
+
+  - type: mc
+    sectionId: automating-the-response
+    prompt: What property must incident automation have?
+    choices:
+      - It must be idempotent and reversible, because a responder may run it twice
+      - It must run as fast as possible, even if it is destructive
+      - It must be triggered manually from the console
+      - It must live in the workload account rather than the monitoring one
+    answer: 0
+    explanation: During an incident the same automation often gets triggered again, so running it twice must be harmless.

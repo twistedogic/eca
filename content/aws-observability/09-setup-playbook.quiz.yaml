@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: choose-the-shape-of-the-account
+    prompt: Why put the observability stack in a dedicated account?
+    choices:
+      - Workloads write telemetry into it, so the monitoring account needs no credentials into the workloads
+      - CloudWatch only works in accounts with no workload resources
+      - It makes the metrics cheaper to publish
+      - It is required for cross-account observability to work
+    answer: 0
+    explanation: The central account owns the log groups, alarms, and dashboards; the workload accounts only need write access.
+
+  - type: mc
+    sectionId: install-the-agents
+    prompt: How is the CloudWatch agent installed on EC2?
+    choices:
+      - With the AWS-ConfigureCloudWatchAgent Systems Manager document, attached at launch
+      - By hand on every instance, with the agent running as a systemd service
+      - By enabling Container Insights on the account
+      - By adding an X-Ray daemon to the instance
+    answer: 0
+    explanation: Attaching the Systems Manager document at launch means no instance is ever running without telemetry.
+
+  - type: cloze
+    sectionId: write-the-storage-rules-first
+    prompt: "Set the ____ of every log group in the template so it cannot be forgotten."
+    answer: retention
+    explanation: Hot logs for a week, application logs for a month, audit logs for a year — decided before the first alarm exists.
+
+  - type: mc
+    sectionId: then-the-alarms-then-the-routing
+    prompt: Should SNS topics be created per team or per severity?
+    choices:
+      - Per severity, so the routing can change without touching the alarms
+      - Per team, so each team gets its own notifications
+      - One per metric, to keep the topics aligned with the dashboards
+      - One per account, to keep the setup simple
+    answer: 0
+    explanation: Severity topics keep the alarms stable while the people on call change.
+
+  - type: mc
+    sectionId: put-it-in-version-control
+    prompt: Why should alarms and dashboards live in CloudFormation or Terraform?
+    choices:
+      - Hand-edited alarms drift, drift is invisible, and drift is how an alarm ends up pointing at a dead topic
+      - CloudWatch rejects alarms created in the console
+      - IaC makes the alarms evaluate faster
+      - Only code-defined alarms can send notifications
+    answer: 0
+    explanation: Deploying the observability stack on the same commit as the service keeps the two in step.

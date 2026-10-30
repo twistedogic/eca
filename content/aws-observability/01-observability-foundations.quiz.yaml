@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: signals-and-golden-signals
+    prompt: Which four are the golden signals?
+    choices:
+      - Latency, traffic, errors, and saturation
+      - CPU, memory, disk, and network
+      - Logs, metrics, traces, and events
+      - Availability, capacity, cost, and compliance
+    answer: 0
+    explanation: The golden signals cover how long a request takes, how much work arrives, how much of it fails, and how close the service is to its limit.
+
+  - type: cloze
+    sectionId: the-three-pillars
+    prompt: "____, logs, and traces are the three pillars of observability."
+    answer: metrics
+    explanation: Metrics are aggregated numbers over time, logs are timestamped events, and traces record a single request.
+
+  - type: mc
+    sectionId: where-aws-puts-the-pillars
+    prompt: Which service answers "who changed this security group?"
+    choices:
+      - CloudTrail
+      - CloudWatch
+      - X-Ray
+      - Container Insights
+    answer: 0
+    explanation: CloudTrail records API calls, so it is the audit signal rather than a health signal.
+
+  - type: mc
+    sectionId: objectives-indicators-and-error-budgets
+    prompt: What is the error budget?
+    choices:
+      - The amount of failure the service is allowed, measured against its objective
+      - The number of incidents the team may have per quarter
+      - The monthly cost of the observability stack
+      - The storage reserved for logs
+    answer: 0
+    explanation: The error budget is the gap between the objective and the measured indicator, and it decides when reliability work takes priority over features.
+
+  - type: mc
+    sectionId: instrument-from-the-outside-in
+    prompt: Which order does the recommended setup follow?
+    choices:
+      - Write the user-facing objective, choose the indicators, then instrument the internals
+      - Instrument every service, then decide what the objectives should be
+      - Buy the tooling first, then work out what to collect
+      - Start with the dashboards, then look for metrics to fill them
+    answer: 0
+    explanation: Starting from the objective keeps the telemetry tied to a question someone will actually ask.
