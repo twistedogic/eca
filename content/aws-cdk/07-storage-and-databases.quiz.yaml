@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: buckets
+    prompt: Which of these is enabled by default on a CDK v2 bucket?
+    choices:
+      - S3-managed encryption, blocked public access, and enforced TLS
+      - Versioning and KMS encryption
+      - Cross-region replication
+      - Object locking
+    answer: 0
+    explanation: CDK v2 encrypts new buckets with S3-managed keys, blocks public access, and enforces TLS; versioning is opt-in.
+
+  - type: mc
+    sectionId: buckets
+    prompt: What is the default removal policy for stateful constructs such as buckets and tables?
+    choices:
+      - RETAIN
+      - DESTROY
+      - SNAPSHOT
+      - DELETE
+    answer: 0
+    explanation: Retaining stateful resources by default is the safe choice, and it is why a first destroy usually leaves them behind.
+
+  - type: mc
+    sectionId: emptying-a-bucket
+    prompt: "What does autoDeleteObjects: true add to the stack?"
+    choices:
+      - A custom resource that empties the bucket during deletion
+      - A lifecycle rule that deletes old objects every day
+      - A bucket policy that denies all writes
+      - An S3 lifecycle transition to Glacier
+    answer: 0
+    explanation: CloudFormation cannot delete a non-empty bucket, so the option adds a Lambda-backed custom resource that empties it first.
+
+  - type: mc
+    sectionId: tables
+    prompt: Which billing mode charges per request rather than per provisioned capacity?
+    choices:
+      - PAY_PER_REQUEST
+      - PROVISIONED
+      - RESERVED
+      - SPOT
+    answer: 0
+    explanation: PAY_PER_REQUEST is on-demand billing, the right default for unpredictable traffic and the wrong one for steady high volume.
+
+  - type: cloze
+    sectionId: secrets-and-parameters
+    prompt: "A secret's value reaches a function as a ____ reference, so it never appears in the template."
+    answer: dynamic
+    explanation: CloudFormation resolves the dynamic reference at deploy time and hands the function the plaintext value.

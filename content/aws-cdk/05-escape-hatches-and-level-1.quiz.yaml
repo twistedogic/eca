@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: using-a-level-1-construct
+    prompt: What is the trade-off of using a level 1 construct directly?
+    choices:
+      - Exact control over the template, but no defaults, no grant methods, and no props validation
+      - Better ergonomics than level 2, with more defaults
+      - It creates one resource per property
+      - It cannot be used in a stack
+    answer: 0
+    explanation: Level 1 is a thin mirror of CloudFormation, so all the convenience of the level 2 API is gone.
+
+  - type: mc
+    sectionId: reaching-the-level-1-child
+    prompt: How do you reach the level 1 resource underneath a level 2 construct?
+    choices:
+      - Through node.defaultChild, cast to the Cfn type
+      - Through construct.resource
+      - Through stack.resources
+      - Through app.children
+    answer: 0
+    explanation: The default child is the L1 resource the L2 created; cast it to the Cfn class to reach its methods.
+
+  - type: mc
+    sectionId: reaching-the-level-1-child
+    prompt: What does addOverride change?
+    choices:
+      - A path inside the raw CloudFormation resource, including Properties
+      - Only the resource's metadata
+      - The props of the level 2 construct
+      - The removal policy of the resource
+    answer: 0
+    explanation: addOverride writes on top of the synthesized resource at the given path; addPropertyOverride is the same without the Properties prefix.
+
+  - type: cloze
+    sectionId: other-level-1-knobs
+    prompt: "The ____ option on a level 1 construct carries a condition, a description, a logical ID, and metadata."
+    answer: cfnOptions
+    explanation: cfnOptions is where the level 1 metadata lives, including the condition that gates the resource.
+
+  - type: mc
+    sectionId: the-cost
+    prompt: What is the main risk of an escape hatch?
+    choices:
+      - The library cannot see or update it, so it can silently break when the template shape changes
+      - It makes the stack fail to synthesize
+      - It prevents the stack from being destroyed
+      - It disables the removal policy
+    answer: 0
+    explanation: Escape hatches sit outside the typed API, so the CDK neither validates nor upgrades them.

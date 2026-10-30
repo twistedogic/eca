@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: a-function
+    prompt: What does table.tableName provide when used in a function's environment?
+    choices:
+      - A token standing in for the table name CloudFormation will resolve at deploy time
+      - The table name already, as a plain string
+      - The table's ARN
+      - An error, because tokens cannot be used as strings
+    answer: 0
+    explanation: The attribute is a token, and the template says "the name of the table created in this stack".
+
+  - type: mc
+    sectionId: bundling
+    prompt: Why should a bundled Node function leave the AWS SDK out of the bundle?
+    choices:
+      - The Lambda runtime already provides the AWS SDK
+      - The SDK is too large for any deployment package
+      - Bundled SDKs fail the Node version check
+      - The SDK must be fetched from npm at runtime
+    answer: 0
+    explanation: The runtime ships the SDK, so bundling it only makes the artifact bigger and slower to start.
+
+  - type: mc
+    sectionId: event-sources
+    prompt: What does addEventSource create besides the link in code?
+    choices:
+      - The event source mapping that lets the function receive the events
+      - A second copy of the function
+      - The event queue itself
+      - A scheduled rule for the function
+    answer: 0
+    explanation: The event source mapping is the resource that actually polls the queue or stream and invokes the function.
+
+  - type: mc
+    sectionId: event-sources
+    prompt: What does reportBatchItemFailures change for an SQS event source?
+    choices:
+      - The function can report which items failed, so only those are retried
+      - The queue delivers larger batches
+      - The function is invoked in parallel instead of serially
+      - Failed items are discarded
+    answer: 0
+    explanation: Without it, one failed item means the entire batch is retried; with it, the rest of the batch is acknowledged.
+
+  - type: cloze
+    sectionId: http-apis
+    prompt: "The cheapest way to give a function an HTTPS endpoint with no gateway in front of it is ____."
+    answer: a function URL
+    explanation: fn.addFunctionUrl() gives the function an HTTPS endpoint, without the keys, throttling, and domain features of API Gateway.

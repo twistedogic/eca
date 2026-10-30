@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: scopes-and-the-node
+    prompt: What does a construct's path describe?
+    choices:
+      - Its position in the construct tree, from the app down to itself
+      - The file on disk where it is defined
+      - The order in which it is deployed
+      - The IAM path prefix of its role
+    answer: 0
+    explanation: The path is the hierarchical address of the construct and the input to its logical ID.
+
+  - type: mc
+    sectionId: logical-ids
+    prompt: How is a logical ID derived by the CDK?
+    choices:
+      - From the construct path plus a hash of that path
+      - From the resource's CloudFormation type name
+      - From a random value generated at each synthesis
+      - From the construct's props
+    answer: 0
+    explanation: The path supplies the readable part and the hash keeps the identifier unique and stable while the path is stable.
+
+  - type: mc
+    sectionId: logical-ids
+    prompt: What happens to a resource when its construct is renamed?
+    choices:
+      - Its logical ID changes, so CloudFormation replaces the resource
+      - Its logical ID stays the same, so nothing happens
+      - The stack fails to synthesize
+      - The resource is deleted and recreated with the same ID
+    answer: 0
+    explanation: Renaming changes the path, which changes the logical ID, and CloudFormation sees that as a replacement.
+
+  - type: mc
+    sectionId: levels-of-abstraction
+    prompt: What is a level 1 construct?
+    choices:
+      - A Cfn class mirroring one CloudFormation resource type exactly
+      - A pattern that assembles several services into one architecture
+      - A construct that grants IAM permissions
+      - A construct that only exists at synthesis time
+    answer: 0
+    explanation: Level 1 constructs map one-to-one onto CloudFormation resource types and expose the raw properties.
+
+  - type: cloze
+    sectionId: levels-of-abstraction
+    prompt: "A level 2 construct such as Bucket creates level 1 resources underneath and adds behaviour such as ____ methods and sensible defaults."
+    answer: grant
+    explanation: The level 2 API wraps the level 1 resource with defaults, props validation, and grant methods.
+
+  - type: mc
+    sectionId: composing-your-own
+    prompt: What is the usual unit of reuse in a CDK codebase?
+    choices:
+      - A custom construct that takes props and creates child constructs
+      - A single very large stack class
+      - A copy of the template JSON
+      - A shell script that calls the CLI
+    answer: 0
+    explanation: Composition through custom constructs keeps apps readable and makes behavior reusable.

@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-shape-of-a-statement
+    prompt: Which three parts does an IAM policy statement have?
+    choices:
+      - Principal, actions, resources
+      - User, group, and role
+      - Effect, action, and condition
+      - Allow, deny, and expire
+    answer: 0
+    explanation: A statement says who (principal) may do what (actions) to which things (resources), optionally narrowed by conditions.
+
+  - type: mc
+    sectionId: grants-instead-of-policies
+    prompt: Why prefer bucket.grantRead(role) over a hand-written policy?
+    choices:
+      - It names the exact resource ARN and adds the extra actions the service needs
+      - It produces smaller templates
+      - It bypasses IAM evaluation
+      - It grants access to every bucket in the account
+    answer: 0
+    explanation: Grant methods know the resource ARN and the permissions that actually work, and they stay correct as the construct changes.
+
+  - type: mc
+    sectionId: resource-policies-and-identity-policies
+    prompt: What does a cross-account grant require in addition to the identity policy?
+    choices:
+      - A resource policy on the AWS side
+      - A permission boundary on the role
+      - A second session in the other account
+      - Nothing; identity policies are enough
+    answer: 0
+    explanation: A resource policy on the owned side is what allows a principal from another account in.
+
+  - type: mc
+    sectionId: managed-policies-and-boundaries
+    prompt: What does a permission boundary do?
+    choices:
+      - Caps what an identity can ever do, whatever its policies grant
+      - Grants a fixed set of permissions to a role
+      - Attaches an identity policy to a group
+      - Limits how many roles an account may have
+    answer: 0
+    explanation: A boundary sets the ceiling; permissions below it still have to be granted by a policy.
+
+  - type: cloze
+    sectionId: checking-the-result
+    prompt: "The ____ package runs compliance rules over the synthesized template; adding it to the app is done with Aspects.of(app)."
+    answer: cdk-nag
+    explanation: cdk-nag fails the build on findings such as public buckets or wildcard permissions, and findings can be suppressed with a reason.

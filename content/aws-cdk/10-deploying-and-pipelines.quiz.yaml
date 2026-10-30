@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: bootstrapping
+    prompt: What does cdk bootstrap create?
+    choices:
+      - A bootstrap stack with the execution, file publishing, and lookups roles the CLI needs
+      - A separate CloudFormation stack for your application
+      - The resources your app defines
+      - A local cache of context lookups
+    answer: 0
+    explanation: Each account and region needs the bootstrap stack before the CDK can deploy there.
+
+  - type: mc
+    sectionId: bootstrapping
+    prompt: What does --cloudformation-execution-policies change?
+    choices:
+      - What the CloudFormation execution role is allowed to do
+      - Which account may deploy
+      - Which policies the app attaches to its own roles
+      - The order of resources in the template
+    answer: 0
+    explanation: It narrows the privileges of the role CloudFormation assumes; the default is broad.
+
+  - type: mc
+    sectionId: the-commands
+    prompt: What does cdk diff need that cdk synth does not?
+    choices:
+      - Credentials for the target account, since it reads the deployed stack
+      - A bootstrapped environment
+      - The context cache
+      - The aws-cdk CLI package
+    answer: 0
+    explanation: diff compares the synthesized template with the deployed one, so it must call CloudFormation in the target account.
+
+  - type: mc
+    sectionId: failures-and-rollback
+    prompt: What happens by default when a cdk deploy fails part way through?
+    choices:
+      - CloudFormation rolls the stack back to its previous version
+      - The stack is left exactly as it was when the failure happened
+      - The CLI retries indefinitely
+      - The failed resources are deleted and the stack is removed
+    answer: 0
+    explanation: Rollback is the default; --no-rollback keeps the failed state for inspection instead.
+
+  - type: cloze
+    sectionId: pipelines
+    prompt: "A CDK pipeline deploys using the ____ roles of the target environment, so it needs no long-lived deployment credentials."
+    answer: bootstrap
+    explanation: The pipeline assumes the deploy and file publishing roles that bootstrap created in the target account and region.
+
+  - type: mc
+    sectionId: importing-what-already-exists
+    prompt: What does cdk import do?
+    choices:
+      - Brings existing resources under the template's management by matching their properties
+      - Copies resources from one region to another
+      - Deletes resources that are not in the template
+      - Imports a template from another account
+    answer: 0
+    explanation: Import creates a change set that adopts the resource, so its properties must agree exactly with what the template declares.

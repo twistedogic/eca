@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-assertions-module
+    prompt: What does Template.fromStack(stack) give you?
+    choices:
+      - A view of the synthesized CloudFormation template for that stack
+      - A deployed copy of the stack in AWS
+      - The construct tree as a plain object
+      - A diff against the deployed stack
+    answer: 0
+    explanation: Assertions operate on the template the stack synthesizes to, not on deployed infrastructure.
+
+  - type: mc
+    sectionId: the-assertions-module
+    prompt: What does hasResourceProperties check?
+    choices:
+      - That a resource of that type exists with matching properties, allowing extra ones
+      - That a resource exists with exactly these properties and no others
+      - That a resource type is valid in CloudFormation
+      - That the resource is deployed
+    answer: 0
+    explanation: Property assertions match a subset, so unrelated properties do not break the test.
+
+  - type: mc
+    sectionId: snapshot-testing
+    prompt: What is the point of snapshot testing a CDK stack?
+    choices:
+      - An unintended change to the template, such as a changed logical ID, becomes visible in review
+      - The deployed resources are verified against AWS
+      - The synthesis step is skipped during tests
+      - The context cache is invalidated
+    answer: 0
+    explanation: A committed snapshot of the whole template turns any difference into something a reviewer has to look at.
+
+  - type: cloze
+    sectionId: what-to-assert
+    prompt: "The ____ helper asserts that a property is not present at all in a resource."
+    answer: Match.absent()
+    explanation: Match.absent() asserts the absence of a property, which is how you check that a resource is not public.
+
+  - type: mc
+    sectionId: checking-the-template-beyond-the-code
+    prompt: Which tool checks the synthesized template for security findings such as wildcard permissions?
+    choices:
+      - cdk-nag, cfn-lint, or checkov
+      - The TypeScript compiler
+      - Vitest alone
+      - The CDK CLI's diff command
+    answer: 0
+    explanation: Static analyzers read the template and report valid-but-dangerous configurations that assertions would not.

@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: the-props-pattern
+    prompt: What is the props pattern in a CDK construct?
+    choices:
+      - The construct takes one optional props object holding everything configurable
+      - The construct takes a long list of optional constructor arguments
+      - The construct reads its configuration from environment variables
+      - The construct takes a props object and a callback
+    answer: 0
+    explanation: A single props bag keeps call sites readable and gives one seam for configuration.
+
+  - type: mc
+    sectionId: cloudformation-parameters
+    prompt: What is a CfnParameter good for?
+    choices:
+      - A value the operator supplies at deploy time, such as an environment name
+      - A value that decides which resources exist in the template
+      - A value read from AWS during synthesis
+      - A secret stored in Secrets Manager
+    answer: 0
+    explanation: Parameters feed template properties; they cannot add resources, and their values are resolved at deploy time.
+
+  - type: mc
+    sectionId: context-and-lookups
+    prompt: When does a context lookup happen?
+    choices:
+      - During synthesis, with the result baked into the template
+      - During deployment, by CloudFormation
+      - At runtime, when the function starts
+      - Only when the CLI is upgraded
+    answer: 0
+    explanation: Lookups call AWS during synthesis and their results are cached in cdk.context.json and written into the template.
+
+  - type: mc
+    sectionId: context-and-lookups
+    prompt: Why does a stale context cache cause trouble?
+    choices:
+      - The cached value keeps being used until the cache is refreshed or cleared
+      - The cache is written into the template and cannot be regenerated
+      - Context lookups require no credentials at all
+      - The cache disables environment-agnostic stacks
+    answer: 0
+    explanation: Because the cache avoids repeat lookups, an outdated AMI or VPC lookup survives until cdk context --clear or --refresh.
+
+  - type: cloze
+    sectionId: tokens
+    prompt: "A value such as a table name that is only known after deployment is a ____; you can detect one with ____."
+    answer: token, Token.isUnresolved
+    explanation: Tokens stand in for values CloudFormation resolves later, and Token.isUnresolved reports whether a value is still one.
+
+  - type: mc
+    sectionId: tokens
+    prompt: Why can a token not be used in ordinary program logic?
+    choices:
+      - Its value is unknown when the program runs, so comparisons and arithmetic on it are meaningless
+      - Tokens are strings and cannot be compared at all
+      - Tokens must be resolved by hand before they can be stored
+      - Tokens only work inside environment variables
+    answer: 0
+    explanation: Use stack.resolve to render a token when you need to inspect its value, such as in a test.

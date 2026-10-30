@@ -1,0 +1,51 @@
+questions:
+  - term: Cloud Development Kit
+    type: mc
+    sectionId: infrastructure-as-code
+    prompt: What does the CDK produce when it runs?
+    choices:
+      - A CloudFormation template
+      - A Terraform state file
+      - A set of API calls to AWS
+      - A Docker image of your infrastructure
+    answer: 0
+    explanation: The CDK synthesizes a CloudFormation template; CloudFormation performs the deployment.
+
+  - type: mc
+    sectionId: infrastructure-as-code
+    prompt: What is the relationship between the CDK and CloudFormation?
+    choices:
+      - The CDK is a framework; CloudFormation is the engine that deploys what it produces
+      - The CDK replaces CloudFormation and calls the AWS APIs directly
+      - CloudFormation is a framework; the CDK is the engine
+      - They are two names for the same service
+    answer: 0
+    explanation: The CDK synthesizes templates; CloudFormation applies them, which is why CDK apps inherit rollback, change sets, and drift history.
+
+  - type: mc
+    sectionId: why-use-the-cdk
+    prompt: Which benefit comes from the CDK being a programming language rather than a data format?
+    choices:
+      - Loops, conditions, and type checking work directly on infrastructure definitions
+      - The deployed infrastructure runs faster
+      - AWS charges less for CloudFormation templates
+      - Templates no longer need version control
+    answer: 0
+    explanation: Being a real language gives loops, conditionals, and compile-time checks over infrastructure definitions.
+
+  - type: cloze
+    sectionId: what-an-app-looks-like
+    prompt: "The CDK framework package for v2 and above is ____, and the tree library it is built on is ____."
+    answer: aws-cdk-lib, constructs
+    explanation: aws-cdk-lib holds the framework, constructs holds the tree abstraction everything else is built on.
+
+  - type: mc
+    sectionId: what-an-app-looks-like
+    prompt: In CDK v2, how is the command line tool obtained?
+    choices:
+      - It ships inside the aws-cdk package, versioned with the project
+      - It must be installed globally and kept in sync by hand
+      - It is downloaded from a separate service at first run
+      - It is bundled into the browser app
+    answer: 0
+    explanation: CDK v2 bundles the CLI in the aws-cdk package, so the CLI version matches the library version.

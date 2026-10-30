@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: the-app-is-the-root
+    prompt: What does app.synth() do?
+    choices:
+      - Writes the cloud assembly, turning the in-memory tree into templates on disk
+      - Deploys the stacks to AWS
+      - Compiles the TypeScript of the app
+      - Downloads the latest CDK library version
+    answer: 0
+    explanation: Synthesis produces the cloud assembly in cdk.out; deployment is a separate step performed by the CLI.
+
+  - type: mc
+    sectionId: stacks-are-the-unit-of-deployment
+    prompt: What does one CDK Stack correspond to in AWS?
+    choices:
+      - One CloudFormation stack, with its own template and deployment
+      - One AWS account
+      - One region
+      - One construct tree
+    answer: 0
+    explanation: A stack maps one-to-one onto a CloudFormation stack and is deployed independently.
+
+  - type: mc
+    sectionId: environment-agnostic-stacks
+    prompt: What is true of a stack created without an env property?
+    choices:
+      - Its template names no account or region, so one template can serve every environment
+      - It can only be deployed to the region where it was synthesized
+      - It must be deployed with an explicit account and region
+      - Its stack name is always the construct id
+    answer: 0
+    explanation: Environment-agnostic stacks keep account and region out of the template; the stack name gains a generated hash suffix.
+
+  - type: mc
+    sectionId: environment-specific-stacks
+    prompt: What changes when you pass env to a stack?
+    choices:
+      - The stack name becomes the construct id and the account and region are baked into the template
+      - Nothing changes; env is only documentation
+      - The stack is deployed to every region at once
+      - The stack can no longer contain cross-stack references
+    answer: 0
+    explanation: Environment-specific stacks have a fixed name and concrete account and region values in the template.
+
+  - type: cloze
+    sectionId: stages-group-stacks
+    prompt: "A ____ groups the stacks of one environment and prefixes their names with its own name."
+    answer: Stage
+    explanation: A Stage is the container for one environment's stacks, and its name prefixes each stack name.
+
+  - type: mc
+    sectionId: cdkjson-and-the-cli
+    prompt: What does the app key in cdk.json hold?
+    choices:
+      - The command that runs the CDK app
+      - The AWS access keys
+      - The list of stacks to deploy
+      - The cached context lookups
+    answer: 0
+    explanation: cdk.json names the entry point command; the context key holds values the app reads at synthesis time.
