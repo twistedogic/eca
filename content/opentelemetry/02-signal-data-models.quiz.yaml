@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: one-envelope-for-everything
+    prompt: What does the resource describe?
+    choices:
+      - The process that produced the telemetry
+      - The library that emitted the record
+      - The request being served
+      - The backend that stores the data
+    answer: 0
+    explanation: The resource holds the attributes of the producing entity — service, version, environment — and is carried on every record.
+
+  - type: cloze
+    sectionId: traces-spans-and-their-relationships
+    prompt: "A span with no parent is a ____ span."
+    answer: root
+    explanation: The root span starts the trace, and its name is usually the operation the user asked for.
+
+  - type: mc
+    sectionId: metrics-data-points-and-temporality
+    prompt: Which temporality counts since the process started?
+    choices:
+      - Cumulative
+      - Delta
+      - Gauge
+      - Histogram
+    answer: 0
+    explanation: Cumulative points only ever go up; delta points cover the interval since the previous point and reset.
+
+  - type: mc
+    sectionId: logs-records-and-severity
+    prompt: Why store the severity number and not only the severity text?
+    choices:
+      - It makes severity filterable across languages
+      - It is smaller to store
+      - It replaces the log body
+      - OTLP requires it
+    answer: 0
+    explanation: The number comes from the shared severity table, so a filter for FATAL works no matter what the application wrote.
+
+  - type: mc
+    sectionId: identifiers
+    prompt: How many bytes long is a trace ID?
+    choices:
+      - 16 bytes, 32 hex characters
+      - 8 bytes, 16 hex characters
+      - 32 bytes, 64 hex characters
+      - 4 bytes, 8 hex characters
+    answer: 0
+    explanation: The trace ID is 16 bytes and the span ID is 8, which is why the traceparent header carries a 32-character and a 16-character field.

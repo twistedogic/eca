@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: manual-instrumentation
+    prompt: Why end a span in a finally block?
+    choices:
+      - A span that is never ended never appears in the trace
+      - It closes the tracer for the request
+      - It flushes the exporter
+      - It resets the active context
+    answer: 0
+    explanation: The span is only recorded when it ends, and an unended span keeps its parent open.
+
+  - type: mc
+    sectionId: auto-instrumentation
+    prompt: What is the main limitation of auto-instrumentation?
+    choices:
+      - The spans are shallow and carry none of the business attributes
+      - It cannot produce spans at all
+      - It only works in one language
+      - It requires a vendor account
+    answer: 0
+    explanation: The spans are consistent but named after framework calls, so the customer ID or business operation is missing.
+
+  - type: cloze
+    sectionId: the-three-providers
+    prompt: "The ____ hands out meters, which create counters, gauges, and histograms."
+    answer: MeterProvider
+    explanation: "One provider per signal: TracerProvider for spans, MeterProvider for metrics, LoggerProvider for log records."
+
+  - type: mc
+    sectionId: correlating-logs-with-traces
+    prompt: What does a logs bridge attach to a log record?
+    choices:
+      - The trace ID and span ID of the active span
+      - The exporter endpoint
+      - The metric labels
+      - The resource version
+    answer: 0
+    explanation: Those two identifiers are what let a backend join a log line to the request that produced it.
+
+  - type: mc
+    sectionId: code-attributes
+    prompt: What do code attributes add to a span?
+    choices:
+      - The file, line, and function that emitted it
+      - The service version
+      - The sampling probability
+      - The parent span
+    answer: 0
+    explanation: The Collector can attach them from source information, turning every span into a pointer back to the code.

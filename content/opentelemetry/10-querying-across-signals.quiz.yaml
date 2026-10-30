@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: three-ways-to-join
+    prompt: Which join mechanism still works when the traces were never sampled?
+    choices:
+      - The identity join on resource attributes and a time window
+      - The trace ID join
+      - The exemplar join
+      - The span link join
+    answer: 0
+    explanation: Resource attributes are on every record, so the identity join always finds something, at the cost of being fuzzy.
+
+  - type: mc
+    sectionId: the-trace-id-as-join-key
+    prompt: What has to be true for the trace ID to work as a join key?
+    choices:
+      - The trace was sampled, the ID was propagated, and the backend indexes it
+      - The metrics are cumulative
+      - The logs are structured
+      - The Collector runs as an agent
+    answer: 0
+    explanation: Any of the three missing and the join returns nothing, which is the usual reason a trace-to-logs link comes up empty.
+
+  - type: cloze
+    sectionId: exemplars-end-to-end
+    prompt: "An exemplar attaches to a histogram bucket and carries the ____ of the request that moved the number."
+    answer: trace ID
+    explanation: With the span ID as well, the exemplar points at one exact span inside that trace.
+
+  - type: mc
+    sectionId: data-links
+    prompt: How does a data link differ from an exact trace ID join?
+    choices:
+      - It carries labels and time, so it gives the fuzzy identity join rather than the exact one
+      - It carries more context than the join
+      - It only works on metrics
+      - It is always faster
+    answer: 0
+    explanation: To reach one exact request, the trace ID has to be in the data, not reconstructed from labels.
+
+  - type: mc
+    sectionId: where-the-joins-break
+    prompt: The cross-signal join suddenly returns nothing after a refactor. What is the likely cause?
+    choices:
+      - The backends disagree on the service name
+      - The metrics became cumulative
+      - The logs were sampled
+      - The trace lost its root span
+    answer: 0
+    explanation: One pipeline calling it checkout and another calling it checkout-service breaks every join that keys on the service name.
+
+  - type: mc
+    sectionId: the-investigation-workflow
+    prompt: In the metric-to-trace-to-log investigation, which step is the actual cross-signal join?
+    choices:
+      - Following the exemplar from the histogram to the failing trace
+      - Reading the span names in the trace
+      - Reading the error line in the log
+      - Comparing the two deploy versions
+    answer: 0
+    explanation: The exemplar carries the trace ID, so that hop is the join; the rest is reading one signal at a time.

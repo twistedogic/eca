@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: logql
+    prompt: 'In the query {service_name="checkout"} |= "timeout", what does the |= operator do?'
+    choices:
+      - Keeps the lines that contain the string
+      - Filters by label value
+      - Parses the line as JSON
+      - Renames a label
+    answer: 0
+    explanation: The line filters run against the raw line before any parsing, which makes them fast and blunt.
+
+  - type: cloze
+    sectionId: parsers-and-labels
+    prompt: "The ____ parser handles key=value structured logging."
+    answer: logfmt
+    explanation: logfmt reads the key=value format that structured Go logging produces; json and regexp handle the other common shapes.
+
+  - type: mc
+    sectionId: parsers-and-labels
+    prompt: What is the difference between a field and a label in LogQL?
+    choices:
+      - A field is extracted from the line, while a label is part of the stream and can be grouped
+      - They are the same thing
+      - Fields only exist for metrics
+      - Labels can only be set by hand
+    answer: 0
+    explanation: Fields are per-line values; only labels identify a stream, so only labels can be counted and grouped.
+
+  - type: mc
+    sectionId: time-and-volume
+    prompt: Why should every log query be bounded by a time range?
+    choices:
+      - The cost of a log query is proportional to how much it read
+      - Logs expire after an hour
+      - The parser needs a range to work
+      - Offsets only work inside a range
+    answer: 0
+    explanation: Log queries scan text, so an unbounded query reads the whole retention window.
+
+  - type: mc
+    sectionId: other-backends
+    prompt: In Elasticsearch, which field holds the OpenTelemetry trace ID?
+    choices:
+      - trace.id
+      - trace_id
+      - TraceID
+      - otel.trace_id
+    answer: 0
+    explanation: The OpenTelemetry fields keep their dotted names, so the service is service.name and the trace ID is trace.id.

@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: semantic-conventions
+    prompt: What does a semantic convention give you?
+    choices:
+      - An agreed name, type, unit, and meaning for an attribute
+      - A default value for the attribute
+      - A dashboard template
+      - A query language
+    answer: 0
+    explanation: "The convention is the contract: the same name means the same thing in every language and every backend."
+
+  - type: mc
+    sectionId: resource-attributes-versus-span-attributes
+    prompt: The customer ID of the request being served belongs on...
+    choices:
+      - The span, as a span attribute
+      - The resource
+      - The trace ID
+      - The sampler
+    answer: 0
+    explanation: It varies per request, so it is a span attribute; on the resource it would create a new series per customer.
+
+  - type: cloze
+    sectionId: identity
+    prompt: "____ is the one attribute that must be right."
+    answer: service.name
+    explanation: Dashboards, log labels, trace attribution, and exemplars all key off it, so set it from configuration rather than letting it default.
+
+  - type: mc
+    sectionId: w3c-trace-context
+    prompt: What does the traceparent header carry?
+    choices:
+      - Trace ID, parent span ID, and the sampled flag
+      - The baggage
+      - The service name and version
+      - The metric values
+    answer: 0
+    explanation: Propagating that one header is what makes the span tree grow across services without shared state.
+
+  - type: mc
+    sectionId: baggage-and-span-links
+    prompt: When do you reach for a span link instead of a parent?
+    choices:
+      - When the related span is not the caller, such as the work item a message came from
+      - When you need to replace the parent span ID
+      - When you want to carry baggage between services
+      - When you need to mark a trace as sampled
+    answer: 0
+    explanation: Links keep causal relationships that a parent-child tree cannot express, such as a batch job fanning out into many traces.

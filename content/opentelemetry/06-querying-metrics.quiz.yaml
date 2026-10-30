@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: promql-basics
+    prompt: What does rate() compute on a counter?
+    choices:
+      - The per-second rate over the range
+      - The total count since the start
+      - The average value
+      - The 95th percentile
+    answer: 0
+    explanation: A counter has to be differenced over time before it means anything, which is what rate() over a range vector does.
+
+  - type: cloze
+    sectionId: latency-with-histograms
+    prompt: "A percentile over a histogram is computed with ____."
+    answer: histogram_quantile
+    explanation: The quantile is derived at query time from the bucket counts, so the bucket boundaries set the precision.
+
+  - type: mc
+    sectionId: latency-with-histograms
+    prompt: Why must the le label survive the aggregation?
+    choices:
+      - It holds the bucket boundaries the quantile is computed from
+      - It identifies the exporter
+      - It carries the trace ID
+      - It sorts the series by age
+    answer: 0
+    explanation: Without le the sum has no buckets left, and the percentile is meaningless.
+
+  - type: mc
+    sectionId: labels-resources-and-cardinality
+    prompt: What happens when a request_id attribute is recorded on a metric?
+    choices:
+      - "Cardinality explodes: every value becomes its own series"
+      - Nothing, metrics ignore attributes
+      - The metric turns into a histogram
+      - The trace ID is replaced
+    answer: 0
+    explanation: One series per distinct label combination is one series per request, which is the classic cardinality bomb.
+
+  - type: mc
+    sectionId: exemplars
+    prompt: What does an exemplar let you do?
+    choices:
+      - Jump from a metric spike to the exact trace that caused it
+      - Recover a log line that was dropped
+      - Raise the sampling rate
+      - Rename the metric
+    answer: 0
+    explanation: An exemplar is a metric point that also carries the trace and span ID of the request that moved the number.

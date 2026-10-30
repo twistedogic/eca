@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: receivers-processors-exporters
+    prompt: Which component decides which traces to keep?
+    choices:
+      - A processor
+      - A receiver
+      - An exporter
+      - A connector
+    answer: 0
+    explanation: Receivers ingest, processors decide and reshape, exporters deliver; sampling is a processor.
+
+  - type: cloze
+    sectionId: connectors
+    prompt: "The ____ connector turns spans into metrics."
+    answer: spanmetrics
+    explanation: Spanmetrics is what gives a trace backend request counts, error rates, and latency histograms without a separate SDK.
+
+  - type: mc
+    sectionId: tail-sampling
+    prompt: Why does tail sampling need a gateway rather than a per-node agent?
+    choices:
+      - It must see the whole trace before it can decide
+      - It needs a public IP address
+      - It only works on metrics
+      - It requires a database
+    answer: 0
+    explanation: The decision depends on the finished trace, so the component that samples has to be the one that sees all of it.
+
+  - type: mc
+    sectionId: transforming-data
+    prompt: What does OTTL do?
+    choices:
+      - Rewrites attributes, resources, and bodies with expressions
+      - Compresses the payloads
+      - Samples traces by probability
+      - Authenticates to the backend
+    answer: 0
+    explanation: OTTL is the expression language the transform processor uses to rename attributes, set defaults, and drop noisy labels.
+
+  - type: mc
+    sectionId: where-it-runs
+    prompt: Which two processors belong in every production Collector config?
+    choices:
+      - memory_limiter and batch
+      - tail_sampling and transform
+      - k8sattributes and spanmetrics
+      - filter and debug
+    answer: 0
+    explanation: The memory limiter sheds load instead of crashing, and the batch processor groups records into fewer requests.

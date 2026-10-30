@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-span
+    prompt: What does the span kind client mean?
+    choices:
+      - An outbound call made by this service
+      - An inbound request this service serves
+      - A message published to a queue
+      - Internal work inside the process
+    answer: 0
+    explanation: Client spans are the calls this service makes; server spans are the requests it handles.
+
+  - type: cloze
+    sectionId: intrinsics
+    prompt: "In TraceQL, a bare ____ such as .name refers to a computed field rather than a stored attribute."
+    answer: intrinsic
+    explanation: Intrinsics — name, duration, status, kind — are computed by the backend from the span itself.
+
+  - type: mc
+    sectionId: aggregations
+    prompt: What does { ... } | by (resource.service.name) | count() > 10 do?
+    choices:
+      - Counts the matching spans per service and keeps the groups above ten
+      - Returns the ten slowest traces
+      - Limits the search to ten services
+      - Filters the spans longer than ten seconds
+    answer: 0
+    explanation: The pipeline counts matching spans, groups them by the attribute, and then filters the groups.
+
+  - type: mc
+    sectionId: sampling-and-what-you-can-count
+    prompt: Why should request counts come from metrics rather than from traces?
+    choices:
+      - Traces are sampled, so a trace count is a proportion rather than a total
+      - Traces carry no duration field
+      - Metrics are cheaper to store
+      - Traces lose the service name
+    answer: 0
+    explanation: Only a fraction of traces are kept, so traces answer what a request looked like and metrics answer how many there were.
+
+  - type: mc
+    sectionId: intrinsics
+    prompt: Which of these is a trace intrinsic?
+    choices:
+      - duration
+      - http.route
+      - service.version
+      - user.id
+    answer: 0
+    explanation: duration is computed from the span timestamps; the others are attributes you have to record yourself.

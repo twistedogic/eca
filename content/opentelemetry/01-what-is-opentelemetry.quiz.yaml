@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: three-parts-one-contract
+    prompt: Which part of OpenTelemetry ships the data out of the process?
+    choices:
+      - The API
+      - The SDK
+      - The Collector
+      - OTLP
+    answer: 2
+    explanation: The API is what your code calls, the SDK implements it, and the Collector receives and forwards the data to the backends.
+
+  - type: mc
+    sectionId: the-signals
+    prompt: Which signal records a single request as it moves through the services it touches?
+    choices:
+      - A metric
+      - A trace
+      - A log
+      - A span
+    answer: 1
+    explanation: A trace is the record of one request; a span is a single operation inside it, and metrics and logs are not request-scoped.
+
+  - type: cloze
+    sectionId: what-opentelemetry-is-not
+    prompt: "OpenTelemetry is not a storage system, not a dashboard, and not a ____ engine."
+    answer: query
+    explanation: Storage, retention, dashboards, and query languages all belong to the backend, not to OpenTelemetry.
+
+  - type: mc
+    sectionId: distros-and-automatic-instrumentation
+    prompt: What does a distro give you?
+    choices:
+      - A preconfigured bundle of the API, the SDK, the Collector config, and the exporters
+      - A vendor-specific tracing library
+      - A storage backend for traces
+      - A query engine for metrics
+    answer: 0
+    explanation: A distro packages the API, SDK, Collector configuration, and exporters so a service gets telemetry without writing any of it.
+
+  - type: mc
+    sectionId: intro
+    prompt: What does vendor-neutral buy you?
+    choices:
+      - Swapping backends without rewriting the instrumentation
+      - Telemetry at no cost
+      - Guaranteed low cardinality
+      - A standard dashboard layout
+    answer: 0
+    explanation: The point of the neutral APIs is that the instrumentation survives a change of backend.

@@ -1,0 +1,89 @@
+questions:
+  - type: mc
+    sectionId: two-different-jobs
+    prompt: Which of these does OpenTelemetry metrics not provide?
+    choices:
+      - A query language
+      - A data model for data points
+      - An instrumentation API
+      - A transport protocol
+    answer: 0
+    explanation: Storage, querying, and alerting belong to the backend; OpenTelemetry defines the instruments, the data model, and the protocol.
+
+  - type: mc
+    sectionId: temporality
+    prompt: Why must a Prometheus counter be cumulative?
+    choices:
+      - Prometheus computes the rate by differencing two consecutive scrapes
+      - Prometheus cannot store delta points
+      - OTLP forbids delta temporality
+      - A counter must never decrease
+    answer: 0
+    explanation: The scrape model has no memory between scrapes, so the target has to expose the running total.
+
+  - type: cloze
+    sectionId: temporality
+    prompt: "The Collector processor that turns delta points into cumulative ones is called ____."
+    answer: deltatocumulative
+    explanation: Push-based OTLP exporters usually send delta points, so this processor is what makes them legal for Prometheus.
+
+  - type: mc
+    sectionId: names-and-labels
+    prompt: How does the OpenTelemetry metric http.server.request.duration with unit s reach Prometheus?
+    choices:
+      - As http_server_request_duration_seconds
+      - As http.server.request.duration_s
+      - As http_server_request_duration
+      - As http_server_request_duration_s
+    answer: 0
+    explanation: The exporter turns dots into underscores and appends the unit, and a monotonic sum also gets the _total suffix.
+
+  - type: mc
+    sectionId: names-and-labels
+    prompt: What happens to resource attributes in the Collector prometheus exporter by default?
+    choices:
+      - They are not turned into labels unless resource_to_telemetry_conversion is enabled
+      - They are always turned into labels
+      - They are dropped by the SDK before export
+      - They are attached as exemplars
+    answer: 0
+    explanation: Resource attributes are only converted into labels when that option is switched on, which is a common surprise.
+
+  - type: mc
+    sectionId: histograms
+    prompt: What does an OpenTelemetry exponential histogram become in Prometheus?
+    choices:
+      - A native histogram
+      - A classic histogram with _bucket series
+      - A summary
+      - A gauge
+    answer: 0
+    explanation: Explicit buckets become classic histograms; the exponential kind maps onto Prometheus native histograms, which keep the whole distribution.
+
+  - type: mc
+    sectionId: push-and-pull
+    prompt: Which path keeps exemplars all the way into a Prometheus-compatible store?
+    choices:
+      - Remote write
+      - The classic scrape path
+      - Neither of them
+      - Only an OTLP push to a trace backend
+    answer: 0
+    explanation: The scrape path drops exemplars, so a histogram whose exemplars matter needs remote write or an exemplar-aware backend.
+
+  - type: mc
+    sectionId: the-usual-setup
+    prompt: You instrument with both the Prometheus client library and OpenTelemetry. What is the risk?
+    choices:
+      - Two series for the same measurement under two different names
+      - The Collector runs out of memory
+      - Sampling stops working
+      - Nothing, they are merged automatically
+    answer: 0
+    explanation: Two sources of truth means two dashboards and no way to tell which one an alert was built on.
+
+  - type: cloze
+    sectionId: what-only-prometheus-gives-you
+    prompt: "Prometheus precomputes expensive queries with ____ rules, which store the result under a new name."
+    answer: recording
+    explanation: Recording rules are the Prometheus equivalent of a prepared view; OpenTelemetry has no equivalent because it has no query layer at all.

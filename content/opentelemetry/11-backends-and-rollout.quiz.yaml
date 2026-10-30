@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-grafana-stack
+    prompt: Which query language does Tempo use?
+    choices:
+      - TraceQL
+      - LogQL
+      - PromQL
+      - SPL
+    answer: 0
+    explanation: Tempo queries traces with TraceQL, Loki queries logs with LogQL, and Prometheus and Mimir query metrics with PromQL.
+
+  - type: mc
+    sectionId: search-based-and-columnar-backends
+    prompt: What do you gain by putting all three signals in one Elasticsearch index family?
+    choices:
+      - One query language over logs, metrics, and traces
+      - Cheaper storage
+      - No cardinality problems
+      - Unsampled traces
+    answer: 0
+    explanation: The trace ID becomes a field like any other, so a single query can span the three signals.
+
+  - type: cloze
+    sectionId: vendor-platforms
+    prompt: "____ was built around OpenTelemetry, so traces, logs, and metrics share one query model."
+    answer: Honeycomb
+    explanation: The other vendor platforms also accept OTLP, but they correlate internally with their own query language and pricing.
+
+  - type: mc
+    sectionId: cost
+    prompt: What is the main lever on the cost of a metric backend?
+    choices:
+      - The number of distinct label combinations
+      - The number of log lines ingested
+      - The number of traces stored
+      - The retention of the logs
+    answer: 0
+    explanation: Every distinct label combination is another series, stored for the whole retention window and scanned by every panel.
+
+  - type: mc
+    sectionId: a-rollout-that-works
+    prompt: What should happen before the instrumentation is rolled out to the whole fleet?
+    choices:
+      - One service is instrumented and the cross-signal links are clicked during a real incident
+      - A vendor platform is bought
+      - Head sampling is set to keep every trace
+      - Every label is made unique
+    answer: 0
+    explanation: Prove the joins work on one service — metric to trace, trace to log — before the volume arrives.
