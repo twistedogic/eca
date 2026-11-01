@@ -1,0 +1,161 @@
+questions:
+  - type: mc
+    sectionId: market-structure
+    prompt: An uptrend has been printing higher highs and higher lows. What counts as the first objective evidence the trend has ended?
+    choices:
+      - A candle body closing below the last higher low
+      - An RSI reading below 30
+      - A single wick poking below the last higher low
+      - A moving average crossover on the hourly chart
+    answer: 0
+    explanation: A break of structure is judged on closes, not wicks; until a body closes below the last higher low, the structure still says buy the dips.
+
+  - type: mc
+    sectionId: market-structure
+    prompt: What is a swing high?
+    choices:
+      - "A local peak: a candle whose high is above the highs of the candles either side of it"
+      - The highest price reached during the whole trend
+      - Any candle with a long upper wick
+      - The previous day's high
+    answer: 0
+    explanation: Swings are local structure — each is defined only against its immediate neighbours, and the sequence of them defines the trend.
+
+  - type: mc
+    sectionId: reading-a-single-candle
+    prompt: A pin bar with a long lower wick forms at the third test of support. What does it record?
+    choices:
+      - "Rejection: price probed below the level and was pushed back"
+      - A guaranteed reversal to the upside
+      - Volatility contracting while both sides wait
+      - The previous candle's body being swallowed
+    answer: 0
+    explanation: The wick is ground probed and given back. At a tested level that is evidence of buyers; it is still not a promise the level holds.
+
+  - type: mc
+    sectionId: reading-a-single-candle
+    prompt: What is the tradeable event around an inside bar?
+    choices:
+      - The break of its range
+      - Its close
+      - Its wick
+      - The engulfing of the bar before it
+    answer: 0
+    explanation: An inside bar is contraction; the information arrives when price breaks out of the previous candle's range.
+
+  - type: mc
+    sectionId: levels-and-liquidity
+    prompt: Price spikes above an obvious swing high, triggers the stops there, and closes back below it. What most likely happened?
+    choices:
+      - "A false breakout: the resting stops filled a large order, and the level was fuel, not a signal"
+      - A genuine breakout that will resume tomorrow
+      - "A role reversal: resistance became support"
+      - A pin bar setup at the high
+    answer: 0
+    explanation: The close back inside is the tell — breakouts that hold do not give the level straight back.
+
+  - type: mc
+    sectionId: levels-and-liquidity
+    prompt: Resistance at 1.1000 breaks cleanly. Days later price returns to 1.1000 and holds. Why does old resistance act like support?
+    choices:
+      - "Traders who sold the break are underwater and act there, so orders cluster at the old level"
+      - Because 1.1000 is a round number and nothing else
+      - Brokers are required to defend old levels
+      - Support and resistance never change roles
+    answer: 0
+    explanation: "Role reversal is memory and pain: the level is where a crowd is positioned wrong and forced to act when price returns."
+
+  - type: mc
+    sectionId: breakout-or-pullback
+    prompt: Why does a pullback entry usually carry a larger R multiple than the breakout entry on the same level?
+    choices:
+      - The entry sits closer to the invalidating swing, so the stop is tighter for the same target
+      - Because limit orders pay no spread
+      - Because pullbacks only occur in strong trends
+      - Because the stop can go on the far side of the level
+    answer: 0
+    explanation: Risk is measured entry-to-stop; entering nearer the structure that would invalidate the trade shrinks that distance.
+
+  - type: mc
+    sectionId: where-the-risk-lives
+    prompt: You buy a dip that holds above the last swing low. Where does the price-action stop belong?
+    choices:
+      - Below that swing low, with room for average noise
+      - A fixed 10 pips under entry regardless of the chart
+      - At the next round number below
+      - At breakeven, immediately after entry
+    answer: 0
+    explanation: The stop lives beyond the structure that made the trade valid — a close below the low you bought against is the idea being wrong.
+
+  - type: mc
+    sectionId: where-the-risk-lives
+    prompt: The only stop that respects the structure is too wide for 1% risk at the minimum position size. What is the correct move?
+    choices:
+      - Skip the trade
+      - Tighten the stop to fit the risk cap
+      - Widen the risk cap to fit the stop
+      - Take the trade without a stop
+    answer: 0
+    explanation: Sizing starts from the stop, not the other way round; a stop squeezed inside the noise is a scheduled loss, so the trade does not exist.
+
+  - type: mc
+    sectionId: context-and-the-honest-limits
+    prompt: In top-down analysis, what does the higher timeframe decide?
+    choices:
+      - Whether the market is trending or ranging, and therefore which tactics are legal
+      - Which candle to use as the entry trigger
+      - Where exactly the stop goes
+      - The position size
+    answer: 0
+    explanation: The daily chart sets the regime, the hourly gives the level, the low timeframe gives the trigger — in that order.
+
+  - type: cloze
+    sectionId: market-structure
+    prompt: "Judge breaks of structure on ____, not wicks."
+    answer: closes
+    explanation: Wicks probe beyond swings constantly; only a body closing beyond a swing is a decision.
+
+  - type: cloze
+    sectionId: context-and-the-honest-limits
+    prompt: "Price action tells you where to be wrong cheaply; it never tells you where price is ____."
+    answer: going
+    explanation: The framework locates entries, stops, and targets; whether the setup makes money is still expectancy, and whether you keep it is still risk control.
+
+  - type: mc
+    sectionId: market-events-to-watch
+    prompt: Which scheduled events do the most damage to a currency pair, according to the chapter?
+    choices:
+      - Central bank rate decisions with their statements and press conferences, US CPI, and non-farm payrolls
+      - PMIs and retail sales
+      - Weekly unemployment claims and routine official speeches
+      - None, because scheduled events are always fully priced in
+    answer: 0
+    explanation: "The big three share one driver: they shape the interest-rate path, and rates drive currencies (chapter 9)."
+
+  - type: mc
+    sectionId: market-events-to-watch
+    prompt: It is 12:00. CPI for your pair's base currency lands at 13:30 and you hold a runner with its stop 30 pips away. What is the price-action-correct move?
+    choices:
+      - Reduce or close ahead of the release — event risk and widened spreads go through stops
+      - Widen the stop and hold, because stops always fill at their level
+      - Add to the position, since news always extends the trend
+      - Nothing, because the calendar is background information
+    answer: 0
+    explanation: A stop is a resting order and a release is exactly when fills slip; if the thesis is not the news itself, the exposure is not either.
+
+  - type: mc
+    sectionId: market-events-to-watch
+    prompt: Why should pre-release support and resistance be redrawn after a high-impact release?
+    choices:
+      - The orders that made those levels were just consumed by the release
+      - Because calendars invalidate all technical levels weekly
+      - Because brokers reset charts after news
+      - They should not; levels get stronger as they age
+    answer: 0
+    explanation: A release is a liquidity event — the sweep consumes the resting orders that made the obvious levels, so structure restarts from the release candle.
+
+  - type: cloze
+    sectionId: market-events-to-watch
+    prompt: "The first minutes after a release often bring a ____: the spike reversing as fast money repositions against trapped late entries."
+    answer: whipsaw
+    explanation: The whipsaw is a normal outcome, not an anomaly — trade the first pullback after the impulse, not the impulse.
