@@ -17,4 +17,9 @@ describe('stylesheet', () => {
     expect(used.size).toBeGreaterThan(3)
     for (const name of used) expect(defined.has(name)).toBe(true)
   })
+
+  it('scales figures to fit the reading column', () => {
+    expect(css).toMatch(/\.section :is\(svg, img\)\s*{[^}]*max-width:\s*100%/)
+    expect(css).toMatch(/\.section :is\(svg, img\)\s*{[^}]*height:\s*auto/)
+  })
 })

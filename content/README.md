@@ -27,6 +27,28 @@ content/<topic-id>/
 A chapter with no key terms simply produces no generated questions —
 that is not an error.
 
+## Figures (inline SVG)
+
+Chapters may embed schematic figures as raw inline `<svg>` elements in the
+markdown. `marked` passes raw HTML through untransformed, so the SVG lands
+in `content.json` and the chapter view as-is.
+
+Rules for authoring:
+
+- Give every SVG both `width="640"` and a matching `viewBox="0 0 640 H"`.
+  The app's CSS (`max-width: 100%; height: auto`) scales it down on narrow
+  screens; the explicit width is what makes that deterministic.
+- Add `role="img"` and an `aria-label` describing what the figure shows.
+- Color with theme variables so figures follow light/dark theme:
+  `var(--ink)` primary lines and labels, `var(--muted)` secondary labels,
+  `var(--line)` grid, `var(--ok)` bullish, `var(--bad)` bearish,
+  `var(--accent)` annotations such as trendlines and levels.
+- Label text at `font-size="14"` or larger so it survives shrinking.
+- No `**bold**` inside a figure — bold text is the question-generation
+  signal, and figures must not mint quiz terms.
+- Keep figures schematic (≤ ~20 shapes): exaggerated teaching silhouettes,
+  not real market screenshots (which are also a licensing problem).
+
 ## Hand-written questions (`<chapter>.quiz.yaml`)
 
 ```yaml
