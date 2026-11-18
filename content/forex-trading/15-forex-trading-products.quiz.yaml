@@ -1,0 +1,128 @@
+questions:
+  - term: spot FX
+    type: mc
+    sectionId: spot-fx
+    prompt: Which statement best describes spot FX?
+    choices:
+      - It fixes a currency exchange rate for a future date
+      - It exchanges currencies near the current market rate, normally with settlement two business days later
+      - It exchanges principal and interest payments across two currencies
+      - It gives the holder the right to exchange currencies at a strike rate
+    answer: 1
+    explanation: Spot FX is the near-current exchange of two currencies. Its economic exposure starts at the trade date even though normal settlement occurs two business days later.
+
+  - term: outright forward
+    type: mc
+    sectionId: outright-forwards
+    prompt: What fixes the economics of an outright forward at inception?
+    choices:
+      - The dealer guarantees a minimum exchange rate
+      - The central clearing house guarantees both currencies
+      - The notional amount, future date, currencies, and exchange rate
+      - The option premium and implied volatility
+    answer: 2
+    explanation: A forward is a bilateral agreement on the currencies, notional, future settlement date, and fixed exchange rate.
+
+  - type: mc
+    sectionId: outright-forwards
+    prompt: How does a non-deliverable forward settle?
+    choices:
+      - In cash, using the difference between the agreed rate and the agreed fixing rate
+      - By delivering both currencies on the forward date
+      - By exchanging interest payments until expiry
+      - By paying the full notional to the clearing house
+    answer: 0
+    explanation: An NDF calculates the difference between the contracted rate and the fixing rate, then makes one net cash settlement in the chosen settlement currency.
+
+  - term: FX swap
+    type: mc
+    sectionId: fx-swaps
+    prompt: Which legs make up an FX swap?
+    choices:
+      - A near spot leg and a far forward leg that reverses the exchange
+      - Two spot legs on consecutive days
+      - A principal leg and a fixed-interest leg
+      - A call leg and a put leg
+    answer: 0
+    explanation: The near leg exchanges currencies at or near spot; the far leg reverses that exchange at a pre-agreed future rate.
+
+  - term: currency swap
+    type: mc
+    sectionId: currency-swaps
+    prompt: What distinguishes a currency swap from an FX swap?
+    choices:
+      - It can never have a far leg
+      - It exchanges aspects of loans, such as principal and interest, across currencies
+      - It is always centrally cleared
+      - It never carries counterparty risk
+    answer: 1
+    explanation: A currency swap describes a longer-term exchange of loan principal and/or interest across currencies; an FX swap exchanges principal near spot and reverses it later.
+
+  - term: currency futures
+    type: mc
+    sectionId: currency-futures
+    prompt: Which set of features identifies an exchange-traded currency future?
+    choices:
+      - A custom notional, no expiry, and daily dealer quotes
+      - A forward rate plus a premium paid to the option seller
+      - A fixed contract size and expiry, exchange trading, central clearing, and daily variation margin
+      - A near spot leg and a far forward leg with the same counterparty
+    answer: 2
+    explanation: Futures standardise size and expiry, trade on an exchange, clear centrally, and settle gains and losses through daily margin.
+
+  - term: FX option
+    type: mc
+    sectionId: fx-options
+    prompt: What is the maximum loss for the buyer of a long vanilla FX option?
+    choices:
+      - The premium paid
+      - The full currency notional
+      - Unlimited, because the exchange rate can move without limit
+      - The forward points at expiry
+    answer: 0
+    explanation: The buyer can let the option expire, so the maximum loss is the premium paid. The seller's loss can be very large.
+
+  - type: mc
+    sectionId: what-brokers-call-forex
+    prompt: What does a retail forex CFD normally represent?
+    choices:
+      - Ownership of the base currency until the position is closed
+      - A centrally cleared futures contract with daily variation margin
+      - A cash-settled price difference that does not deliver the base currency
+      - An exchange option on the currency pair
+    answer: 2
+    explanation: A CFD is a synthetic cash-settled difference between entry and exit prices. The trader does not receive or deliver the underlying currency.
+
+  - type: mc
+    sectionId: choosing-the-product
+    prompt: A business will receive a fixed amount of dollars in three months and wants to lock today's exchange rate. Which product fits best?
+    choices:
+      - A currency futures contract with daily delivery
+      - An outright forward or NDF
+      - A currency swap exchanging principal and interest
+      - A long spot CFD with no fixed maturity
+    answer: 1
+    explanation: An outright forward fixes the rate for a known future cash flow; an NDF provides the same rate certainty with cash settlement where delivery is impractical.
+
+  - type: mc
+    sectionId: where-the-risk-lives
+    prompt: Which product adds daily margin calls, expiry, and roll risk to currency exposure?
+    choices:
+      - An OTC spot CFD
+      - A non-deliverable forward
+      - An FX swap used for short-term funding
+      - A currency future
+    answer: 3
+    explanation: Futures use daily variation margin, have a fixed expiry, and normally have to be rolled to maintain exposure.
+
+  - type: cloze
+    sectionId: fx-swaps
+    prompt: "An FX swap's near leg exchanges currencies at or near spot, and its ____ leg reverses the exchange at a pre-agreed future rate."
+    answer: far
+    explanation: The two legs are conventionally called the near leg and the far leg.
+
+  - type: cloze
+    sectionId: currency-futures
+    prompt: "A currency future is marked to market each day through ____ margin, rather than waiting until delivery for all profit and loss to be settled."
+    answer: variation
+    explanation: Daily variation margin moves gains and losses in cash as the futures price changes.
