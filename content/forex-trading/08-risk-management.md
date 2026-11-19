@@ -130,6 +130,42 @@ earlier in this chapter sits far below it for that reason.
 > Risking more than the Kelly fraction lowers long-run growth and raises
 > the probability of ruin. Nobody sizes at full Kelly.
 
+## Ladders and circuit breakers
+
+Two drawdown ladders, with different jobs. The first is a set of circuit
+breakers on time: at minus 2% from the day's start, stop trading for the
+day; at minus 5% in a day, stop for the week; at minus 10% in a week,
+stop for the month. The second is a sizing ladder on the peak: at minus
+5% from the equity high, halve the position size; at minus 8%, halve
+again; at minus 15%, stop trading entirely until ready. The breakers are
+earlier and harder — use them to stop; use the sizing ladder to trade
+smaller in between.
+
+## Cut the tail off the loss distribution
+
+A histogram of every past loss, sorted by size, usually shows a thin tail
+of giant losers doing most of the damage. Find the size threshold that
+removes most of that tail while touching few ordinary trades, and add a
+money-management stop there: exit on the system's signal or at the
+dollar cap, whichever shows the smaller loss. In the source material this
+one rule cut total losses by 20 to 40% and turned a losing system
+profitable — no new entry signal, no change to the setups.
+
+## Gap risk and the broker's liquidation
+
+A stop is an order, not a guarantee. Around major news the interbank
+market withdraws quotes for up to half a minute, retail fills are on a
+best-efforts basis, and price routinely gaps 20 to 80 pips — sometimes
+taking out both sides' stops before the release lands. Treat the filled
+price, not the stop price, as the realised risk, and size so a 150-pip
+adverse fill is survivable: at 0.5–1% risk it is; at 10% it is not. The
+plain approach to weekends is not to hold positions over them at all.
+
+Separately, below the minimum margin requirement the broker liquidates
+positions with no margin call and no notification. That is a distinct
+risk from the stop, and it arrives without warning — which is why the
+margin level, like the stop, belongs in the written plan.
+
 ## Respect the math
 
 The rules above are not opinions about markets. They are arithmetic about

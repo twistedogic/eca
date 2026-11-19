@@ -1,0 +1,66 @@
+questions:
+  - type: mc
+    sectionId: the-with-trend-pullback
+    prompt: In an uptrend, price pulls back to the moving average, dips, bounces, dips again to a similar low, and turns up. What is this setup called?
+    choices:
+      - A high 2 — the second pullback low in the up-leg
+      - A low 2 — the second rally high in the down-leg
+      - A rejection fade
+      - A channel breakout
+    answer: 0
+    explanation: The second attempt at the moving average that holds the prior low is the classic with-trend pullback buy, a "high 2".
+
+  - type: mc
+    sectionId: the-with-trend-pullback
+    prompt: When is a with-trend pullback setup not tradable at all?
+    choices:
+      - In a tight, overlapping range — there are no swings to count
+      - On the third attempt, since only second attempts work
+      - On pairs other than EUR/USD
+      - When ADX is rising
+    answer: 0
+    explanation: Bar counting needs swings; overlapping bars in a tight range produce no second attempts, only noise — no trade.
+
+  - type: mc
+    sectionId: the-rejection-fade
+    prompt: In the five-step rejection fade, which step is the entry?
+    choices:
+      - Step 5 — the second initiative move away from the level
+      - Step 3 — the first initiative move away from the level
+      - Step 2 — the tail piercing the level
+      - Step 4 — the responsive move back toward the level
+    answer: 0
+    explanation: Many false breaks occur during value development; only the second initiative move confirms the level was genuinely rejected twice.
+
+  - type: mc
+    sectionId: refining-the-channel-breakout
+    prompt: The 55-day channel breaks out while ADX is declining. What does the ADX filter say?
+    choices:
+      - Skip the breakout — a trend that can't push its own ADX up is not a trend yet
+      - Take it and use a wider stop
+      - Take it with double size since ADX is cheap
+      - Wait for ADX to cross above 50
+    answer: 0
+    explanation: The declining-ADX filter eliminates losers and rarely eliminates a profitable trade.
+
+  - type: mc
+    sectionId: refining-the-channel-breakout
+    prompt: The 55-day channel was flat for a week before breaking out, and price closes back below the breakout level the next day. What does the rejection rule say?
+    choices:
+      - Exit on that close — about half of ordinary stop-outs are removed this way
+      - Hold with the original 20-day exit only
+      - Move the stop to break-even
+      - Add on the pullback
+    answer: 0
+    explanation: The rejection rule exits failed breakouts on the day-0 or day-1 close, cutting per-trade risk by roughly 80%.
+
+  - type: mc
+    sectionId: refining-the-channel-breakout
+    prompt: Why does a 52-week high deserve more weight than a 5-day high?
+    choices:
+      - The length of the breakout measures the power of the move behind it
+      - Longer breakouts always continue forever
+      - Shorter breakouts are always false
+      - 52-week highs are rarer in the calendar
+    answer: 0
+    explanation: Breaking a 52-week high requires a far bigger fundamental shift than breaking a 5-day high, so longer breakouts carry more force.

@@ -1,0 +1,66 @@
+questions:
+  - type: mc
+    sectionId: one-mechanism-two-failures
+    prompt: What single mechanism causes BOTH holding losers too long and cutting winners too early?
+    choices:
+      - Ego wrapped up in being right about the trade
+      - Poor chart-reading skill
+      - Trading during the London session
+      - Using limit orders instead of stop orders
+    answer: 0
+    explanation: The ego cannot afford to book the loss and cannot risk giving back the win — the two classic failures are one mechanism seen from each end.
+
+  - type: mc
+    sectionId: grade-the-decision-not-the-outcome
+    prompt: A trade followed every rule and lost 1R. Under two-axis grading, what is it?
+    choices:
+      - A good decision with a bad outcome
+      - A bad trade, because it lost money
+      - A good outcome, because rules were followed
+      - Ungradeable without the win rate
+    answer: 0
+    explanation: 'Decision grade and outcome are independent axes: a rule-following loss is a good decision; a rule-breaking win is a bad one.'
+
+  - type: mc
+    sectionId: the-cost-of-a-bad-trade
+    prompt: What is the biggest hidden cost of a bad trade?
+    choices:
+      - The next good trade you don't take because you're shaken and hesitate
+      - The spread paid on the entry
+      - The rollover charged overnight
+      - The time spent analysing it
+    answer: 0
+    explanation: Missed trades cost roughly as much as realised losses, and no journal line shows them — which is why patience must be logged to become measurable.
+
+  - type: mc
+    sectionId: no-profit-targets
+    prompt: Why do monthly profit targets damage trading?
+    choices:
+      - They force marginal trades near month-end to hit the number
+      - They are usually set too low
+      - Brokers penalise consistent withdrawals
+      - They interfere with the tax calculation
+    answer: 0
+    explanation: Opportunities arrive sporadically; a date-based target converts their absence into a personal failure and forces overtrading. Set process goals instead.
+
+  - type: mc
+    sectionId: think-in-probabilities
+    prompt: What is the casino-owner frame for a losing trade?
+    choices:
+      - A single losing spin — deal again, the edge lives in the repetition
+      - A failure requiring a system redesign
+      - A reason to increase size to recover
+      - Proof the market is rigged
+    answer: 0
+    explanation: The casino owner doesn't flinch at a losing spin; thinking in probabilities removes the stress that a certainty frame creates.
+
+  - type: mc
+    sectionId: the-discipline-ladder
+    prompt: Why are hard stops, sizing, risk tiers, and the drawdown penalty box installed FIRST on the discipline ladder?
+    choices:
+      - They are mechanical and need no willpower
+      - They are the easiest to code
+      - They produce the most profit
+      - They satisfy regulatory requirements
+    answer: 0
+    explanation: The first five rungs are mechanical precisely so the human rung is asked for almost nothing — like removing the whiskey bottle instead of testing willpower against it.

@@ -1,0 +1,66 @@
+questions:
+  - type: mc
+    sectionId: the-traders-equation
+    prompt: Your setup wins about half the time. What is the minimum reward-to-risk ratio that breaks even?
+    choices:
+      - '2.0'
+      - '1.0'
+      - '0.5'
+      - '3.0'
+    answer: 0
+    explanation: At a 50% win rate the trader's equation needs reward of 2× risk to break even; 60% needs 1.0 and 40% needs 3.0.
+
+  - type: mc
+    sectionId: count-facts-not-indicators
+    prompt: A 20-period and a 50-period moving average cross upward at the same time RSI leaves oversold. How many independent reasons to buy is that?
+    choices:
+      - One — both are arithmetic on the same price series
+      - Two — two indicators agree
+      - Three — the cross, the RSI, and the trend
+      - Zero — indicators cannot be reasons
+    answer: 0
+    explanation: Confluence counts independent facts, not indicator count; two smoothed derivatives of the same closes are one fact.
+
+  - type: mc
+    sectionId: enter-on-stops-not-limits
+    prompt: Why is a stop entry preferred to a limit entry?
+    choices:
+      - It fills because the market is moving your way, so the trade starts with the wind at your back
+      - It always gets a better price than a limit
+      - It cannot suffer slippage
+      - Brokers charge less commission on stop orders
+    answer: 0
+    explanation: A limit is filled because the market moved against you; a stop entry is filled by movement in your favour and is nearly always in profit immediately.
+
+  - type: mc
+    sectionId: enter-on-stops-not-limits
+    prompt: A clean breakout setup triggers your buy stop, then price reverses and breaks down instead. What does "a failed signal is a signal" suggest?
+    choices:
+      - Exit and reverse in one order — the failed breakout is information about the other side
+      - Widen the stop and wait for the setup to come back
+      - Log it as a loss and stop trading for the week
+      - Nothing — failed signals carry no information
+    answer: 0
+    explanation: When a strong setup fails, the market has demonstrated the opposite force; a reversal stop acts on it in one order.
+
+  - type: mc
+    sectionId: pattern-high-entry-low
+    prompt: You find a setup on the daily chart. Why execute the entry on the 1-hour chart?
+    choices:
+      - The stop distance collapses, so the same percentage risk allows a larger position
+      - Lower timeframes are more reliable for analysis
+      - Spreads are tighter on lower timeframes
+      - The daily chart's signal is usually already over by then
+    answer: 0
+    explanation: An 80-pip daily stop may become 20 pips on the hourly entry — a quarter of the risk per unit, so four times the size at the same 1% risk.
+
+  - type: mc
+    sectionId: directional-probability-hovers-near-50
+    prompt: Directional probability briefly rises above 50% at a range edge. Why act fast rather than wait for a better entry?
+    choices:
+      - The edge decays — once it becomes consensus, the market neutralises it
+      - Better prices always appear later
+      - Probability rises the longer you wait
+      - Spreads narrow over time
+    answer: 0
+    explanation: Edges are fleeting; waiting for a better price inside the trade usually means giving the edge back while it decays.

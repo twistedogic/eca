@@ -1,0 +1,55 @@
+questions:
+  - type: mc
+    sectionId: the-rules-that-carry-the-most-weight
+    prompt: Which pairing correctly states two of the highest-leverage rules?
+    choices:
+      - Size from the stop; correlated pairs are one position
+      - Maximise win rate; keep stops as tight as possible
+      - Risk up to 10% per trade; average down on quality setups
+      - Trade every session; set monthly profit targets
+    answer: 0
+    explanation: Risk management beats trade selection, and correlated pairs like EUR/USD + USD/CHF + GBP/USD stack into a single bet under one risk limit.
+
+  - type: mc
+    sectionId: the-walkthrough
+    prompt: In the session walkthrough, what happens first?
+    choices:
+      - The regime, session-quality, and news filters — before any setup is even considered
+      - Choosing the setup family
+      - Placing the stop order
+      - Writing the post-trade journal entry
+    answer: 0
+    explanation: Filter, then setup, then entry, then stop, then target, then journal, de-risk, review — the filter gates everything downstream.
+
+  - type: mc
+    sectionId: the-walkthrough
+    prompt: You are down 2% from the day's starting equity. What does the de-risk step say?
+    choices:
+      - Stop trading for the day
+      - Halve position size and continue
+      - Stop for the week
+      - Trade on; the limit is 5%
+    answer: 0
+    explanation: The circuit breakers stop at −2% in a day, −5% in a week, −10% in a month; the sizing ladder halves at −5% and −8% from the equity peak.
+
+  - type: mc
+    sectionId: the-weekly-review
+    prompt: What is the fixed agenda of the weekly review?
+    choices:
+      - Expectancy in R per setup family, share of winners profitable within two bars, and the passed-trade log
+      - Total profit for the week and this month's target progress
+      - Win rate over all trades and the biggest single winner
+      - Broker rebates, spread costs, and platform uptime
+    answer: 0
+    explanation: 'The review grades the system, not the P&L: expectancy per setup, how quickly winners worked, and whether the trades you passed on were right.'
+
+  - type: mc
+    sectionId: claims-not-validated-results
+    prompt: How should you treat specific parameters from the course — channel lengths, pip margins, session boundaries?
+    choices:
+      - As starting hypotheses to test on your own data
+      - As validated constants, since professionals use them
+      - As outdated numbers that should be discarded
+      - As secrets too valuable to test
+    answer: 0
+    explanation: Of the source records, only one was independently audited; the durable parts are the structure — risk first, stops that never widen, expectancy over win rate, and the review loop.

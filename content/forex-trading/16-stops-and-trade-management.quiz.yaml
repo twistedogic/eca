@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: anchor-the-stop-where-the-thesis-breaks
+    prompt: Your thesis is invalidated if price closes below a swing low at 1.0850. Where does the stop go?
+    choices:
+      - Roughly 20–40 pips below 1.0850, past the level where stops cluster
+      - Exactly at 1.0850, so you exit the moment the level breaks
+      - Wherever the position size works out to 1% risk
+      - 10 pips above 1.0850, to get out before everyone else
+    answer: 0
+    explanation: The anchor is the thesis-breaking level; the 20–40 pip margin of error absorbs the market's routine probe of visible stop clusters.
+
+  - type: mc
+    sectionId: size-pays-for-the-stop
+    prompt: Widening the stop to a correct anchor makes the position smaller than the broker's minimum lot. What do you do?
+    choices:
+      - Reject the trade
+      - Narrow the stop until the minimum lot fits the risk cap
+      - Keep the stop and exceed the risk cap slightly
+      - Take the trade without a stop and watch it manually
+    answer: 0
+    explanation: Size pays for the stop, never the reverse. If the arithmetic can't produce a legal position, there is no trade.
+
+  - type: cloze
+    sectionId: the-stop-never-widens
+    prompt: "Once a trade is open, the initial stop may move in favour of the position or do nothing — it may never move ____."
+    answer: outward
+    explanation: Widening a stop converts a planned 1R loss into an unbounded one; it is how every account killed by a single trade died.
+
+  - type: mc
+    sectionId: scale-out-and-trail
+    prompt: Which exit plan follows the scale-out rule?
+    choices:
+      - Half off at 2R, a quarter at 3R, leave a small runner with a trailing stop
+      - Everything off at 1R to lock in the win
+      - Half off at break-even, the rest held to the original target
+      - Add to the position at 2R and trail everything with a fixed 5-pip stop
+    answer: 0
+    explanation: Partial profits at 2× and 3× initial risk plus a small runner catch the tail without cutting every winner down to 1R.
+
+  - type: mc
+    sectionId: cut-it-fast-when-it-never-works
+    prompt: A trade has never been in profit after six bars. What does the instant-gratification rule say?
+    choices:
+      - Cut it — it is a failed trade, not a slow starter
+      - Hold it — six bars is too few to judge
+      - Widen the stop to give it room
+      - Double the position to lower the average entry
+    answer: 0
+    explanation: Trades that show profit within the first two bars are far more likely to work; one never in profit after about six bars has already told you it failed.
+
+  - type: mc
+    sectionId: what-ends-a-trade
+    prompt: You are long with an open loss late on Friday. What does the trade-ending table say?
+    choices:
+      - Exit before the close — weekend gap risk is not worth carrying
+      - Hold over the weekend with a wider stop
+      - Hold, since the stop is already placed
+      - Close half and hold the runner
+    answer: 0
+    explanation: Weekend gaps routinely blow through stops on a best-efforts fill basis, so the Friday close with an open loss is itself an exit trigger.

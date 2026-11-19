@@ -1,0 +1,77 @@
+questions:
+  - type: mc
+    sectionId: the-value-area
+    prompt: What is the value area?
+    choices:
+      - The price range where the bulk of trading actually happened over the lookback window
+      - The distance between the session high and low
+      - The zone between two moving averages
+      - The broker's normal trading hours
+    answer: 0
+    explanation: Value is where the market spent real time — prices it accepted. Price outside value is contested, not agreed.
+
+  - type: mc
+    sectionId: tails-excess-and-control-price
+    prompt: Which market-profile marker is the strongest rejection signal?
+    choices:
+      - A tail — a single-bar spike out of value that closes back inside
+      - The control price
+      - The value-area boundary
+      - A narrow rotation
+    answer: 0
+    explanation: A one-bar spike out of value that fails is the strongest rejection print the market makes; excess price beyond it marks the strongest support and resistance.
+
+  - type: mc
+    sectionId: how-a-regime-ends
+    prompt: Which of these is NOT one of the three chart signals that a trend regime is ending?
+    choices:
+      - The news calendar shows a central bank meeting next week
+      - Rotations narrowing into the wrong half of value
+      - A tail appearing on the opposing side
+      - Price travelling excessive distance beyond value
+    answer: 0
+    explanation: 'The regime ends on the chart: narrowing rotations into the wrong half of value, an opposing tail, or excessive distance beyond value.'
+
+  - type: mc
+    sectionId: how-a-regime-ends
+    prompt: Your paper equity curve breaks down while the currency chart still looks bullish. What does the regime filter say?
+    choices:
+      - Stand aside or trade smaller — your read on the regime is being proven wrong
+      - Trade normally; the equity curve is unrelated
+      - Double size to recover the drawdown
+      - Switch to the opposite trade immediately
+    answer: 0
+    explanation: A downside break in your own equity curve is itself a regime signal; trade smaller until the curve makes a new high.
+
+  - type: mc
+    sectionId: thin-liquidity-moves-violently
+    prompt: Why can thin sessions produce violent moves?
+    choices:
+      - Forced-covering cascades — shorts buying back into a market with few counterparties
+      - Central banks always intervene in thin sessions
+      - Spreads are tighter, so moves amplify
+      - Volume data is not published
+    answer: 0
+    explanation: With liquidity withdrawn, forced covering makes price jump abruptly and provokes a flood of similar covering from others.
+
+  - type: mc
+    sectionId: each-pair-has-habits
+    prompt: EUR/USD is rallying but, unlike usual, barely retraces any of the move. What does the pair habit tell you?
+    choices:
+      - The move is stronger and more genuine — EUR/USD normally backs and fills
+      - The move is a false break
+      - USD/JPY will switch off
+      - Nothing; pair habits are superstition
+    answer: 0
+    explanation: EUR/USD retraces more of short-term moves than other pairs, so the absence of backing and filling signals unusual conviction.
+
+  - type: mc
+    sectionId: confirm-the-dollar-across-markets
+    prompt: The dollar rises, US 10-year yields are flat, and gold is also rising. What is the read?
+    choices:
+      - The dollar's move looks suspect — no cross-market confirmation
+      - Confirmed dollar strength — yields and gold agree
+      - Buy oil immediately
+      - The dollar will reverse within the hour
+    answer: 0
+    explanation: Confirmation of dollar strength is dollar up with yields up and gold down; flat yields and rising gold contradict the move.
