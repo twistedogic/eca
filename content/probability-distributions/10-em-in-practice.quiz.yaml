@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: degenerate-solutions-the-likelihood-is-unbounded
+    prompt: "What happens to the likelihood of a mixture if one component collapses onto a single data point?"
+    choices:
+      - "It becomes singular and the algorithm must stop"
+      - "It diverges to infinity, so the maximum likelihood estimate does not exist"
+      - "It stays bounded but the component becomes unidentifiable"
+      - "It decreases, so EM backtracks the step"
+    answer: 1
+    explanation: "A component with variance going to zero puts infinite density on one observed point, so the likelihood is unbounded above. The MLE does not exist and the fit must be regularised."
+
+  - type: mc
+    sectionId: degenerate-solutions-the-likelihood-is-unbounded
+    prompt: "What is the standard fix for the collapsed-component problem?"
+    choices:
+      - "Reduce the number of components and refit"
+      - "Floor the variance at a small epsilon after each M-step"
+      - "Increase the mixing weight of the collapsed component"
+      - "Switch to a uniform distribution for that component"
+    answer: 1
+    explanation: "Bounding the smallest allowed variance (or adding epsilon times the identity to every covariance) keeps the likelihood finite and stops the collapse."
+
+  - type: mc
+    sectionId: initialisation-decides-where-you-land
+    prompt: "Which initialisation is the recommended default for EM on a Gaussian mixture?"
+    choices:
+      - "Random means drawn from the data, with equal weights"
+      - "k-means centroids and cluster covariances"
+      - "Zero means and identity covariances"
+      - "The quantiles of each feature, independently per component"
+    answer: 1
+    explanation: "k-means gives a partition that is already approximately right, so EM only has to refine it. Random restarts are then used to escape the occasional bad basin."
+
+  - type: mc
+    sectionId: numerical-stability
+    prompt: "Why is the E-step computed in log space with the log-sum-exp trick?"
+    choices:
+      - "It is faster than the direct computation"
+      - "Direct densities underflow to zero, so the responsibilities would be 0/0"
+      - "It avoids having to store the covariance matrix"
+      - "It makes the E-step exact instead of approximate"
+    answer: 1
+    explanation: "For extreme values the density underflows to zero; subtracting the largest log term before exponentiating keeps the ratios finite."
+
+  - type: cloze
+    sectionId: numerical-stability
+    prompt: "Working in log space prevents the responsibilities from becoming ____ divided by ____."
+    answer: zero
+    explanation: "Both numerator and denominator of the responsibility ratio can underflow to zero, giving 0/0; log-sum-exp avoids it."

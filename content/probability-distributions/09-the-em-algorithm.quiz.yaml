@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-two-steps-for-a-gmm
+    prompt: "In the EM algorithm, what does the E-step compute?"
+    choices:
+      - "The responsibilities r_nk for every point and component"
+      - "The maximum likelihood estimate of the mixing weights"
+      - "The variance of each component"
+      - "The number of components in the model"
+    answer: 0
+    explanation: "The E-step is the posterior over the hidden labels under the current parameters; the M-step then recomputes the parameters from those responsibilities."
+
+  - type: mc
+    sectionId: the-two-steps-for-a-gmm
+    prompt: "After the E-step, what is the M-step update for the mixing weights?"
+    choices:
+      - "pi_k = n_k / n, where n_k is the effective count of component k"
+      - "pi_k = 1 / K for every component"
+      - "pi_k = n_k, the effective count of component k"
+      - "pi_k = the average responsibility of component k"
+    answer: 0
+    explanation: "Each component owns the fraction of the data assigned to it, so its weight is its effective count divided by the sample size."
+
+  - type: mc
+    sectionId: a-complete-worked-example
+    prompt: "In the worked example, the initial parameters were mu = (1, 5) with sigma^2 = 4 for both components. What were the means after the first M-step?"
+    choices:
+      - "mu = (1.00, 5.00) — unchanged"
+      - "mu = (1.76, 4.24)"
+      - "mu = (1.25, 4.75)"
+      - "mu = (2.00, 4.00)"
+    answer: 1
+    explanation: "The soft responsibilities pull each component towards the other: mu1 moved from 1 to 1.762 and mu2 from 5 to 4.238, with variances shrinking from 4 to 1.59."
+
+  - type: mc
+    sectionId: why-it-works-the-elbo
+    prompt: "The EM algorithm guarantees that the log-likelihood never decreases. Why?"
+    choices:
+      - "The E-step computes the exact posterior over the hidden labels"
+      - "Each iteration maximises the ELBO, which is a lower bound on the log-likelihood and is tight at the true posterior"
+      - "The M-step is solved in closed form"
+      - "The responsibilities are constrained to be non-negative"
+    answer: 1
+    explanation: "Maximising a lower bound that touches the true log-likelihood at the end of each iteration cannot leave the true likelihood behind; the gap is exactly the KL divergence to the true posterior."
+
+  - type: cloze
+    sectionId: what-em-is-actually-doing
+    prompt: "The EM algorithm alternates between a soft assignment of points to components and a ____ recomputation of the component parameters."
+    answer: weighted
+    explanation: "The M-step computes weighted means, weighted variances and weight shares from the responsibilities — EM is weighted averaging, done twice."

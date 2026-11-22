@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: variance-how-spread-out
+    prompt: "What is the variance of a fair six-sided die?"
+    choices:
+      - "1.71"
+      - "2.92"
+      - "3.50"
+      - "12.25"
+    answer: 1
+    explanation: "E[X^2] - (E[X])^2 = 91/6 - 12.25 = 35/12 = 2.92. The 1.71 is the standard deviation, 3.50 is the mean, and 12.25 is the square of the mean."
+
+  - type: mc
+    sectionId: expectation-the-average-you-would-actually-see
+    prompt: "The expectation of a fair die is 3.5, yet a die never shows 3.5. What does that tell you?"
+    choices:
+      - "Expectation is a summary of the long-run average, not a prediction of any single outcome"
+      - "The die is slightly biased towards the middle faces"
+      - "The expectation of a discrete variable must be one of its possible values"
+      - "The probability mass function has been computed incorrectly"
+    answer: 0
+    explanation: "Expectation is the value the sample mean converges to over repeated trials. It need not be attainable."
+
+  - type: mc
+    sectionId: conditioning-the-most-useful-idea-in-the-subject
+    prompt: "A bag holds 3 red and 1 blue marble. Two are drawn without replacement. Given that the first was red, what is the probability that the second is red?"
+    choices:
+      - "3/4"
+      - "2/3"
+      - "1/2"
+      - "1/3"
+    answer: 1
+    explanation: "After a red marble is removed, 2 of the 3 remaining marbles are red, so the conditional probability is 2/3 — higher than the unconditional 1/2 because the information rules out the blue."
+
+  - type: mc
+    sectionId: law-of-total-probability-and-total-expectation
+    prompt: "60% of customers are on the free plan (10% monthly churn) and 40% are paying (3% churn). What is the overall monthly churn rate?"
+    choices:
+      - "6.5%"
+      - "7.2%"
+      - "8.0%"
+      - "10.0%"
+    answer: 1
+    explanation: "0.10 x 0.60 + 0.03 x 0.40 = 0.072. It is a weighted average, not the plain average of 10% and 3%, which would be 6.5%."
+
+  - type: cloze
+    sectionId: law-of-total-probability-and-total-expectation
+    prompt: "The law of total probability decomposes an unconditional probability into a weighted sum of ____ probabilities over a partition of the sample space."
+    answer: conditional
+    explanation: "P(A) = sum over the partition pieces of P(A | Bi) x P(Bi) — each conditional probability weighted by how likely that piece of the space is."

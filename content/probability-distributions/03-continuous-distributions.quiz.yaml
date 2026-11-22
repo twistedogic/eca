@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: uniform-the-baseline-you-compare-against
+    prompt: "A delivery wait time is uniform on [2, 8] minutes. What is the probability of waiting more than 6 minutes?"
+    choices:
+      - "1/6"
+      - "1/4"
+      - "1/3"
+      - "2/3"
+    answer: 2
+    explanation: "The area of a rectangle 2 wide out of a total width of 6: (8-6)/(8-2) = 1/3."
+
+  - type: mc
+    sectionId: exponential-waiting-times-and-the-memoryless-property
+    prompt: "A server handles requests at a rate of 2 per second. What is the probability that the next request takes more than 1 second?"
+    choices:
+      - "e^-2, about 13.5%"
+      - "e^-1, about 36.8%"
+      - "0.5"
+      - "1 - e^-2, about 86.5%"
+    answer: 0
+    explanation: "P(X > t) = e^(-lambda t) with lambda = 2 gives e^-2 = 0.1353. The complementary 86.5% is the probability the request arrives within one second."
+
+  - type: mc
+    sectionId: the-normal-distribution-the-centre-of-gravity
+    prompt: "A package weighs N(500 g, 25 g^2). What is the probability it weighs more than 510 g?"
+    choices:
+      - "About 2.3%"
+      - "About 16%"
+      - "About 50%"
+      - "About 97.7%"
+    answer: 0
+    explanation: "Z = (510-500)/5 = 2, so P(Z > 2) = 1 - Phi(2) = 0.0228. Note the variance 25 means a standard deviation of 5 g."
+
+  - type: mc
+    sectionId: gamma-and-chi-squared-sums-of-exponentials
+    prompt: "A patient needs 3 procedures, each taking an exponential time with rate 0.5 per day. What is the expected total time?"
+    choices:
+      - "1.5 days"
+      - "3 days"
+      - "6 days"
+      - "12 days"
+    answer: 2
+    explanation: "The gamma distribution gives E[X] = k/lambda = 3/0.5 = 6 days, with variance k/lambda^2 = 12 and standard deviation 3.46 days."
+
+  - type: mc
+    sectionId: transformations-change-the-shape
+    prompt: "If X is normal, why is log(X) not normal?"
+    choices:
+      - "A nonlinear transformation of a normal variable produces a new distribution, in this case the log-normal"
+      - "Taking logs of a normal always gives a uniform"
+      - "It is normal, but with the parameters transformed"
+      - "Logs are undefined for negative values, so the distribution is undefined"
+    answer: 0
+    explanation: "Only affine transformations preserve normality. If the data are strictly positive and ratios matter more than differences, take logs and work in normal space."
+
+  - type: cloze
+    sectionId: working-with-densities-the-standard-normal-table
+    prompt: "Standardising a normal variable means computing Z = (X - ____) / sigma."
+    answer: mu
+    explanation: "Subtracting the mean and dividing by the standard deviation turns any normal question into a table lookup on the standard normal CDF Phi."

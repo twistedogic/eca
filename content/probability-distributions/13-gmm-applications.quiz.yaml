@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: speaker-verification-the-ubm-pattern
+    prompt: "In a speaker-verification system, what is the score that decides whether the claimed speaker matches?"
+    choices:
+      - "The log-likelihood ratio of the test utterance under the speaker-adapted model against the universal background model"
+      - "The distance between the speaker's mean voice pitch and the claimed mean"
+      - "The number of components in the adapted model"
+      - "The posterior probability of the speaker under the background model alone"
+    answer: 0
+    explanation: "score = log p(x | speaker model) - log p(x | UBM). A high score means the utterance looks more like the claimed speaker than like an average speaker."
+
+  - type: mc
+    sectionId: background-subtraction
+    prompt: "Why does video background subtraction use a mixture of Gaussians rather than one Gaussian per pixel?"
+    choices:
+      - "Lighting changes create several legitimate background states, and the mixture learns them separately"
+      - "A single Gaussian cannot represent a pixel colour"
+      - "Mixtures run faster than single Gaussians"
+      - "It is needed to handle moving objects"
+    answer: 0
+    explanation: "Clouds, shadows and headlights create several genuine background appearances. The failure mode is the opposite: an object that stays still long enough gets absorbed into a background component."
+
+  - type: mc
+    sectionId: choosing-the-right-tool-instead
+    prompt: "Your clusters are crescent-shaped rather than elliptical. What should you do?"
+    choices:
+      - "Do not force a Gaussian mixture on the raw data; it will invent structure that is not there"
+      - "Increase the number of components until the clusters look right"
+      - "Use spherical covariances, which handle any shape"
+      - "Raise the variance floor so the components overlap"
+    answer: 0
+    explanation: "GMM components are ellipses. For non-elliptical structure, use spectral clustering or embed the data and cluster the embedding instead."
+
+  - type: mc
+    sectionId: dimensionality-reduction-of-a-sort
+    prompt: "In the pipeline that combines PCA with a GMM, what comes first?"
+    choices:
+      - "Standardise the features, project onto the leading principal components, then fit the mixture in the reduced space"
+      - "Fit the mixture on the raw features, then project the components"
+      - "Fit the mixture and PCA jointly in one step"
+      - "Project onto the first principal component only, then cluster"
+    answer: 0
+    explanation: "The PCA step keeps the GMM in a low-dimensional space where components can be estimated reliably; the mixture then adds clustering along the retained directions."
+
+  - type: cloze
+    sectionId: anomaly-detection
+    prompt: "A GMM can act as an anomaly detector because a point with a very low ____ under the fitted model is unusual."
+    answer: likelihood
+    explanation: "The threshold has to come from held-out normal data, not from a guess — and Gaussian tails produce false positives on genuinely heavy-tailed normal data."

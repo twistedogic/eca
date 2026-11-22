@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: a-worked-example-the-coin
+    prompt: "A coin gives 6 heads and 4 tails, and the prior on p is uniform. What is the posterior estimate of the probability of heads?"
+    choices:
+      - "0.50"
+      - "0.583"
+      - "0.60"
+      - "0.667"
+    answer: 1
+    explanation: "The posterior is Beta(1+6, 1+4) = Beta(7,5), whose mean is 7/12 = 0.583. The MLE would be the plug-in 0.6; the posterior pulls it towards the prior."
+
+  - type: mc
+    sectionId: worked-example-estimating-a-normal-mean-with-a-prior
+    prompt: "Prior mu ~ N(10, 4), data 11, 12, 9 with known variance 1. What is the posterior mean of mu?"
+    choices:
+      - "10.0"
+      - "10.52"
+      - "10.615"
+      - "10.667"
+    answer: 2
+    explanation: "A precision-weighted average: (0.25 x 10 + 3 x 10.667) / 3.25 = 10.615. The data carry 12 times the precision of the prior, so the prior barely moves the estimate."
+
+  - type: mc
+    sectionId: from-posterior-to-prediction
+    prompt: "With posterior Beta(7, 5) on the coin's bias, what is the probability that the next flip is heads?"
+    choices:
+      - "0.50"
+      - "0.583"
+      - "0.60"
+      - "0.70"
+    answer: 1
+    explanation: "The predictive distribution averages over the posterior: E[p | D] = 7/12 = 0.583. The plug-in estimate of 0.60 ignores parameter uncertainty."
+
+  - type: mc
+    sectionId: credible-intervals
+    prompt: "What is the difference between a credible interval and a confidence interval?"
+    choices:
+      - "A credible interval is fixed once the data are in and carries a probability mass; a confidence interval is random and covers the parameter in a fixed proportion of repeated experiments"
+      - "A credible interval is wider than a confidence interval"
+      - "They are the same thing under different names"
+      - "A confidence interval is computed from the prior, a credible interval from the likelihood"
+    answer: 0
+    explanation: "After seeing the data you can say there is 95% probability the parameter lies in a credible interval. That statement is not available from the frequentist side."
+
+  - type: cloze
+    sectionId: bayes-rule
+    prompt: "The posterior is proportional to the ____ times the likelihood."
+    answer: prior
+    explanation: "Bayes' rule: P(theta | D) = P(D | theta) P(theta) / P(D). The normalising constant does not depend on theta, so it can be dropped when optimising."

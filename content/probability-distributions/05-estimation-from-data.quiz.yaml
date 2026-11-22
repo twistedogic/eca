@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: unplugged-estimator-versus-biased-estimator
+    prompt: "For the five measurements in the chapter, what are the maximum likelihood estimate and the unbiased estimate of the variance?"
+    choices:
+      - "0.70 and 0.875"
+      - "0.875 and 0.70"
+      - "1.20 and 1.00"
+      - "0.95 and 0.76"
+    answer: 0
+    explanation: "The MLE divides by n (3.50/5 = 0.70) and is biased downwards; the unbiased estimator divides by n-1 (3.50/4 = 0.875). The gap vanishes as n grows but not when parameters outnumber observations."
+
+  - type: mc
+    sectionId: standard-error-how-precise-is-the-estimate
+    prompt: "With n = 5 measurements and sigma^2 = 0.875, what is the standard error of the sample mean?"
+    choices:
+      - "0.418"
+      - "0.935"
+      - "1.309"
+      - "0.187"
+    answer: 0
+    explanation: "SE = sigma / sqrt(n) = sqrt(0.875)/sqrt(5) = 0.418. It is the standard deviation of the estimator itself, not of the data."
+
+  - type: mc
+    sectionId: confidence-intervals
+    prompt: "With n = 25 measurements, sample mean 10.9 and s = 0.935, what is the 95% confidence interval for the mean?"
+    choices:
+      - "10.9 +/- 0.19"
+      - "10.9 +/- 0.37"
+      - "10.9 +/- 0.94"
+      - "10.9 +/- 1.83"
+    answer: 1
+    explanation: "10.9 +/- 1.96 x (0.935/sqrt(25)) = 10.9 +/- 0.367, so roughly [10.53, 11.27]. The 95% refers to the procedure across repeated experiments, not to this particular interval."
+
+  - type: mc
+    sectionId: regularisation-when-the-data-runs-out
+    prompt: "Why does a Gaussian mixture need regularisation where a single Gaussian does not?"
+    choices:
+      - "Because the mixture likelihood is unbounded: a component can collapse onto one point and send the likelihood to infinity"
+      - "Because the normal density has no closed form"
+      - "Because mixtures cannot be estimated by maximum likelihood at all"
+      - "Because the covariance matrix of a single normal is always singular"
+    answer: 0
+    explanation: "A single component must explain all the data and cannot be dominated by one point. A mixture can, so the likelihood has no finite maximum and a variance floor is mandatory."
+
+  - type: cloze
+    sectionId: method-of-moments-a-cheap-general-estimator
+    prompt: "The method of moments picks parameters so that the sample ____ match the population moments."
+    answer: moments
+    explanation: "Matching the first two moments of a normal gives exactly the sample mean and sample variance, which makes it a cheap sanity check on a fancier estimator."

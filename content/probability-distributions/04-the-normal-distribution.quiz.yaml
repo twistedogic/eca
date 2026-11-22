@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: properties-that-make-the-normal-tractable
+    prompt: "You average 25 independent measurements, each N(mu, sigma^2). What is the distribution of the average?"
+    choices:
+      - "N(mu, sigma^2 / 25)"
+      - "N(mu, sigma^2 / 5)"
+      - "N(25 mu, sigma^2)"
+      - "N(mu, 25 sigma^2)"
+    answer: 0
+    explanation: "Averaging divides the variance by n, so the standard error of the mean is sigma/sqrt(n) = sigma/5. This is why precision buys at a square-root rate with sample size."
+
+  - type: mc
+    sectionId: properties-that-make-the-normal-tractable
+    prompt: "X ~ N(10, 4) and Y ~ N(3, 1) are independent. What is the variance of X + Y?"
+    choices:
+      - "4"
+      - "5"
+      - "1"
+      - "25"
+    answer: 1
+    explanation: "Variances add for independent normals: Var(X+Y) = 4 + 1 = 5. Without independence the covariance term would change this."
+
+  - type: mc
+    sectionId: the-6895997-rule-drawn
+    prompt: "Daily returns of a stock are approximately N(0.01, 0.02^2). What is the probability of a day worse than -5%?"
+    choices:
+      - "About 0.135%"
+      - "About 1.35%"
+      - "About 2.28%"
+      - "About 16%"
+    answer: 1
+    explanation: "Z = (-0.05 - 0.01)/0.02 = -3, and P(Z < -3) = 0.00135. Over 250 trading days that is roughly a 29% chance of at least one such day."
+
+  - type: mc
+    sectionId: the-multivariate-normal
+    prompt: "For a bivariate normal with variances 25 and 9 and covariance 20, what is the correlation between the coordinates?"
+    choices:
+      - "0.67"
+      - "0.44"
+      - "1.35"
+      - "0.20"
+    answer: 0
+    explanation: "Correlation = covariance / (sd1 x sd2) = 20 / (5 x 3) = 0.667. The covariance alone cannot be read as a correlation without dividing by the product of the standard deviations."
+
+  - type: cloze
+    sectionId: where-the-normal-comes-from
+    prompt: "The central limit theorem says that the standardised sum of many independent variables converges to the ____ distribution, whatever the individual distributions are."
+    answer: normal
+    explanation: "Finite mean and variance are enough. The theorem is why averages of any i.i.d. sample are approximately normal, and why the normal dominates the mixture model."

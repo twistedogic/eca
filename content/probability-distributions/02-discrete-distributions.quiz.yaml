@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-binomial-distribution-many-independent-trials
+    prompt: "A machine has a 5% defect rate. In a batch of 20, what is the probability of exactly 3 defects?"
+    choices:
+      - "About 6%"
+      - "About 12%"
+      - "About 23%"
+      - "About 1%"
+    answer: 0
+    explanation: "C(20,3) x 0.05^3 x 0.95^17 = 1140 x 0.000125 x 0.418 = 0.0596. The expected count is only 1, so the distribution is heavily right-skewed."
+
+  - type: mc
+    sectionId: the-poisson-distribution-counting-events-in-a-fixed-window
+    prompt: "What distinguishes the Poisson distribution from every other counting distribution in this chapter?"
+    choices:
+      - "Its mean equals its variance"
+      - "It only applies to discrete data"
+      - "Its parameter must be an integer"
+      - "It counts successes out of a fixed number of trials"
+    answer: 0
+    explanation: "E[X] = Var(X) = lambda. That equality is the signature of Poisson events, and the same algebra makes the Poisson the limit of a large-sample binomial."
+
+  - type: mc
+    sectionId: the-geometric-distribution-waiting-for-the-first-success
+    prompt: "A query succeeds with probability 0.2 per attempt. How many attempts do you expect before the first success?"
+    choices:
+      - "2"
+      - "5"
+      - "20"
+      - "0.2"
+    answer: 1
+    explanation: "E[X] = 1/p = 5. The expectation is the reciprocal of the success probability, and the variance is (1-p)/p^2 = 16 here — the waiting time is far more variable than the mean suggests."
+
+  - type: mc
+    sectionId: choosing-the-right-one
+    prompt: "Which pair of questions separates the binomial from the Poisson?"
+    choices:
+      - "Is the number of trials fixed, and is the event probability constant across trials?"
+      - "Is the mean equal to the variance, and is the support non-negative?"
+      - "Is the number of trials fixed, and does the distribution have a factorial?"
+      - "Is the data symmetric, and does the distribution have a mode?"
+    answer: 0
+    explanation: "Binomial: fixed n, constant p. Poisson: fixed window of time, constant rate. The factorial in the Poisson pmf is a consequence, not a distinguishing question."
+
+  - type: cloze
+    sectionId: sum-mixture-and-why-the-poisson-limit-matters
+    prompt: "The binomial distribution adds over independent trials with the same success probability, which is why the normal distribution appears as its ____ limit."
+    answer: large-sample
+    explanation: "As n grows with p fixed, the standardised binomial converges to the normal — the de Moivre-Laplace theorem."

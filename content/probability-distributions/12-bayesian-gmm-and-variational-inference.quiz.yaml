@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-model
+    prompt: "Which prior is the natural conjugate choice for the mixing weights of a Gaussian mixture?"
+    choices:
+      - "A Beta distribution"
+      - "A Dirichlet distribution"
+      - "A uniform distribution on the real line"
+      - "An Inverse-Wishart distribution"
+    answer: 1
+    explanation: "The weights live on the simplex, and the Dirichlet is the conjugate prior for categorical counts, so the posterior keeps the Dirichlet form with alpha_0 + n_k."
+
+  - type: mc
+    sectionId: why-the-bayesian-version-fixes-the-degeneracy
+    prompt: "Why does the Bayesian Gaussian mixture avoid the collapsed-component problem that maximum likelihood has?"
+    choices:
+      - "The priors penalise a component that shrinks onto a point or takes almost no mass"
+      - "The posterior is computed in closed form, so no optimisation is needed"
+      - "The posterior never contains a component with fewer than n_k = 1"
+      - "The marginal likelihood does not depend on the component parameters"
+    answer: 0
+    explanation: "With a proper prior the marginal likelihood is bounded above, so the degenerate solution becomes very unlikely rather than infinitely good."
+
+  - type: mc
+    sectionId: automatic-model-selection-pruning
+    prompt: "How does the Bayesian mixture decide that a component is not needed?"
+    choices:
+      - "Its posterior weight alpha_k falls below a threshold, and the component is removed"
+      - "Its effective count n_k is smaller than the number of dimensions"
+      - "Its posterior variance is larger than the prior variance"
+      - "Its mean falls outside the range of the observed data"
+    answer: 0
+    explanation: "The posterior Dirichlet parameter is alpha_0 + n_k. A component the data does not support keeps a small alpha_k, so its posterior weight is small and pruning removes it."
+
+  - type: mc
+    sectionId: variational-inference-the-practical-algorithm
+    prompt: "How does the variational E-step differ from the maximum likelihood E-step?"
+    choices:
+      - "It computes responsibilities exactly instead of approximately"
+      - "It averages over the posterior uncertainty in the parameters instead of plugging in point estimates"
+      - "It uses hard assignments rather than soft ones"
+      - "It does not need a prior"
+    answer: 1
+    explanation: "The mean-field factorisation gives r_nk = E[pi_k N(x_n | mu_k, Sigma_k) | x_n], which is approximated in practice by the posterior means."
+
+  - type: cloze
+    sectionId: variational-inference-the-practical-algorithm
+    prompt: "In the variational M-step, the mean update is a precision-weighted average of the weighted data mean and the ____ mean."
+    answer: prior
+    explanation: "The prior acts as shrinkage: a strong prior pulls the component towards the prior mean, a weak one lets the data dominate."

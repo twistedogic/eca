@@ -1,0 +1,51 @@
+questions:
+  - term: responsibility
+    type: mc
+    sectionId: responsibilities
+    prompt: "In the worked example (pi1 = 0.4, mu1 = 2, sigma1 = 1; pi2 = 0.6, mu2 = 6, sigma2 = 1), what are the responsibilities of the point x = 4?"
+    choices:
+      - "r1 = 0.50, r2 = 0.50"
+      - "r1 = 0.40, r2 = 0.60"
+      - "r1 = 0.60, r2 = 0.40"
+      - "r1 = 0.88, r2 = 0.12"
+    answer: 1
+    explanation: "Both components give the same density at x = 4 (it is equidistant from both means), so the weights decide the split: 0.4 versus 0.6."
+
+  - type: mc
+    sectionId: counting-the-parameters
+    prompt: "How many free parameters does a Gaussian mixture with K = 3 components, diagonal covariances and d = 2 dimensions have?"
+    choices:
+      - "15"
+      - "14"
+      - "18"
+      - "21"
+    answer: 1
+    explanation: "K(2d + 1) - 1 = 3(5) - 1 = 14: three means of 2 numbers, three diagonals of 2 variances, and 2 free weights."
+
+  - type: mc
+    sectionId: the-likelihood
+    prompt: "Why does a Gaussian mixture have no closed-form maximum likelihood solution?"
+    choices:
+      - "The log-likelihood contains a log of a sum over components"
+      - "The covariance matrices have no closed-form inverse"
+      - "The mixing weights cannot be estimated from data"
+      - "The responsibilities cannot be computed in closed form"
+    answer: 0
+    explanation: "log p(x) = log of a sum. If the labels were known it would be a sum of logs and optimisable component by component; the unknown labels are the whole difficulty."
+
+  - type: mc
+    sectionId: the-definition
+    prompt: "Which covariance structure gives a Gaussian mixture the fewest parameters per component?"
+    choices:
+      - "Full covariance"
+      - "Tied covariance"
+      - "Diagonal covariance"
+      - "Spherical covariance"
+    answer: 3
+    explanation: "Spherical covariance uses one variance per component shared across dimensions, so each component costs only a mean vector plus one number."
+
+  - type: cloze
+    sectionId: responsibilities
+    prompt: "The responsibilities of a single point are posteriors over the label, so they sum to ____ over all components."
+    answer: "1"
+    explanation: "Each r_nk is between 0 and 1 and they sum to 1 for every point, which is what makes the assignment a probability distribution."

@@ -1,0 +1,39 @@
+questions:
+  - type: mc
+    sectionId: step-3-fit-a-two-component-gmm
+    prompt: "What are the fitted parameters of the two-component model for the session-length data?"
+    choices:
+      - "pi = (0.5, 0.5), mu = (3.97, 11.95), sigma = (0.42, 0.77)"
+      - "pi = (0.3, 0.7), mu = (4.0, 12.0), sigma = (1.0, 1.0)"
+      - "pi = (0.5, 0.5), mu = (3.97, 11.95), sigma = (0.42, 0.77), log-likelihood -12.28"
+      - "pi = (0.5, 0.5), mu = (7.96, 11.95), sigma = (4.04, 0.77)"
+    answer: 0
+    explanation: "The fit splits the data into two equal halves: short sessions at 3.97 minutes (sd 0.42) and long ones at 11.95 (sd 0.77), with log-likelihood -18.51."
+
+  - type: mc
+    sectionId: step-4-should-it-be-k-3
+    prompt: "Both AIC and BIC preferred K = 3 on this dataset. Why was K = 2 chosen anyway?"
+    choices:
+      - "The criteria were computed with the wrong formula"
+      - "The third component had variance 1e-6 and an effective count of one, so it was a spike on a single point"
+      - "K = 2 had a higher likelihood than K = 3"
+      - "The prior used in the fit penalised the third component"
+    answer: 1
+    explanation: "The third component was a degenerate spike sitting on the observation 3.2. It buys likelihood on this sample but assigns near-zero density to new values, so it does not generalise."
+
+  - type: mc
+    sectionId: step-5-use-the-model
+    prompt: "A session lasts 9.0 minutes. What does the fitted model say about it?"
+    choices:
+      - "It belongs to the long-session group, with a density of about 1.7e-4, so it is unusual by either group's account"
+      - "It is a 50/50 mix of the two groups"
+      - "It is impossible under the model"
+      - "It belongs to the short-session group"
+    answer: 0
+    explanation: "The responsibilities are hard (0.0000 / 1.0000) but the density under both components is tiny, so the session is an outlier rather than a compromise between the two modes."
+
+  - type: cloze
+    sectionId: step-4-should-it-be-k-3
+    prompt: "With n = 1000 observations, BIC charges about ____ for the three extra parameters of the third component, more than the 12.5 nats of likelihood it buys."
+    answer: "20.7"
+    explanation: "3 log(1000) = 20.7, which exceeds the 12.5 nats of doubled log-likelihood the spike buys, so at that sample size BIC would pick K = 2."

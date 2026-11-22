@@ -1,0 +1,50 @@
+questions:
+  - type: mc
+    sectionId: the-failure-of-a-single-gaussian
+    prompt: "Why can no single normal distribution fit a population made of two separated clusters?"
+    choices:
+      - "A normal is symmetric and unimodal, so it cannot have two peaks with a dip between them"
+      - "A normal has too few parameters to fit two clusters"
+      - "The clusters would have to be normal as well"
+      - "It is a numerical problem, and more iterations would fix it"
+    answer: 0
+    explanation: "This is structural, not an optimisation failure. The best single fit puts a broad bell in the gap between the clusters and underestimates both peaks."
+
+  - type: mc
+    sectionId: worked-example-a-two-component-mixture-in-one-dimension
+    prompt: "Heights are generated with probability 0.3 from N(160, 25) and probability 0.7 from N(180, 25). What is the mixture density at x = 165?"
+    choices:
+      - "0.0380"
+      - "0.0271"
+      - "0.1213"
+      - "0.1353"
+    answer: 0
+    explanation: "0.3 x 0.2 x e^(-0.5) + 0.7 x 0.2 x e^(-4.5) = 0.0364 + 0.0016 = 0.0380. The shorter group dominates on the left side, exactly as it should."
+
+  - type: mc
+    sectionId: the-mixture-density
+    prompt: "What is the mean of a mixture with weights 0.3 and 0.7 and component means 160 and 180?"
+    choices:
+      - "170"
+      - "174"
+      - "160"
+      - "180"
+    answer: 1
+    explanation: "The mean of a mixture is the weighted average of the component means: 0.3 x 160 + 0.7 x 180 = 174. The same weighted-average rule holds for the variance."
+
+  - type: mc
+    sectionId: latent-variables
+    prompt: "In the mixture model, what is the latent variable?"
+    choices:
+      - "The hidden group label saying which component produced each observation"
+      - "The mean of each component"
+      - "The residual between the observation and its component mean"
+      - "The number of components"
+    answer: 0
+    explanation: "The latent label z is drawn first, then the observation is drawn from the chosen component. The model says nothing about the labels, only about the components and their weights."
+
+  - type: cloze
+    sectionId: the-generative-view-in-reverse
+    prompt: "A ____ of point x is the posterior probability that the point came from component k, given the current parameters."
+    answer: responsibility
+    explanation: "r_k(x) = pi_k p(x | theta_k) / sum_j pi_j p(x | theta_j) — the quantity every fitting algorithm estimates and then uses to update the parameters."

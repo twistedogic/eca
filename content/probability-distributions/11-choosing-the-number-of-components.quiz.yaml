@@ -1,0 +1,39 @@
+questions:
+  - type: mc
+    sectionId: information-criteria-penalise-complexity
+    prompt: "How much does BIC penalise each extra free parameter, compared with AIC?"
+    choices:
+      - "BIC penalises log(n) per parameter, AIC penalises 2"
+      - "BIC penalises 2 per parameter, AIC penalises log(n)"
+      - "Both penalise log(n) per parameter"
+      - "Both penalise 2 per parameter"
+    answer: 0
+    explanation: "AIC = 2p - 2 log L and BIC = p log(n) - 2 log L, so for n = 1000 BIC charges about 6.9 per parameter against AIC's 2 — BIC therefore selects fewer components."
+
+  - type: mc
+    sectionId: cross-validation-the-honest-test
+    prompt: "Your data has a time order. Which validation scheme avoids leaking the future into training?"
+    choices:
+      - "Random k-fold cross-validation"
+      - "Forward chaining: train on the past, test on what follows"
+      - "Leave-one-out cross-validation"
+      - "Bootstrapping the residuals"
+    answer: 1
+    explanation: "A random split lets the model see later observations while training on earlier ones. Forward chaining keeps the ordering intact."
+
+  - type: mc
+    sectionId: likelihood-ratio-tests-for-nested-models
+    prompt: "Under the null hypothesis that one component suffices, the likelihood ratio statistic 2(log L2 - log L1) is asymptotically distributed as:"
+    choices:
+      - "a standard normal"
+      - "chi-squared with degrees of freedom equal to the extra parameters"
+      - "a t distribution"
+      - "uniform on [0, 1]"
+    answer: 1
+    explanation: "The Wilks' theorem: the statistic is asymptotically chi-squared with as many degrees of freedom as the smaller model has free parameters — provided the fit is not degenerate."
+
+  - type: cloze
+    sectionId: information-criteria-penalise-complexity
+    prompt: "Both AIC and BIC are minimised, so when comparing candidate models you prefer the one with the ____ criterion value."
+    answer: lower
+    explanation: "Lower is better for both: the likelihood term rewards fit and the penalty term punishes complexity."
