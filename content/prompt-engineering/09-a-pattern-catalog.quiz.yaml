@@ -1,0 +1,94 @@
+questions:
+  - type: cloze
+    sectionId: how-to-read-this-catalogue
+    prompt: "A pattern is the fixed ____ — role, task, format, and the constraints that always hold — with the varying parts left as slots."
+    answer: skeleton
+    explanation: The skeleton is the reusable frame; the slots are what you fill per request.
+
+  - type: mc
+    sectionId: extraction
+    prompt: Which instruction best stops a model from inferring values that are not in the source text?
+    choices:
+      - Normalise values where possible
+      - Copy values verbatim from the text, and use null when a field is absent
+      - Guess the most likely value
+      - Prefer recent values over older ones
+    answer: 1
+    explanation: Verbatim copying plus an explicit null is what keeps extraction from hallucinating fields.
+
+  - type: mc
+    sectionId: classification
+    prompt: Overlapping label definitions are best fixed by what?
+    choices:
+      - A longer list of allowed labels
+      - Asking for a confidence score
+      - An example of the boundary case
+      - More prose describing the labels
+    answer: 2
+    explanation: Overlap is a boundary problem; an example of the boundary shows where one label ends and the next begins.
+
+  - type: mc
+    sectionId: summarisation
+    prompt: Why does naming the audience's needs beat naming the audience?
+    choices:
+      - It is shorter
+      - It avoids needing examples
+      - It reduces the number of tokens
+      - It pins length, tone, and level of detail that "for an executive" leaves open
+    answer: 3
+    explanation: Naming an executive audience leaves the model's prior in charge; naming what the reader must decide tells the model what to keep.
+
+  - type: mc
+    sectionId: transformation
+    prompt: What happens when the "keep" and "change" lists overlap?
+    choices:
+      - The model resolves the conflict in whichever direction is easier
+      - The model asks for clarification every time
+      - The transformation is refused
+      - The model keeps both versions of the text
+    answer: 0
+    explanation: State the precedence explicitly, or the conflict falls to the default resolution of the model.
+
+  - type: mc
+    sectionId: generation-with-a-rubric
+    prompt: What makes a rubric a usable bar rather than a wish list?
+    choices:
+      - It names the audience
+      - Each criterion is checkable against a produced answer
+      - It has at least six criteria
+      - It includes one sentence of prose
+    answer: 1
+    explanation: Every risk has a mitigation is a checkable criterion; mention risks is not.
+
+  - type: mc
+    sectionId: critique-and-revise
+    prompt: Why does the critique pattern ask for one weakness rather than a list?
+    choices:
+      - Models can only produce one weakness at a time
+      - It shortens the prompt
+      - A laundry list of weaknesses cannot be addressed in one revision
+      - One weakness is cheaper to grade
+    answer: 2
+    explanation: Forcing a single biggest weakness turns a review into a decision the revision can act on.
+
+  - type: mc
+    sectionId: interview-and-refine
+    prompt: Which clause keeps the interview pattern from asking pointless questions?
+    choices:
+      - Ask up to three questions
+      - Then answer
+      - Use only what is in the request
+      - Skip questions whose answers would not change anything
+    answer: 3
+    explanation: Without the skip clause, the model asks questions it could have answered from the context it already has.
+
+  - type: mc
+    sectionId: adversarial-review
+    prompt: Why must the adversarial reviewer be allowed to report no objection?
+    choices:
+      - Otherwise it invents objections to fill the role and the team learns to ignore it
+      - Otherwise it takes too long
+      - Otherwise it duplicates the critique pattern
+      - Otherwise it cannot cite specific lines
+    answer: 0
+    explanation: Permission to find nothing keeps the signal; without it, every proposal appears flawed and the reviewer becomes noise.

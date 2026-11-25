@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: what-the-model-actually-receives
+    prompt: What is a chat model given?
+    choices:
+      - A list of messages, each with a role
+      - A single string of raw text
+      - Only the latest user message
+      - A tokenized log of the training data
+    answer: 0
+    explanation: The whole conversation arrives as a list of messages with roles such as system, user, assistant, and tool.
+
+  - type: mc
+    sectionId: what-the-model-actually-receives
+    prompt: Why do delimiters matter?
+    choices:
+      - They increase the context window
+      - They mark where instruction ends and pasted data begins
+      - They make the prompt shorter
+      - They force the model to use JSON
+    answer: 1
+    explanation: Without a boundary, content inside the prompt can be read as instructions; delimiters make the data/instruction split visible.
+
+  - type: cloze
+    sectionId: what-the-model-actually-receives
+    prompt: "The total token budget for the conversation, including the reply being generated, is the ____."
+    answer: context window
+    explanation: Everything sent and produced has to fit inside the context window.
+
+  - type: mc
+    sectionId: the-parts-of-a-complete-prompt
+    prompt: Which part of a complete prompt names the single job to perform?
+    choices:
+      - The context
+      - The constraints
+      - The task
+      - The role
+    answer: 2
+    explanation: The task names one verb to perform; the role sets standards, the context supplies material, the constraints set limits.
+
+  - type: mc
+    sectionId: tokens-cost-and-latency
+    prompt: What is the practical rule for context length?
+    choices:
+      - Always give the model every document you have
+      - Keep the prompt under 500 tokens
+      - Fill the context window so the model has more to think about
+      - Use the shortest prompt that contains everything the answer depends on
+    answer: 3
+    explanation: Every token should earn its place - extra context costs money and latency but only helps when the answer depends on it.
+
+  - type: mc
+    sectionId: where-prompts-live-in-code
+    prompt: Why keep the prompt as a template in code?
+    choices:
+      - It is reviewable, diffable, and versioned like any other code
+      - Templates run faster than inline strings
+      - Templates guarantee the model follows the instructions
+      - Templates remove the need for tests
+    answer: 0
+    explanation: A template with one variable slot is easy to test and to change; scattered prompt strings are not.

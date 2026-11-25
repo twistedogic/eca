@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: chain-of-thought
+    prompt: Why does chain of thought help on multi-step problems?
+    choices:
+      - It guarantees the answer is correct
+      - The reasoning happens before the answer, so the answer cannot constrain it backwards
+      - It uses more of the context window
+      - It forces the model to be more creative
+    answer: 1
+    explanation: Asking for reasoning first lets the model commit to an answer only after it has explored the alternatives.
+
+  - type: cloze
+    sectionId: chain-of-thought
+    prompt: "A fixed marker such as ____ gives the model a clean place to commit and makes the answer trivial to extract."
+    answer: "ANSWER:"
+    explanation: A stop token separates the working from the final result.
+
+  - type: mc
+    sectionId: scratchpads-and-reasoning-models
+    prompt: What is a scratchpad?
+    choices:
+      - A second copy of the system prompt
+      - A tool the model calls to store state
+      - Working out that is kept out of the answer the user sees
+      - A file where prompts are stored
+    answer: 2
+    explanation: Reasoning models keep their deliberation private by default; a scratchpad is the equivalent for models that do not.
+
+  - type: mc
+    sectionId: decomposition
+    prompt: What is the main risk of decomposing a prompt into steps?
+    choices:
+      - The prompt becomes too short
+      - The output can no longer be structured
+      - The context window is split in two
+      - Error propagation from an early step into later ones
+    answer: 3
+    explanation: A mistake in step 1 becomes step 2's premise; structured intermediate outputs keep that visible.
+
+  - type: mc
+    sectionId: self-consistency-and-voting
+    prompt: Why does self-consistency work?
+    choices:
+      - Correct reasoning paths converge on the same answer, so agreement is evidence
+      - Each sample is more accurate than the last
+      - Majority voting removes the need for a rubric
+      - It shortens the reasoning
+    answer: 0
+    explanation: It reduces variance - errors are less likely to repeat across samples than correct paths are to differ.
+
+  - type: mc
+    sectionId: verification-and-critique
+    prompt: Why should a critique pass be allowed to answer "insufficient evidence"?
+    choices:
+      - It reduces the token cost of the check
+      - A binary pass/fail critic approves bad answers under pressure
+      - It makes the critique shorter
+      - It avoids the need for acceptance criteria
+    answer: 1
+    explanation: Forcing a binary verdict removes the escape hatch that keeps a critic honest.

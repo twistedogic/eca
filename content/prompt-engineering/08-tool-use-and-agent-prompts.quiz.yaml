@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: what-a-tool-call-is
+    prompt: What happens during a function call?
+    choices:
+      - The model emits a request, your code runs the function, and the result is sent back
+      - The model executes the function itself
+      - The tool runs in the background and pushes the result later
+      - The model asks the user to run the function
+    answer: 0
+    explanation: The model only proposes the call; execution and the decision about it belong to your code.
+
+  - type: mc
+    sectionId: describing-tools
+    prompt: What must a tool schema describe?
+    choices:
+      - The user-facing documentation
+      - What the tool does, when to use it, the arguments, and what empty and error results look like
+      - Only the argument names and types
+      - The implementation of the tool
+    answer: 1
+    explanation: The schema is the model's only documentation, so it carries the whole burden including the failure cases.
+
+  - type: cloze
+    sectionId: describing-tools
+    prompt: "If a human-facing API reference and a tool description disagree, the tool description ____ in production."
+    answer: wins
+    explanation: The model selects tools by description, so that is the contract it actually sees.
+
+  - type: mc
+    sectionId: deciding-when-to-call
+    prompt: The model answers a question about a customer's invoice from memory instead of calling the invoice search tool. What is this?
+    choices:
+      - A schema validation error
+      - A policy denial
+      - Under-calling
+      - Over-calling
+    answer: 2
+    explanation: Under-calling happens when the requirement to use the tool is not stated explicitly in the task.
+
+  - type: mc
+    sectionId: failure-and-recovery
+    prompt: Why does an idempotency key matter when a tool is retried?
+    choices:
+      - So the model can count the attempts
+      - So the arguments are validated
+      - So the tool result is cached
+      - So a retry cannot duplicate the effect of the first attempt
+    answer: 3
+    explanation: A retried call that sends an email or charges a card must not perform the action twice.
+
+  - type: mc
+    sectionId: guardrails-and-permissions
+    prompt: Why are guardrails enforced outside the model?
+    choices:
+      - The model is a proposal generator, not a security boundary
+      - The model cannot count steps
+      - Guardrails are faster when written in code
+      - The model cannot read a policy file
+    answer: 0
+    explanation: Enforcement must live where the decision is final, not in the component that is proposing the action.

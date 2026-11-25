@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: what-few-shot-examples-buy-you
+    prompt: What does in-context learning actually do?
+    choices:
+      - The model stores the examples for later queries
+      - The model re-ranks its own weights using the examples
+      - The model imitates the behaviour demonstrated in the prompt
+      - The model trains on the examples before answering
+    answer: 2
+    explanation: The examples are read as part of the request; the model copies their format, tone, and judgement without any training step.
+
+  - type: mc
+    sectionId: what-few-shot-examples-buy-you
+    prompt: Which problem can few-shot prompting NOT fix?
+    choices:
+      - The model using the wrong label names
+      - The model producing an unexpected output shape
+      - The model misjudging what counts as urgent
+      - The model missing a fact it has never seen
+    answer: 3
+    explanation: Examples teach format and judgement, not facts; missing knowledge needs context or retrieval.
+
+  - type: mc
+    sectionId: how-many-examples-and-which-ones
+    prompt: Which property of an example set usually helps most?
+    choices:
+      - Diverse coverage, especially of the hard cases
+      - A larger number of examples
+      - Examples taken from the easiest inputs
+      - Examples written in the same style as the prompt
+    answer: 0
+    explanation: Coverage of the decision boundary teaches more than extra examples of the same easy case.
+
+  - type: cloze
+    sectionId: the-shape-of-a-good-example
+    prompt: "An example works best when it contains the same ____ as the real request, with only the input swapped."
+    answer: scaffolding
+    explanation: Matching scaffolding means the model sees the exact input/output boundary and output shape it must reproduce.
+
+  - type: mc
+    sectionId: the-shape-of-a-good-example
+    prompt: What happens when your examples disagree in style?
+    choices:
+      - The model asks which example to follow
+      - The model averages them and produces output in a third, unwanted style
+      - The model copies the last example exactly
+      - The model refuses to answer
+    answer: 1
+    explanation: Consistency of the demonstrated output is what gets imitated; inconsistency produces a blend of the styles shown.
+
+  - type: mc
+    sectionId: where-examples-come-from
+    prompt: According to the chapter, where should example cases come from?
+    choices:
+      - The vendor's documentation examples
+      - The first ten inputs that happen to arrive
+      - Real failures from production, clustered by type
+      - Hypothetical cases invented for clarity
+    answer: 2
+    explanation: Failures show which boundaries the model actually gets wrong; inventing examples guesses at them.

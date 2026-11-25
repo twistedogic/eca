@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: vague-instructions-and-what-they-cost
+    prompt: Why is "summarise this ticket" a weak prompt?
+    choices:
+      - It asks for more than one task
+      - It forces the model to guess, and the guesses come from the broadest prior available
+      - It uses too few tokens
+      - It is too long for the context window
+    answer: 1
+    explanation: Underspecified prompts make the model fill in defaults you did not choose; specificity costs tokens and saves rework.
+
+  - type: mc
+    sectionId: say-what-you-want-not-what-you-do-not-want
+    prompt: Which rewrite makes the instruction checkable?
+    choices:
+      - 'Write a detailed answer instead of "answer in at most three sentences"'
+      - 'Skip the length limit instead of "answer in at most three sentences"'
+      - 'Answer in at most three sentences instead of "be concise"'
+      - 'Do not be verbose instead of "answer in at most three sentences"'
+    answer: 2
+    explanation: A countable target can be verified by a script; an adjective cannot.
+
+  - type: cloze
+    sectionId: say-what-you-want-not-what-you-do-not-want
+    prompt: "Negative constraints are weak because they ask the model to search for a concept and invert it, while positive constraints give it a ____ to aim at."
+    answer: target
+    explanation: Be concise gives no target; at most 120 words does.
+
+  - type: mc
+    sectionId: constraints-that-survive
+    prompt: What makes a constraint survive in the output?
+    choices:
+      - It is stated first in the prompt
+      - It uses strong wording
+      - It is repeated at the end of the prompt
+      - It is attached to a measurable property of the answer
+    answer: 3
+    explanation: Measurable targets (max words, allowed labels, required headings) can be checked; preferences cannot.
+
+  - type: mc
+    sectionId: specifying-the-output
+    prompt: Which instruction most reliably prevents a preamble around a JSON answer?
+    choices:
+      - "Return only the JSON object, no prose before or after"
+      - "Be concise in your answer"
+      - "Explain your reasoning briefly"
+      - "Format the output as JSON where possible"
+    answer: 0
+    explanation: An explicit stop condition removes the friendly-preamble failure mode that breaks parsers.
+
+  - type: mc
+    sectionId: show-the-shape-not-the-recipe
+    prompt: What does a well-chosen example convey that a rule cannot?
+    choices:
+      - How many examples to give
+      - What to leave out
+      - How long the answer should be
+      - Which language to use
+    answer: 1
+    explanation: Examples demonstrate omission as well as inclusion, in a fraction of the space a rule list would need.

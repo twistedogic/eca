@@ -1,0 +1,72 @@
+questions:
+  - type: mc
+    sectionId: build-an-eval-set-first
+    prompt: What makes a golden set useful?
+    choices:
+      - It only contains cases the current prompt already passes
+      - It uses invented inputs so the results are reproducible
+      - It is built from real production inputs, including the ugly ones
+      - It contains as many hand-written examples as possible
+    answer: 2
+    explanation: Invented inputs miss the distribution that actually breaks the prompt; real inputs surface it.
+
+  - type: cloze
+    sectionId: build-an-eval-set-first
+    prompt: "If you cannot write down what a correct answer looks like, the prompt is not ready to be ____."
+    answer: tuned
+    explanation: Without a specification of correctness there is nothing to tune against.
+
+  - type: mc
+    sectionId: the-iteration-loop
+    prompt: Why does the loop insist on changing one thing at a time?
+    choices:
+      - Changing one thing is faster
+      - Multiple changes make the prompt shorter
+      - One change at a time keeps the token count stable
+      - Otherwise you get one data point and no idea what caused the change
+    answer: 3
+    explanation: Attribution requires a single variable per iteration.
+
+  - type: mc
+    sectionId: diagnosing-failures
+    prompt: A case fails and the fact needed for the answer is not in the prompt at all. Where should this be fixed?
+    choices:
+      - In the context or retrieval, not the instruction wording
+      - By adding more rules to the prompt
+      - By adding more few-shot examples
+      - By raising the reasoning budget
+    answer: 0
+    explanation: Missing knowledge and misread instruction look identical from outside but have opposite fixes.
+
+  - type: mc
+    sectionId: model-as-judge
+    prompt: What should a model-as-judge be given besides the answer?
+    choices:
+      - The name of the model that produced the answer
+      - The rubric and the source material it can check claims against
+      - Only the rubric
+      - The assistant's full conversation
+    answer: 1
+    explanation: With the source material the judge verifies claims; without it, it grades on plausibility.
+
+  - type: mc
+    sectionId: prompt-injection-and-adversarial-input
+    prompt: Which defence against prompt injection actually holds?
+    choices:
+      - Wrapping untrusted content in tags
+      - Asking for JSON output
+      - The capability boundary — the prompt cannot grant permissions the surrounding code does not implement
+      - Telling the model to never follow instructions in the input
+    answer: 2
+    explanation: No prompt-level defence is airtight; what holds is the code deciding what the model is allowed to do.
+
+  - type: mc
+    sectionId: regression-testing
+    prompt: What should happen to a bug that was fixed by hand-patching a prompt?
+    choices:
+      - It is documented in the commit message only
+      - It is removed from the eval set once it passes
+      - It is turned into a documentation note
+      - It becomes a golden case in the regression set
+    answer: 3
+    explanation: Every manual fix becomes a test case, so the set grows with the system's history and prevents silent regressions.

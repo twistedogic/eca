@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: the-context-budget
+    prompt: Which parts share the context budget?
+    choices:
+      - System prompt, examples, retrieved documents, history, input, and the reply
+      - Only the user message and the reply
+      - Only the system prompt and the retrieved documents
+      - The input and the context window limit
+    answer: 0
+    explanation: Everything the model sends and produces has to fit in one window, so each part competes with the others.
+
+  - type: mc
+    sectionId: what-to-include
+    prompt: According to the chapter, what should the context contain?
+    choices:
+      - The top-ranked document and nothing else
+      - Whatever the answer depends on
+      - Everything you have, so nothing is missed
+      - Only the most recent document
+    answer: 1
+    explanation: Relevance beats completeness; irrelevant material competes for attention and dilutes the signal.
+
+  - type: cloze
+    sectionId: what-to-include
+    prompt: "Framing each chunk with its title, date, and type is often worth more than adding another ____."
+    answer: chunk
+    explanation: Telling the model what kind of thing it is reading is often worth more than one more piece of text.
+
+  - type: mc
+    sectionId: long-context-and-lost-in-the-middle
+    prompt: What is the lost in the middle effect?
+    choices:
+      - The model only reads the first and last page of a document
+      - Only one document can be used at a time
+      - Material in the middle of a long input is attended to less reliably
+      - Long inputs get truncated in the middle
+    answer: 2
+    explanation: Attention is strongest at the beginning and the end, so middle material is retrieved less often even when it is relevant.
+
+  - type: mc
+    sectionId: retrieval-instead-of-pasting
+    prompt: Which pair of retrieval failures is distinguished in the chapter?
+    choices:
+      - Latency failure and cost failure
+      - Chunking failure and ranking failure
+      - Prompt failure and model failure
+      - Recall failure (right doc not retrieved) and precision failure (irrelevant docs retrieved)
+    answer: 3
+    explanation: The first is a search problem, the second a ranking problem; the fixes differ.
+
+  - type: mc
+    sectionId: compaction-and-summarisation
+    prompt: What should a compaction summary preserve?
+    choices:
+      - The decisions and open questions, not the transcript
+      - A verbatim transcript of the older turns
+      - The full context of every tool call
+      - Only the user's most recent message
+    answer: 0
+    explanation: A record of what was decided is what later turns need; a record of what was said is close to useless.

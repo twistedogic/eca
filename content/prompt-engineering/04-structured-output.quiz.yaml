@@ -1,0 +1,61 @@
+questions:
+  - type: mc
+    sectionId: why-structure-beats-prose
+    prompt: What does the stop condition in a structured-output prompt prevent?
+    choices:
+      - The model refusing the task
+      - The model inventing facts
+      - The model exceeding the context window
+      - The model wrapping the JSON in a friendly preamble
+    answer: 3
+    explanation: Asking for no prose before or after the JSON removes the most common structured-output failure, which breaks strict parsers.
+
+  - type: cloze
+    sectionId: why-structure-beats-prose
+    prompt: "A schema constrains the answer's shape; a ____ constrains its content. Both are needed."
+    answer: rubric
+    explanation: The schema says what fields the answer has; the rubric says what those fields should say.
+
+  - type: mc
+    sectionId: json-and-schemas
+    prompt: Which output is strictest for a code consumer?
+    choices:
+      - Exactly the named keys, exact types, no comments, no prose wrapper
+      - A JSON object with the named keys plus any extra ones it finds useful
+      - A YAML block with comments explaining each field
+      - A markdown table with the right columns
+    answer: 0
+    explanation: Strictness is what lets a parser rely on the shape instead of defensively stripping and guessing.
+
+  - type: mc
+    sectionId: delimiters-and-tags
+    prompt: Why are XML-style tags preferred over bare triple quotes around pasted data?
+    choices:
+      - They increase the number of allowed labels
+      - They nest, cannot collide with prose, and survive copy-paste
+      - They use fewer tokens
+      - They force the model to answer in JSON
+    answer: 1
+    explanation: Tags give an unambiguous, machine-readable boundary around untrusted content.
+
+  - type: mc
+    sectionId: constrained-decoding
+    prompt: What does constrained decoding change?
+    choices:
+      - The model is fine-tuned on the schema
+      - The output is checked after generation and rewritten
+      - Only tokens that keep the output valid are allowed to be generated
+      - The prompt is truncated to fit the schema
+    answer: 2
+    explanation: Constraining the sampler turns a probabilistic instruction into a hard guarantee about validity.
+
+  - type: mc
+    sectionId: parsing-and-repairing
+    prompt: What is the last rung of the recovery ladder when the parse fails?
+    choices:
+      - Guess the most likely value
+      - Retry the request until it parses
+      - Return an empty object
+      - Fail loudly — route the case to a human or a fallback path
+    answer: 3
+    explanation: Substituting a default for a failed parse turns a visible outage into silent wrong data.
