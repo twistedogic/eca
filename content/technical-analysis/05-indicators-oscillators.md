@@ -5,7 +5,9 @@ chapter 1. Smoothing, differencing, banding — none of it adds information;
 it rearranges what price already said into a slower, calmer shape. That is
 genuinely useful, and it is also the ceiling: an indicator is a lamp, not
 a window. This chapter covers the handful worth knowing and the two honest
-ways to use them.
+ways to use them. The arithmetic behind each of them is written out in
+chapter 7, along with the conventions that make two platforms disagree
+about the same number.
 
 ## Trend indicators: moving averages
 

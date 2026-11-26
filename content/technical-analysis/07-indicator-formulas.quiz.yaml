@@ -1,0 +1,105 @@
+questions:
+  - type: mc
+    sectionId: why-the-formula-matters
+    prompt: What are the three shapes every indicator in this topic takes?
+    choices:
+      - An average over a window, a difference between two averages, or a spread around an average
+      - A price, a volume, and a time period
+      - A trend, a range, and a reversal
+      - A line, a histogram, and a band
+    answer: 0
+    explanation: Every indicator here is an average, a difference of averages, or a spread measured in standard deviations.
+
+  - type: mc
+    sectionId: moving-averages
+    prompt: What is the smoothing factor of a 20-period EMA?
+    choices:
+      - 1/20, that is 0.05
+      - 2/21, that is about 0.095
+      - 2/20, that is 0.10
+      - 21/2, that is 10.5
+    answer: 1
+    explanation: The smoothing factor is alpha = 2/(N+1), so a 20-period EMA uses 2/21 and puts about 9.5% of each new close into the average.
+
+  - type: cloze
+    sectionId: moving-averages
+    prompt: "The first value of an EMA is normally the ____ of the first N closes, and every later value depends on that seed."
+    answer: SMA
+    explanation: The seed fixes where the recursion starts; a different seed changes the first dozens of bars.
+
+  - type: mc
+    sectionId: rsi
+    prompt: Which smoothing does Wilder's RSI use?
+    choices:
+      - A simple average of the last N bars
+      - An exponential average with alpha = 2/(N+1)
+      - An exponential average with alpha = 1/N
+      - No smoothing at all
+    answer: 2
+    explanation: Wilder smoothing uses alpha = 1/N, which reacts more slowly than the standard EMA factor and is the usual default for RSI.
+
+  - type: mc
+    sectionId: macd
+    prompt: What is the MACD line?
+    choices:
+      - The difference between the signal line and the price
+      - The sum of the 12- and 26-period EMAs
+      - The difference between the 12- and 26-period EMAs
+      - The RSI of the MACD line
+    answer: 2
+    explanation: MACD is EMA(12) minus EMA(26), so it is zero exactly where the fast and slow trends agree.
+
+  - type: mc
+    sectionId: bollinger-bands
+    prompt: How are the Bollinger bands placed around the middle?
+    choices:
+      - Middle plus and minus k times the standard deviation of the closes
+      - Middle plus and minus two ATRs
+      - Middle plus and minus the previous close
+      - Middle plus and minus the high-low range of the period
+    answer: 0
+    explanation: The bands are middle plus and minus k standard deviations, with k = 2 by default.
+
+  - type: mc
+    sectionId: average-true-range
+    prompt: What does the true range measure?
+    choices:
+      - The high minus the low of the bar
+      - The size of the candle body
+      - The largest of high-low, |high - previous close|, and |low - previous close|
+      - The distance from the open to the close
+    answer: 2
+    explanation: Taking the maximum with the gaps from the previous close is what lets a gap move count as true range.
+
+  - type: mc
+    sectionId: the-same-indicator-two-conventions
+    prompt: Two platforms show different RSI values for the same closes. What is the most likely cause?
+    choices:
+      - The charts are zoomed differently
+      - One of them uses a different smoothing convention
+      - One of them uses a different close price
+      - One of them is repainting the last bar
+    answer: 1
+    explanation: Smoothing, seed, and period are the conventions that change the number; the visualisation does not.
+
+  - type: mc
+    sectionId: a-worked-example
+    prompt: In the worked example, what is the ATR at t=6?
+    choices:
+      - "4.00"
+      - "4.81"
+      - "4.22"
+      - "6.00"
+    answer: 1
+    explanation: ATR6 = (4.22x2 + 6) / 3 = 4.81; the 6 is the true range of the gapping-down bar.
+
+  - type: mc
+    sectionId: quick-reference
+    prompt: Which indicator in the quick reference has no smoothing at all?
+    choices:
+      - RSI
+      - ATR
+      - Bollinger Bands
+      - EMA
+    answer: 2
+    explanation: Bollinger Bands use a plain average and a plain standard deviation of the closes; the others smooth.
